@@ -2,8 +2,15 @@ import { supabase } from '@/lib/supabase';
 
 import { Child } from '@/types/core';
 
+/**
+ * Service for managing child profiles associated with a client.
+ */
 export const childrenService = {
-    // Get all children for a client
+    /**
+     * Retrieves all children for a specific client.
+     * @param clientId UUID of the client
+     * @returns Array of Child objects ordered by creation date
+     */
     async getChildren(clientId: string) {
         const { data, error } = await supabase
             .from('children')
@@ -15,7 +22,11 @@ export const childrenService = {
         return data as Child[];
     },
 
-    // Add a child
+    /**
+     * Adds a new child to the client's profile.
+     * @param child Child data object (excluding ID and timestamp)
+     * @returns Created Child object
+     */
     async addChild(child: Omit<Child, 'id' | 'created_at'>) {
         const { data, error } = await supabase
             .from('children')
@@ -27,7 +38,12 @@ export const childrenService = {
         return data as Child;
     },
 
-    // Update a child
+    /**
+     * Updates an existing child's profile.
+     * @param id UUID of the child record
+     * @param updates Partial Child object with fields to update
+     * @returns Updated Child object
+     */
     async updateChild(id: string, updates: Partial<Omit<Child, 'id' | 'client_id' | 'created_at'>>) {
         const { data, error } = await supabase
             .from('children')
@@ -40,7 +56,10 @@ export const childrenService = {
         return data as Child;
     },
 
-    // Delete a child
+    /**
+     * Deletes a child's profile.
+     * @param id UUID of the child record
+     */
     async deleteChild(id: string) {
         const { error } = await supabase
             .from('children')

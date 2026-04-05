@@ -49,7 +49,8 @@ export const translations = {
             otpRequired: 'يرجى إدخال الرمز المكون من 8 أرقام',
             chooseRole: 'اختاري النوع المناسب لكِ',
             roleClient: 'أبحث عن سوبر خالة',
-            roleSitter: 'أنا سوبر خالة'
+            roleSitter: 'أنا سوبر خالة',
+            rateLimitExceeded: 'لقد تجاوزت الحد المسموح به من المحاولات. يرجى الانتظار قليلاً قبل المحاولة مرة أخرى.'
         },
         client: {
             home: 'الرئيسية',
@@ -343,7 +344,8 @@ export const translations = {
             otpRequired: 'Please enter the 8-digit code',
             chooseRole: 'Choose the right type for you',
             roleClient: 'I\'m looking for a Super Khala',
-            roleSitter: 'I\'m a Super Khala'
+            roleSitter: 'I\'m a Super Khala',
+            rateLimitExceeded: 'You have exceeded the maximum number of attempts. Please wait a while before trying again.'
         },
         client: {
             home: 'Home',

@@ -19,8 +19,15 @@ export interface Review {
     };
 }
 
+/**
+ * Service for managing reviews and ratings.
+ */
 export const reviewService = {
-    // Create a review
+    /**
+     * Creates a new review for a booking.
+     * @param review Review data (booking_id, reviewer info, rating, comment)
+     * @returns Created Review object
+     */
     async createReview(review: {
         booking_id: string;
         reviewer_id: string;
@@ -38,17 +45,22 @@ export const reviewService = {
         return data as Review;
     },
 
-    // Get reviews for a specific sitter
+    /**
+     * Retrieves all reviews for a specific sitter (reviewee).
+     * Includes reviewer profile information.
+     * @param sitterId UUID of the sitter
+     * @returns Array of Review objects
+     */
     async getSitterReviews(sitterId: string) {
         const { data, error } = await supabase
             .from('reviews')
             .select(`
-        *,
-        reviewer:reviewer_id (
-          full_name,
-          avatar_url
-        )
-      `)
+                *,
+                reviewer:reviewer_id (
+                    full_name,
+                    avatar_url
+                )
+            `)
             .eq('reviewee_id', sitterId)
             .order('created_at', { ascending: false });
 
@@ -56,7 +68,11 @@ export const reviewService = {
         return data as Review[];
     },
 
-    // Get review for a specific booking
+    /**
+     * Retrieves the existing review for a specific booking (if any).
+     * @param bookingId UUID of the booking
+     * @returns Review object or null
+     */
     async getBookingReview(bookingId: string) {
         const { data, error } = await supabase
             .from('reviews')
@@ -68,7 +84,11 @@ export const reviewService = {
         return data as Review | null;
     },
 
-    // Calculate average rating for a sitter
+    /**
+     * Calculates the average rating and review count for a sitter.
+     * @param sitterId UUID of the sitter
+     * @returns Object with average rating and count
+     */
     async getSitterAverageRating(sitterId: string) {
         const { data, error } = await supabase
             .from('reviews')

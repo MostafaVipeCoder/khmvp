@@ -17,6 +17,12 @@ export interface ClientAppProps {
 type ClientTab = 'home' | 'requests' | 'schedule' | 'profile';
 
 
+/**
+ * Client Main Application Shell
+ * Manages navigation for client-side features: Home, Requests, Schedule, Profile.
+ * Uses lazy loading for performance.
+ * @param props Component props including language and theme handlers
+ */
 export default function ClientApp({ language: propLanguage, onLogout, onLanguageChange, theme, onThemeChange }: ClientAppProps) {
   const [activeTab, setActiveTab] = useState<ClientTab>('home');
   const { t, language } = useTranslation();

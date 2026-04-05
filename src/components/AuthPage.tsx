@@ -12,11 +12,18 @@ interface AuthPageProps {
   onBack?: () => void;
 }
 
+/**
+ * Authentication Page Component
+ * Handles user login, signup, and OTP verification flows.
+ * @param props Component props
+ * @param props.onBack Optional callback for back navigation
+ */
 export default function AuthPage({ onBack }: AuthPageProps) {
   const { t, language } = useTranslation();
   const authT = t.auth;
   const commonT = t.common;
 
+  // Store actions for auth management
   const { signIn, signUp, verifyOTP, resendOTP, userType, setUserType } = useAuthStore();
 
   const [mode, setMode] = useState<'login' | 'signup' | 'forgot' | 'verify'>(() => {
@@ -75,7 +82,8 @@ export default function AuthPage({ onBack }: AuthPageProps) {
       if (error) throw error;
       toast.success(commonT.success);
     } catch (error: any) {
-      toast.error(error.message || commonT.error);
+      const isRateLimit = error.status === 429 || error.message?.toLowerCase().includes('rate limit');
+      toast.error(isRateLimit ? authT.rateLimitExceeded : (error.message || commonT.error));
     } finally {
       setLoading(false);
     }
@@ -88,7 +96,8 @@ export default function AuthPage({ onBack }: AuthPageProps) {
       if (error) throw error;
       toast.success(authT.accountCreated);
     } catch (error: any) {
-      toast.error(error.message || commonT.error);
+      const isRateLimit = error.status === 429 || error.message?.toLowerCase().includes('rate limit');
+      toast.error(isRateLimit ? authT.rateLimitExceeded : (error.message || commonT.error));
     } finally {
       setLoading(false);
     }
@@ -136,7 +145,8 @@ export default function AuthPage({ onBack }: AuthPageProps) {
       }
     } catch (error: any) {
       console.error(error);
-      toast.error(error.message || commonT.error);
+      const isRateLimit = error.status === 429 || error.message?.toLowerCase().includes('rate limit');
+      toast.error(isRateLimit ? authT.rateLimitExceeded : (error.message || commonT.error));
     } finally {
       setLoading(false);
     }

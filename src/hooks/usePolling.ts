@@ -10,6 +10,12 @@ interface UsePollingOptions {
     onError?: (error: Error) => void;
 }
 
+/**
+ * Custom hook for periodic data fetching (polling).
+ * Useful for keeping data synchronized in real-time.
+ * @param fetchFunction Async function to execute periodically
+ * @param options Configuration for interval and error handling
+ */
 export function usePolling(
     fetchFunction: () => Promise<void>,
     options: UsePollingOptions

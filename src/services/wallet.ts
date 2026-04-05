@@ -11,7 +11,15 @@ export interface Transaction {
     created_at: string;
 }
 
+/**
+ * Service for managing user wallet and financial transactions.
+ */
 export const walletService = {
+    /**
+     * Retrieves all transactions for a specific user.
+     * @param userId UUID of the user
+     * @returns Array of transactions ordered by date descending
+     */
     async getTransactions(userId: string) {
         const { data, error } = await supabase
             .from('transactions')
@@ -23,6 +31,12 @@ export const walletService = {
         return data as Transaction[];
     },
 
+    /**
+     * Retrieves the current balance for a user.
+     * Calculated via database function.
+     * @param userId UUID of the user
+     * @returns Current balance amount
+     */
     async getBalance(userId: string) {
         const { data, error } = await supabase
             .rpc('get_user_balance', { uid: userId });
@@ -31,6 +45,11 @@ export const walletService = {
         return data as number;
     },
 
+    /**
+     * Submits a new withdrawal request.
+     * @param userId UUID of the user
+     * @param amount Amount to withdraw
+     */
     async requestWithdrawal(userId: string, amount: number) {
         const { error } = await supabase
             .from('transactions')
@@ -45,7 +64,13 @@ export const walletService = {
         if (error) throw error;
     },
 
-    // Admin Methods
+    // -- Admin Methods --
+
+    /**
+     * RETRIEVES all pending withdrawal requests.
+     * Intended for admin use only.
+     * Includes user profile details.
+     */
     async getAllPendingWithdrawals() {
         const { data, error } = await supabase
             .from('transactions')
@@ -64,6 +89,11 @@ export const walletService = {
         return data;
     },
 
+    /**
+     * Updates the status of a transaction (e.g., approving a withdrawal).
+     * @param id UUID of the transaction
+     * @param status New status
+     */
     async updateTransactionStatus(id: string, status: Transaction['status']) {
         const { error } = await supabase
             .from('transactions')

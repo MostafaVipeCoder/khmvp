@@ -17,6 +17,13 @@ interface UseApiReturn<T> {
     reset: () => void;
 }
 
+/**
+ * Custom hook for data fetching operations.
+ * Manages loading, error, and data states automatically.
+ * @param apiFunction Function that returns a promise (the API call)
+ * @param options Configuration options for the hook
+ * @returns Object containing data, loading state, error, and execution controls
+ */
 export function useApi<T>(
     apiFunction: () => Promise<T>,
     options: UseApiOptions<T> = {}
@@ -68,6 +75,12 @@ interface UseMutationReturn<T, V> {
     reset: () => void;
 }
 
+/**
+ * Custom hook for data mutation operations (create, update, delete).
+ * @param mutationFunction Function that performs the mutation
+ * @param options Configuration options
+ * @returns Object containing mutate function, loading state, error, etc.
+ */
 export function useMutation<T, V>(
     mutationFunction: (variables: V) => Promise<T>,
     options: UseApiOptions<T> = {}

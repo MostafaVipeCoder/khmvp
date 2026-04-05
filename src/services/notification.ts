@@ -11,7 +11,15 @@ export interface Notification {
   created_at: string;
 }
 
+/**
+ * Service for managing user notifications and FCM tokens.
+ */
 export const notificationService = {
+  /**
+   * Retrieves all notifications for a user.
+   * @param userId UUID of the user
+   * @returns Array of notifications ordered by newest first
+   */
   async getNotifications(userId: string) {
     const { data, error } = await supabase
       .from('notifications')
@@ -23,6 +31,11 @@ export const notificationService = {
     return data as Notification[];
   },
 
+  /**
+   * Retrieves notifications from the last 24 hours.
+   * @param userId UUID of the user
+   * @returns Array of recent notifications
+   */
   async getRecentNotifications(userId: string) {
     const oneDayAgo = new Date();
     oneDayAgo.setDate(oneDayAgo.getDate() - 1);
@@ -38,6 +51,10 @@ export const notificationService = {
     return data as Notification[];
   },
 
+  /**
+   * Marks a specific notification as read.
+   * @param notificationId UUID of the notification
+   */
   async markAsRead(notificationId: string) {
     const { error } = await supabase
       .from('notifications')
@@ -47,6 +64,10 @@ export const notificationService = {
     if (error) throw error;
   },
 
+  /**
+   * Marks ALL unread notifications for a user as read.
+   * @param userId UUID of the user
+   */
   async markAllAsRead(userId: string) {
     const { error } = await supabase
       .from('notifications')
@@ -57,6 +78,12 @@ export const notificationService = {
     if (error) throw error;
   },
 
+  /**
+   * Saves or updates an FCM token for push notifications.
+   * @param userId UUID of the user
+   * @param token FCM token string
+   * @param deviceType Device platform ('ios', 'android', 'web')
+   */
   async saveToken(userId: string, token: string, deviceType: 'ios' | 'android' | 'web') {
     const { error } = await supabase
       .from('fcm_tokens')
@@ -71,6 +98,11 @@ export const notificationService = {
     if (error) throw error;
   },
 
+  /**
+   * Creates a new notification in the database.
+   * @param notification Partial notification data
+   * @returns Created Notification object
+   */
   async createNotification(notification: Partial<Notification>) {
     const { data, error } = await supabase
       .from('notifications')

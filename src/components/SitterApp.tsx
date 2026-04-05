@@ -36,9 +36,16 @@ const translations = {
   }
 };
 
+/**
+ * Sitter Main Application Shell
+ * Manages navigation for sitter-side features: Home, Bookings, Earnings, Profile.
+ * includes role-based access for Admin tab.
+ * @param props Component props including language and theme handlers
+ */
 export default function SitterApp({ language, onLogout, onLanguageChange, theme, onThemeChange }: SitterAppProps) {
   const [activeTab, setActiveTab] = useState<SitterTab>('home');
   const { user } = useAuthStore();
+  // Check if user has admin/khala role to show extra tab
   const isAdmin = user?.user_metadata?.role === 'admin' || user?.user_metadata?.role === 'khala';
   const t = translations[language];
 

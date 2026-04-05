@@ -1,15 +1,21 @@
 // Authentication Store
-// Manages user authentication state, language, and theme
+// Manages user authentication state, language preferences, and theme settings.
+// This store persists critical session data and handles all Supabase auth interactions.
 
 import { create } from 'zustand';
 import { supabase } from '@/lib/supabase';
 import { preferencesStorage, secureStorage } from '@/utils/secureStorage';
 import { monitoring } from '@/lib/monitoring';
 
+// -- Types --
+
 export type UserType = 'client' | 'sitter' | 'khala' | 'admin' | null;
 export type Language = 'ar' | 'en';
 export type Theme = 'light' | 'dark';
 
+/**
+ * Extended User interface including metadata specific to the application.
+ */
 interface User {
     id: string;
     email?: string;
@@ -17,12 +23,16 @@ interface User {
         full_name?: string;
         phone?: string;
         role?: UserType;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         [key: string]: any;
     };
 }
 
+/**
+ * Main Auth State Interface for Zustand Store
+ */
 interface AuthState {
-    // State
+    // -- State --
     user: User | null;
     userType: UserType;
     isAuthenticated: boolean;
@@ -30,32 +40,76 @@ interface AuthState {
     theme: Theme;
     isLoading: boolean;
 
-    // Actions
+    // -- App Configuration Actions --
+
+    /** Sets the active user type context */
     setUserType: (type: UserType) => void;
+    /** Sets the application language */
     setLanguage: (lang: Language) => void;
+    /** Sets the application theme */
     setTheme: (theme: Theme) => void;
+    /** Toggles between Arabic and English */
     toggleLanguage: () => void;
+    /** Toggles between Light and Dark mode */
     toggleTheme: () => void;
 
-    // Auth Actions
+    // -- Authentication Actions --
+
+    /**
+     * Signs in a user with email and password.
+     * @param email User email
+     * @param password User password
+     * @returns Object containing error if any
+     */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     signIn: (email: string, password: string) => Promise<{ error: any }>;
+
+    /**
+     * Registers a new user.
+     * @param email User email
+     * @param password User password
+     * @param data Additional profile data
+     * @returns Object containing error if any
+     */
     signUp: (email: string, password: string, data: {
         full_name: string;
         phone: string;
         mother_job?: string;
         father_job?: string;
         default_address?: string;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }) => Promise<{ error: any }>;
+
+    /**
+     * Verifies the OTP token for various auth flows.
+     * @param email User email
+     * @param token OTP Token
+     * @param type Type of verification
+     */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     verifyOTP: (email: string, token: string, type: 'signup' | 'recovery' | 'email_change') => Promise<{ error: any }>;
+
+    /**
+     * Resends the OTP token.
+     */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     resendOTP: (email: string, type: 'signup' | 'email_change') => Promise<{ error: any }>;
+
+    /**
+     * Signs out the current user and clears local storage.
+     */
     logout: () => Promise<void>;
 
-    // Initialize
+    // -- Initialization --
+
+    /**
+     * Initializes the store, checking for existing session and preferences.
+     */
     initialize: () => Promise<void>;
 }
 
 export const useAuthStore = create<AuthState>((set, get) => ({
-    // Initial state
+    // -- Initial State --
     user: null,
     userType: null,
     isAuthenticated: false,
@@ -63,39 +117,35 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     theme: 'light',
     isLoading: true,
 
-    // Set user type
+    // -- Implementation --
+
     setUserType: (type) => {
         set({ userType: type });
         secureStorage.setUserType(type);
     },
 
-    // Set language
     setLanguage: (lang) => {
         set({ language: lang });
         preferencesStorage.setLanguage(lang);
     },
 
-    // Set theme
     setTheme: (theme) => {
         set({ theme });
         preferencesStorage.setTheme(theme);
-        // Apply theme to document
+        // Apply theme to document directly for immediate effect
         document.documentElement.classList.toggle('dark', theme === 'dark');
     },
 
-    // Toggle language
     toggleLanguage: () => {
         const newLang = get().language === 'ar' ? 'en' : 'ar';
         get().setLanguage(newLang);
     },
 
-    // Toggle theme
     toggleTheme: () => {
         const newTheme = get().theme === 'light' ? 'dark' : 'light';
         get().setTheme(newTheme);
     },
 
-    // Sign In
     signIn: async (email, password) => {
         const { data, error } = await supabase.auth.signInWithPassword({
             email,
@@ -105,12 +155,12 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         if (error) return { error };
 
         if (data.user) {
-            // Get profile to check role
+            // Fetch profile to determine role if not present in metadata
             const { data: profile } = await supabase
                 .from('profiles')
                 .select('role')
                 .eq('id', data.user.id)
-                .single();
+                .maybeSingle();
 
             set({
                 user: data.user,
@@ -121,7 +171,6 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         return { error: null };
     },
 
-    // Sign Up
     signUp: async (email, password, { full_name, phone, mother_job, father_job, default_address }) => {
         const userType = get().userType;
 
@@ -142,7 +191,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
         if (authData.user) {
             // Profile is created automatically via database trigger (handle_new_user)
-            // Now update with additional fields for clients
+            // If user is a client, we attempt to update additional fields
             if (userType === 'client' && (mother_job || father_job || default_address)) {
                 let retries = 3;
                 while (retries > 0) {
@@ -175,7 +224,6 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         return { error: null };
     },
 
-    // Verify OTP
     verifyOTP: async (email, token, type) => {
         const { data, error } = await supabase.auth.verifyOtp({
             email,
@@ -190,7 +238,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
                 .from('profiles')
                 .select('role')
                 .eq('id', data.user.id)
-                .single();
+                .maybeSingle();
 
             set({
                 user: data.user,
@@ -201,7 +249,6 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         return { error: null };
     },
 
-    // Resend OTP
     resendOTP: async (email, type) => {
         const { error } = await supabase.auth.resend({
             type,
@@ -210,7 +257,6 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         return { error };
     },
 
-    // Logout
     logout: async () => {
         await supabase.auth.signOut();
         secureStorage.clearAll();
@@ -221,7 +267,6 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         });
     },
 
-    // Initialize
     initialize: async () => {
         const savedLanguage = preferencesStorage.getLanguage();
         const savedTheme = preferencesStorage.getTheme();
@@ -267,10 +312,12 @@ export const useAuthStore = create<AuthState>((set, get) => ({
             }
         })();
 
+        // Race between initialization and a timeout to prevent infinite loading
         const timeoutPromise = new Promise(resolve => setTimeout(resolve, 5000));
         await Promise.race([initPromise, timeoutPromise]);
         set({ isLoading: false });
 
+        // Listen for auth state changes (e.g. from other tabs/windows)
         supabase.auth.onAuthStateChange(async (event, session) => {
             if (event === 'SIGNED_IN' && session?.user) {
                 if (get().user?.id === session.user.id && get().isAuthenticated) return;

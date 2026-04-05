@@ -8,7 +8,14 @@ export interface SitterLocation {
     accuracy?: number;
 }
 
+/**
+ * Service for tracking and retrieving sitter locations during active bookings.
+ */
 export const locationService = {
+    /**
+     * Updates the current location of a sitter.
+     * @param location SitterLocation object containing coords and accuracy
+     */
     async updateLocation(location: SitterLocation) {
         const { error } = await supabase
             .from('sitter_locations')
@@ -17,6 +24,11 @@ export const locationService = {
         if (error) throw error;
     },
 
+    /**
+     * Retrieves the historical path/route of a sitter for a specific booking.
+     * @param bookingId UUID of the booking
+     * @returns Array of location points ordered by time
+     */
     async getSitterPath(bookingId: string) {
         const { data, error } = await supabase
             .from('sitter_locations')
@@ -28,6 +40,11 @@ export const locationService = {
         return data;
     },
 
+    /**
+     * Retrieves the most recently recorded location for a booking.
+     * @param bookingId UUID of the booking
+     * @returns Single most recent SitterLocation object
+     */
     async getLatestLocation(bookingId: string) {
         const { data, error } = await supabase
             .from('sitter_locations')
