@@ -146,6 +146,52 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         get().setTheme(newTheme);
     },
 
+    /**
+     * Internal helper to ensure a profile exists in the database.
+     * Creates one if missing based on user metadata.
+     */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ensureProfile: async (user: any, requestedType?: UserType) => {
+        // Attempt to fetch profile
+        const { data: profile, error } = await supabase
+            .from('profiles')
+            .select('*')
+            .eq('id', user.id)
+            .maybeSingle();
+
+        if (error) {
+            monitoring.logError(error as any as Error, { context: 'ensureProfile_fetch', metadata: { userId: user.id } });
+            return null;
+        }
+
+        if (profile) return profile;
+
+        // If no profile exists, create a default one based on metadata
+        const metadata = user.user_metadata || {};
+        const newProfile = {
+            id: user.id,
+            full_name: metadata.full_name || user.email?.split('@')[0] || 'User',
+            phone: metadata.phone || '',
+            role: metadata.role || requestedType || 'client',
+            is_active: true,
+            is_verified: metadata.role === 'admin', // Admins are auto-verified
+            created_at: new Date().toISOString()
+        };
+
+        const { data: createdProfile, error: insertError } = await supabase
+            .from('profiles')
+            .insert(newProfile)
+            .select()
+            .maybeSingle();
+
+        if (insertError) {
+            monitoring.logError(insertError as any as Error, { context: 'ensureProfile_create', metadata: { userId: user.id } });
+            return null;
+        }
+
+        return createdProfile;
+    },
+
     signIn: async (email, password) => {
         const { data, error } = await supabase.auth.signInWithPassword({
             email,
@@ -155,17 +201,13 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         if (error) return { error };
 
         if (data.user) {
-            // Fetch profile to determine role if not present in metadata
-            const { data: profile } = await supabase
-                .from('profiles')
-                .select('role')
-                .eq('id', data.user.id)
-                .maybeSingle();
+            // Ensure profile exists and get it
+            const profile = await (get() as any).ensureProfile(data.user);
 
             set({
                 user: data.user,
                 isAuthenticated: true,
-                userType: profile?.role as UserType
+                userType: profile?.role as UserType || get().userType
             });
         }
         return { error: null };
@@ -234,16 +276,13 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         if (error) return { error };
 
         if (data.user) {
-            const { data: profile } = await supabase
-                .from('profiles')
-                .select('role')
-                .eq('id', data.user.id)
-                .maybeSingle();
+            // Ensure profile exists and get it
+            const profile = await (get() as any).ensureProfile(data.user, get().userType);
 
             set({
                 user: data.user,
                 isAuthenticated: true,
-                userType: profile?.role as UserType
+                userType: profile?.role as UserType || get().userType
             });
         }
         return { error: null };
@@ -287,11 +326,8 @@ export const useAuthStore = create<AuthState>((set, get) => ({
                 }
 
                 if (session?.user) {
-                    const { data: profile, error: profileError } = await supabase
-                        .from('profiles')
-                        .select('*')
-                        .eq('id', session.user.id)
-                        .maybeSingle();
+                    // Ensure profile exists and get it
+                    const profile = await (get() as any).ensureProfile(session.user, savedUserType);
 
                     if (profile) {
                         set({
@@ -300,7 +336,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
                             userType: (profile.role as UserType) || savedUserType,
                         });
                         if (profile.role) secureStorage.setUserType(profile.role as UserType);
-                    } else if (!profileError) {
+                    } else {
                         monitoring.logInfo('Profile not found during initialization, signing out...');
                         await supabase.auth.signOut();
                         secureStorage.clearAll();
@@ -322,11 +358,8 @@ export const useAuthStore = create<AuthState>((set, get) => ({
             if (event === 'SIGNED_IN' && session?.user) {
                 if (get().user?.id === session.user.id && get().isAuthenticated) return;
 
-                const { data: profile } = await supabase
-                    .from('profiles')
-                    .select('*')
-                    .eq('id', session.user.id)
-                    .maybeSingle();
+                // Ensure profile exists and get it
+                const profile = await (get() as any).ensureProfile(session.user);
 
                 if (profile) {
                     set({
