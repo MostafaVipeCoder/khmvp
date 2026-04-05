@@ -168,13 +168,18 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
         // If no profile exists, create a default one based on metadata
         const metadata = user.user_metadata || {};
+        let role = metadata.role || requestedType || 'client';
+
+        // Map UI roles to database-allowed roles if necessary
+        if (role === 'sitter') role = 'khala';
+
         const newProfile = {
             id: user.id,
             full_name: metadata.full_name || user.email?.split('@')[0] || 'User',
             phone: metadata.phone || '',
-            role: metadata.role || requestedType || 'client',
+            role: role,
             is_active: true,
-            is_verified: metadata.role === 'admin', // Admins are auto-verified
+            is_verified: role === 'admin', // Admins are auto-verified
             created_at: new Date().toISOString()
         };
 
