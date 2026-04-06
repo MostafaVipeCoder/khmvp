@@ -104,7 +104,7 @@ export const sitterService = {
             .select('id')
             .eq('sitter_id', userId)
             .eq('service_type', serviceType)
-            .single();
+            .maybeSingle();
 
         if (existing) {
             const { error } = await supabase
@@ -345,7 +345,7 @@ export const sitterService = {
             .select('id')
             .eq('sitter_id', userId)
             .eq('document_type', documentType)
-            .single();
+            .maybeSingle();
 
         if (existing) {
             const { error } = await supabase
