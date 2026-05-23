@@ -1,3 +1,4 @@
+import { View, Text } from '../../tw';
 import { ArrowRight, Bell } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
@@ -111,19 +112,19 @@ export default function SitterHeader({ language, userName, onBack, showBack = fa
     };
 
     return (
-        <div className="bg-white dark:bg-gray-800 p-4 shadow-sm sticky top-0 z-50">
-            <div className="max-w-4xl mx-auto flex items-center justify-between">
-                <div className="flex items-center gap-3">
+        <View className="bg-white dark:bg-gray-800 p-4 shadow-sm sticky top-0 z-50">
+            <View className="max-w-4xl mx-auto flex items-center justify-between">
+                <View className="flex items-center gap-3">
                     {showBack && (
-                        <Button variant="ghost" size="sm" onClick={onBack} className="p-0 h-8 w-8 rounded-full hover:bg-gray-100">
+                        <Button variant="ghost" size="sm" onPress={onBack} className="p-0 h-8 w-8 rounded-full hover:bg-gray-100">
                             <ArrowRight className={`w-5 h-5 ${language === 'en' ? 'rotate-180' : ''}`} />
                         </Button>
                     )}
-                    <div>
-                        <span className="text-gray-500 text-sm">{t.welcome}</span>
-                        <h2 className="font-bold text-lg leading-tight">{userName}</h2>
-                    </div>
-                </div>
+                    <View>
+                        <Text className="text-gray-500 text-sm">{t.welcome}</Text>
+                        <Text className="font-bold text-lg leading-tight">{userName}</Text>
+                    </View>
+                </View>
 
                 <Popover>
                     <PopoverTrigger asChild>
@@ -137,40 +138,40 @@ export default function SitterHeader({ language, userName, onBack, showBack = fa
                         </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-80 p-0" align="end">
-                        <div className="p-3 border-b flex items-center justify-between">
-                            <h4 className="font-bold">{t.notifications}</h4>
+                        <View className="p-3 border-b flex items-center justify-between">
+                            <Text className="font-bold">{t.notifications}</Text>
                             {unreadCount > 0 && (
-                                <Button variant="ghost" size="sm" onClick={markAllAsRead} className="text-xs text-[#FB5E7A] hover:text-[#e5536e] p-0 h-auto">
+                                <Button variant="ghost" size="sm" onPress={markAllAsRead} className="text-xs text-[#FB5E7A] hover:text-[#e5536e] p-0 h-auto">
                                     {t.markAllRead}
                                 </Button>
                             )}
-                        </div>
+                        </View>
                         <ScrollArea className="h-[300px]">
                             {notifications.length > 0 ? (
-                                <div className="divide-y">
+                                <View className="divide-y">
                                     {notifications.map((notif) => (
-                                        <div
+                                        <View
                                             key={notif.id}
                                             className={`p-3 hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors ${!notif.is_read ? 'bg-[#FB5E7A]/5 border-r-2 border-[#FB5E7A]' : ''}`}
-                                            onClick={() => markAsRead(notif.id)}
+                                            onPress={() => markAsRead(notif.id)}
                                         >
-                                            <p className="font-bold text-sm mb-0.5">{notif.title}</p>
-                                            <p className="text-xs text-gray-600 dark:text-gray-400 leading-normal">{notif.message}</p>
-                                            <span className="text-[10px] text-gray-400 mt-1 block">
+                                            <Text className="font-bold text-sm mb-0.5">{notif.title}</Text>
+                                            <Text className="text-xs text-gray-600 dark:text-gray-400 leading-normal">{notif.message}</Text>
+                                            <Text className="text-[10px] text-gray-400 mt-1 block">
                                                 {new Date(notif.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                                            </span>
-                                        </div>
+                                            </Text>
+                                        </View>
                                     ))}
-                                </div>
+                                </View>
                             ) : (
-                                <div className="p-8 text-center text-gray-500 text-sm">
+                                <View className="p-8 text-center text-gray-500 text-sm">
                                     {t.noNotifications}
-                                </div>
+                                </View>
                             )}
                         </ScrollArea>
                     </PopoverContent>
                 </Popover>
-            </div>
-        </div>
+            </View>
+        </View>
     );
 }

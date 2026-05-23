@@ -1,78 +1,129 @@
-"use client";
-
 import * as React from "react";
-import { OTPInput, OTPInputContext } from "input-otp";
-import { MinusIcon } from "lucide-react";
-
+import { TextInput as RNTextInput, StyleSheet } from "react-native";
+import { MinusIcon } from "lucide-react-native";
+import { View, Text, Pressable } from "../../tw";
 import { cn } from "./utils";
 
-function InputOTP({
-  className,
-  containerClassName,
-  ...props
-}: React.ComponentProps<typeof OTPInput> & {
+interface InputOTPContextType {
+  value: string;
+  onChangeText?: (val: string) => void;
+  maxLength: number;
+}
+
+const InputOTPContext = React.createContext<InputOTPContextType | null>(null);
+
+interface InputOTPProps {
+  className?: string;
   containerClassName?: string;
-}) {
+  value?: string;
+  onChangeText?: (val: string) => void;
+  maxLength?: number;
+  children: React.ReactNode;
+}
+
+function InputOTP({
+  containerClassName,
+  value = "",
+  onChangeText,
+  maxLength = 6,
+  children,
+}: InputOTPProps) {
+  const inputRef = React.useRef<RNTextInput | null>(null);
+
+  const handlePress = () => {
+    inputRef.current?.focus();
+  };
+
   return (
-    <OTPInput
-      data-slot="input-otp"
-      containerClassName={cn(
-        "flex items-center gap-2 has-disabled:opacity-50",
-        containerClassName,
-      )}
-      className={cn("disabled:cursor-not-allowed", className)}
-      {...props}
-    />
+    <InputOTPContext.Provider value={{ value, onChangeText, maxLength }}>
+      <Pressable
+        onPress={handlePress}
+        className={cn("flex flex-row items-center gap-2", containerClassName)}
+      >
+        {children}
+        <RNTextInput
+          ref={inputRef}
+          value={value}
+          onChangeText={onChangeText}
+          maxLength={maxLength}
+          keyboardType="number-pad"
+          textContentType="oneTimeCode"
+          style={[StyleSheet.absoluteFillObject, { opacity: 0 }]}
+          caretHidden
+          pointerEvents="none"
+        />
+      </Pressable>
+    </InputOTPContext.Provider>
   );
 }
 
-function InputOTPGroup({ className, ...props }: React.ComponentProps<"div">) {
+function InputOTPGroup({
+  className,
+  children,
+  style,
+  ...props
+}: {
+  className?: string;
+  children: React.ReactNode;
+  style?: any;
+}) {
   return (
-    <div
-      data-slot="input-otp-group"
-      className={cn("flex items-center gap-1", className)}
-      {...props}
-    />
+    <View className={cn("flex flex-row items-center gap-1", className)} style={style} {...props}>
+      {children}
+    </View>
   );
 }
 
 function InputOTPSlot({
   index,
   className,
+  style,
   ...props
-}: React.ComponentProps<"div"> & {
+}: {
   index: number;
+  className?: string;
+  style?: any;
 }) {
-  const inputOTPContext = React.useContext(OTPInputContext);
-  const { char, hasFakeCaret, isActive } = inputOTPContext?.slots[index] ?? {};
+  const context = React.useContext(InputOTPContext);
+  if (!context) throw new Error("InputOTPSlot must be used within InputOTP");
+
+  const { value } = context;
+  const char = value[index] || "";
+  const isActive = value.length === index;
 
   return (
-    <div
-      data-slot="input-otp-slot"
-      data-active={isActive}
+    <View
       className={cn(
-        "data-[active=true]:border-ring data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40 aria-invalid:border-destructive data-[active=true]:aria-invalid:border-destructive dark:bg-input/30 border-input relative flex h-9 w-9 items-center justify-center border-y border-r text-sm bg-input-background transition-all outline-none first:rounded-l-md first:border-l last:rounded-r-md data-[active=true]:z-10 data-[active=true]:ring-[3px]",
-        className,
+        "border border-neutral-200 dark:border-neutral-800 flex h-10 w-10 items-center justify-center text-sm transition-all rounded-md bg-white dark:bg-neutral-900",
+        isActive && "border-neutral-950 dark:border-neutral-50 border-2",
+        className
       )}
+      style={style}
       {...props}
     >
-      {char}
-      {hasFakeCaret && (
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div className="animate-caret-blink bg-foreground h-4 w-px duration-1000" />
-        </div>
+      <Text className="text-sm font-semibold text-neutral-900 dark:text-neutral-50">
+        {char}
+      </Text>
+      {isActive && (
+        <View className="absolute bg-neutral-900 dark:bg-neutral-50 h-4 w-px animate-pulse" />
       )}
-    </div>
+    </View>
   );
 }
 
-function InputOTPSeparator({ ...props }: React.ComponentProps<"div">) {
+function InputOTPSeparator({
+  className,
+  style,
+  ...props
+}: {
+  className?: string;
+  style?: any;
+}) {
   return (
-    <div data-slot="input-otp-separator" role="separator" {...props}>
-      <MinusIcon />
-    </div>
+    <View className={cn("px-1", className)} style={style} {...props}>
+      <MinusIcon className="size-4 text-neutral-400" />
+    </View>
   );
 }
 
 export { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator };
-

@@ -1,16 +1,16 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-
+import { View, Text } from "../../tw";
 import { cn } from "./utils";
 
 const alertVariants = cva(
-  "relative w-full rounded-lg border px-4 py-3 text-sm grid has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] grid-cols-[0_1fr] has-[>svg]:gap-x-3 gap-y-0.5 items-start [&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current",
+  "relative w-full rounded-lg border p-4 flex flex-row gap-3 items-start",
   {
     variants: {
       variant: {
-        default: "bg-card text-card-foreground",
+        default: "bg-card text-card-foreground border-neutral-200 dark:border-neutral-800",
         destructive:
-          "text-destructive bg-card [&>svg]:text-current *:data-[slot=alert-description]:text-destructive/90",
+          "border-destructive/50 text-destructive dark:border-destructive bg-destructive/10",
       },
     },
     defaultVariants: {
@@ -22,46 +22,58 @@ const alertVariants = cva(
 function Alert({
   className,
   variant,
+  children,
+  style,
   ...props
-}: React.ComponentProps<"div"> & VariantProps<typeof alertVariants>) {
+}: React.ComponentProps<typeof View> & VariantProps<typeof alertVariants>) {
   return (
-    <div
-      data-slot="alert"
-      role="alert"
+    <View
       className={cn(alertVariants({ variant }), className)}
+      style={style}
       {...props}
-    />
+    >
+      {children}
+    </View>
   );
 }
 
-function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
+function AlertTitle({ className, children, style, ...props }: React.ComponentProps<typeof Text>) {
   return (
-    <div
-      data-slot="alert-title"
+    <Text
       className={cn(
-        "col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight",
+        "font-medium tracking-tight text-neutral-900 dark:text-neutral-50 mb-1",
         className,
       )}
+      style={style}
       {...props}
-    />
+    >
+      {children}
+    </Text>
   );
 }
 
 function AlertDescription({
   className,
+  children,
+  style,
   ...props
-}: React.ComponentProps<"div">) {
+}: React.ComponentProps<typeof View>) {
   return (
-    <div
-      data-slot="alert-description"
+    <View
       className={cn(
-        "text-muted-foreground col-start-2 grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed",
+        "flex flex-col gap-1",
         className,
       )}
+      style={style}
       {...props}
-    />
+    >
+      {typeof children === "string" ? (
+        <Text className="text-sm text-neutral-600 dark:text-neutral-400">{children}</Text>
+      ) : (
+        children
+      )}
+    </View>
   );
 }
 
 export { Alert, AlertTitle, AlertDescription };
-

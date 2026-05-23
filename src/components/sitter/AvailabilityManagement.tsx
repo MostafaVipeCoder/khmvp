@@ -1,3 +1,4 @@
+import { View, Text } from '../../tw';
 import { useState, useEffect } from 'react';
 import { useAuthStore } from '../../stores/useAuthStore';
 import { sitterService } from '../../services/sitter';
@@ -11,7 +12,6 @@ import { Calendar as CalendarComponent } from '../ui/calendar';
 import { Input } from '../ui/input';
 import { Checkbox } from '../ui/checkbox';
 import type { Language } from '../../stores/useAuthStore';
-import type { CheckedState } from '@radix-ui/react-checkbox';
 
 const translations = {
   ar: {
@@ -250,7 +250,7 @@ export default function AvailabilityManagement({ language, onBack }: Availabilit
       await sitterService.clearAvailabilityForDates(user.id, datesToUpdate);
 
       // 2. Prepare new slots
-      const slotsToInsert = [];
+      const slotsToInsert: any[] = [];
       for (const date of datesToUpdate) {
         const slots = schedules[date];
         for (const slot of slots) {
@@ -301,46 +301,46 @@ export default function AvailabilityManagement({ language, onBack }: Availabilit
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <View className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <div className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center gap-4">
+      <View className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-50">
+        <View className="max-w-7xl mx-auto px-4 py-4">
+          <View className="flex items-center gap-4">
             {onBack && (
               <Button
-                onClick={onBack}
+                onPress={onBack}
                 variant="ghost"
                 className="p-2"
               >
                 {language === 'ar' ? <ArrowRight className="size-5" /> : <ArrowLeft className="size-5" />}
               </Button>
             )}
-            <div className="flex-1">
-              <h1 className="text-xl">{t.availabilityManagement}</h1>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{t.selectDaysDesc}</p>
-            </div>
+            <View className="flex-1">
+              <Text className="text-xl">{t.availabilityManagement}</Text>
+              <Text className="text-sm text-gray-600 dark:text-gray-400">{t.selectDaysDesc}</Text>
+            </View>
             <Button
-              onClick={saveSchedule}
+              onPress={saveSchedule}
               className="bg-[#FB5E7A] hover:bg-[#e5536e]"
             >
               <Save className="size-4" />
               {t.saveSchedule}
             </Button>
-          </div>
-        </div>
-      </div>
+          </View>
+        </View>
+      </View>
 
-      <div className="max-w-7xl mx-auto p-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <View className="max-w-7xl mx-auto p-4">
+        <View className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Calendar Section */}
           <Card className="p-6">
-            <div className="space-y-4">
-              <div>
-                <h2 className="text-lg mb-2">{t.selectDays}</h2>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            <View className="space-y-4">
+              <View>
+                <Text className="text-lg mb-2">{t.selectDays}</Text>
+                <Text className="text-sm text-gray-600 dark:text-gray-400 mb-4">
                   {t.selectDaysDesc}
-                </p>
-              </div>
+                </Text>
+              </View>
 
               <CalendarComponent
                 mode="multiple"
@@ -357,37 +357,34 @@ export default function AvailabilityManagement({ language, onBack }: Availabilit
                 modifiers={{
                   booked: bookedDates
                 }}
-                modifiersClassNames={{
-                  booked: 'bg-gray-300 text-gray-500 line-through'
-                }}
                 className="rounded-md border mx-auto"
               />
 
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-[#FB5E7A] rounded-full" />
-                  <span className="text-sm">{t.selectedDays}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-gray-300 rounded-full" />
-                  <span className="text-sm">{t.bookedDays}</span>
-                </div>
-              </div>
+              <View className="space-y-2">
+                <View className="flex items-center gap-2">
+                  <View className="w-3 h-3 bg-[#FB5E7A] rounded-full" />
+                  <Text className="text-sm">{t.selectedDays}</Text>
+                </View>
+                <View className="flex items-center gap-2">
+                  <View className="w-3 h-3 bg-gray-300 rounded-full" />
+                  <Text className="text-sm">{t.bookedDays}</Text>
+                </View>
+              </View>
 
               {selectedDates && selectedDates.length > 0 && (
-                <div className="pt-4 border-t">
-                  <div className="flex items-center gap-2 mb-2">
+                <View className="pt-4 border-t">
+                  <View className="flex items-center gap-2 mb-2">
                     <Checkbox
                       id="repeat-weekly"
                       checked={repeatWeekly}
-                      onCheckedChange={(checked: CheckedState) => setRepeatWeekly(checked as boolean)}
+                      onCheckedChange={(checked: any) => setRepeatWeekly(checked as boolean)}
                     />
                     <Label htmlFor="repeat-weekly" className="text-sm cursor-pointer">
                       {t.repeatWeekly}
                     </Label>
-                  </div>
+                  </View>
                   <Button
-                    onClick={clearAll}
+                    onPress={clearAll}
                     variant="outline"
                     size="sm"
                     className="w-full"
@@ -395,86 +392,86 @@ export default function AvailabilityManagement({ language, onBack }: Availabilit
                     <X className="size-4" />
                     {t.clearAll}
                   </Button>
-                </div>
+                </View>
               )}
-            </div>
+            </View>
           </Card>
 
           {/* Time Slots Section */}
           <Card className="p-6">
-            <div className="space-y-4">
-              <div>
-                <h2 className="text-lg mb-2">{t.daySchedule}</h2>
+            <View className="space-y-4">
+              <View>
+                <Text className="text-lg mb-2">{t.daySchedule}</Text>
                 {selectedDates && selectedDates.length > 0 ? (
-                  <div className="flex gap-2 flex-wrap">
+                  <View className="flex gap-2 flex-wrap">
                     {selectedDates.map((date: Date, index: number) => (
                       <Button
                         key={getDateKey(date)}
-                        onClick={() => setCurrentDateIndex(index)}
+                        onPress={() => setCurrentDateIndex(index)}
                         variant={currentDateIndex === index ? "default" : "outline"}
                         size="sm"
                         className={currentDateIndex === index ? "bg-[#FB5E7A] hover:bg-[#e5536e]" : ""}
                       >
-                        <div className="text-center">
-                          <div className="text-xs">{getDayName(date)}</div>
-                          <div className="text-xs">{formatDate(date)}</div>
-                        </div>
+                        <View className="text-center">
+                          <View className="text-xs">{getDayName(date)}</View>
+                          <View className="text-xs">{formatDate(date)}</View>
+                        </View>
                         {schedules[getDateKey(date)]?.length > 0 && (
                           <Check className="size-3" />
                         )}
                       </Button>
                     ))}
-                  </div>
+                  </View>
                 ) : (
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <Text className="text-sm text-gray-600 dark:text-gray-400">
                     {t.selectDaysDesc}
-                  </p>
+                  </Text>
                 )}
-              </div>
+              </View>
 
               {currentDate && (
-                <div className="space-y-4">
+                <View className="space-y-4">
                   {/* Quick Presets */}
-                  <div>
+                  <View>
                     <Label className="text-sm mb-2 block">{t.quickPresets}</Label>
-                    <div className="grid grid-cols-3 gap-2">
+                    <View className="grid grid-cols-3 gap-2">
                       {/* Presets buttons */}
                       <Button
-                        onClick={() => applyPreset('morning')}
+                        onPress={() => applyPreset('morning')}
                         variant="outline"
                         size="sm"
                       >
                         {t.morningShift}
                       </Button>
                       <Button
-                        onClick={() => applyPreset('evening')}
+                        onPress={() => applyPreset('evening')}
                         variant="outline"
                         size="sm"
                       >
                         {t.eveningShift}
                       </Button>
                       <Button
-                        onClick={() => applyPreset('fullDay')}
+                        onPress={() => applyPreset('fullDay')}
                         variant="outline"
                         size="sm"
                       >
                         {t.fullDay}
                       </Button>
-                    </div>
-                  </div>
+                    </View>
+                  </View>
 
                   {/* Time Slots */}
-                  <div className="space-y-3 border-t pt-4">
+                  <View className="space-y-3 border-t pt-4">
                     {currentTimeSlots.length === 0 ? (
-                      <div className="text-center py-8 text-gray-500">
+                      <View className="text-center py-8 text-gray-500">
                         <Clock className="size-12 mx-auto mb-2 opacity-50" />
-                        <p className="text-sm">{t.noTimeSlotsYet}</p>
-                      </div>
+                        <Text className="text-sm">{t.noTimeSlotsYet}</Text>
+                      </View>
                     ) : (
                       currentTimeSlots.map((slot) => (
-                        <div key={slot.id} className="flex items-center gap-2 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                          <div className="flex-1 grid grid-cols-2 gap-2">
-                            <div>
+                        <View key={slot.id} className="flex items-center gap-2 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                          <View className="flex-1 grid grid-cols-2 gap-2">
+                            <View>
                               <Label className="text-xs">{t.availableFrom}</Label>
                               <Input
                                 type="time"
@@ -482,8 +479,8 @@ export default function AvailabilityManagement({ language, onBack }: Availabilit
                                 onChange={(e) => updateTimeSlot(slot.id, 'from', e.target.value)}
                                 className="mt-1"
                               />
-                            </div>
-                            <div>
+                            </View>
+                            <View>
                               <Label className="text-xs">{t.availableTo}</Label>
                               <Input
                                 type="time"
@@ -491,22 +488,22 @@ export default function AvailabilityManagement({ language, onBack }: Availabilit
                                 onChange={(e) => updateTimeSlot(slot.id, 'to', e.target.value)}
                                 className="mt-1"
                               />
-                            </div>
-                          </div>
+                            </View>
+                          </View>
                           <Button
-                            onClick={() => removeTimeSlot(slot.id)}
+                            onPress={() => removeTimeSlot(slot.id)}
                             variant="ghost"
                             size="sm"
                             className="text-red-500 hover:text-red-600 hover:bg-red-50"
                           >
                             <Trash2 className="size-4" />
                           </Button>
-                        </div>
+                        </View>
                       ))
                     )}
 
                     <Button
-                      onClick={addTimeSlot}
+                      onPress={addTimeSlot}
                       variant="outline"
                       className="w-full"
                     >
@@ -516,7 +513,7 @@ export default function AvailabilityManagement({ language, onBack }: Availabilit
 
                     {currentTimeSlots.length > 0 && selectedDates && selectedDates.length > 1 && (
                       <Button
-                        onClick={applyToAllDays}
+                        onPress={applyToAllDays}
                         variant="outline"
                         className="w-full"
                       >
@@ -524,51 +521,51 @@ export default function AvailabilityManagement({ language, onBack }: Availabilit
                         {t.applyToAllDays}
                       </Button>
                     )}
-                  </div>
-                </div>
+                  </View>
+                </View>
               )}
-            </div>
+            </View>
           </Card>
-        </div>
+        </View>
 
         {/* Summary */}
         {selectedDates && selectedDates.length > 0 && (
           <Card className="mt-6 p-6">
-            <h3 className="text-lg mb-4">{t.selectedDays}</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <Text className="text-lg mb-4">{t.selectedDays}</Text>
+            <View className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {selectedDates.map((date) => {
                 const dateKey = getDateKey(date);
                 const slots = schedules[dateKey] || [];
                 return (
-                  <div key={dateKey} className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                    <div className="flex items-center justify-between mb-2">
-                      <div>
-                        <div className="text-sm">{getDayName(date)}</div>
-                        <div className="text-xs text-gray-600 dark:text-gray-400">{formatDate(date)}</div>
-                      </div>
+                  <View key={dateKey} className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                    <View className="flex items-center justify-between mb-2">
+                      <View>
+                        <View className="text-sm">{getDayName(date)}</View>
+                        <View className="text-xs text-gray-600 dark:text-gray-400">{formatDate(date)}</View>
+                      </View>
                       {slots.length > 0 ? (
                         <Badge className="bg-green-500">{slots.length} {t.addTimeSlot}</Badge>
                       ) : (
                         <Badge variant="outline">{t.noTimeSlotsYet}</Badge>
                       )}
-                    </div>
+                    </View>
                     {slots.length > 0 && (
-                      <div className="space-y-1 text-xs">
+                      <View className="space-y-1 text-xs">
                         {slots.map(slot => (
-                          <div key={slot.id} className="flex items-center gap-2">
+                          <View key={slot.id} className="flex items-center gap-2">
                             <Clock className="size-3" />
-                            <span>{slot.from} - {slot.to}</span>
-                          </div>
+                            <Text>{slot.from} - {slot.to}</Text>
+                          </View>
                         ))}
-                      </div>
+                      </View>
                     )}
-                  </div>
+                  </View>
                 );
               })}
-            </div>
+            </View>
           </Card>
         )}
-      </div>
-    </div>
+      </View>
+    </View>
   );
 }

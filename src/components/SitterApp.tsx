@@ -1,3 +1,4 @@
+import { View, Text, Pressable } from '../tw';
 import { useState } from 'react';
 import { Home, Calendar, DollarSign, User, Shield } from 'lucide-react';
 import SitterHome from './sitter/SitterHome';
@@ -50,67 +51,67 @@ export default function SitterApp({ language, onLogout, onLanguageChange, theme,
   const t = translations[language];
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pb-20">
+    <View className="min-h-screen bg-gray-50 dark:bg-gray-900 pb-20">
       {/* Main Content */}
-      <div className="pt-4">
+      <View className="pt-4">
         {activeTab === 'home' && <SitterHome language={language} />}
         {activeTab === 'bookings' && <SitterBookings language={language} />}
         {activeTab === 'earnings' && <SitterEarnings language={language} />}
         {activeTab === 'profile' && <SitterProfile language={language} onLogout={onLogout} onLanguageChange={onLanguageChange} theme={theme} onThemeChange={onThemeChange} />}
         {activeTab === 'admin' && <WithdrawalManagement language={language} />}
-      </div>
+      </View>
 
       {/* Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 px-2 py-3">
-        <div className="max-w-lg mx-auto flex justify-between items-center px-2">
-          <button
-            onClick={() => setActiveTab('home')}
+      <View className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 px-2 py-3">
+        <View className="max-w-lg mx-auto flex justify-between items-center px-2">
+          <Pressable
+            onPress={() => setActiveTab('home')}
             className={`flex flex-col items-center gap-1 flex-1 ${activeTab === 'home' ? 'text-[#FB5E7A]' : 'text-gray-500'
               }`}
           >
             <Home className="w-5 h-5" />
-            <span className="text-[10px]">{t.home}</span>
-          </button>
+            <Text className="text-[10px]">{t.home}</Text>
+          </Pressable>
 
-          <button
-            onClick={() => setActiveTab('bookings')}
+          <Pressable
+            onPress={() => setActiveTab('bookings')}
             className={`flex flex-col items-center gap-1 flex-1 ${activeTab === 'bookings' ? 'text-[#FB5E7A]' : 'text-gray-500'
               }`}
           >
             <Calendar className="w-5 h-5" />
-            <span className="text-[10px]">{t.bookings}</span>
-          </button>
+            <Text className="text-[10px]">{t.bookings}</Text>
+          </Pressable>
 
-          <button
-            onClick={() => setActiveTab('earnings')}
+          <Pressable
+            onPress={() => setActiveTab('earnings')}
             className={`flex flex-col items-center gap-1 flex-1 ${activeTab === 'earnings' ? 'text-[#FB5E7A]' : 'text-gray-500'
               }`}
           >
             <DollarSign className="w-5 h-5" />
-            <span className="text-[10px]">{t.earnings}</span>
-          </button>
+            <Text className="text-[10px]">{t.earnings}</Text>
+          </Pressable>
 
           {isAdmin && (
-            <button
-              onClick={() => setActiveTab('admin')}
+            <Pressable
+              onPress={() => setActiveTab('admin')}
               className={`flex flex-col items-center gap-1 flex-1 ${activeTab === 'admin' ? 'text-[#FB5E7A]' : 'text-gray-500'
                 }`}
             >
               <Shield className="w-5 h-5" />
-              <span className="text-[10px]">{t.admin}</span>
-            </button>
+              <Text className="text-[10px]">{t.admin}</Text>
+            </Pressable>
           )}
 
-          <button
-            onClick={() => setActiveTab('profile')}
+          <Pressable
+            onPress={() => setActiveTab('profile')}
             className={`flex flex-col items-center gap-1 flex-1 ${activeTab === 'profile' ? 'text-[#FB5E7A]' : 'text-gray-500'
               }`}
           >
             <User className="w-5 h-5" />
-            <span className="text-[10px]">{t.profile}</span>
-          </button>
-        </div>
-      </nav>
-    </div>
+            <Text className="text-[10px]">{t.profile}</Text>
+          </Pressable>
+        </View>
+      </View>
+    </View>
   );
 }

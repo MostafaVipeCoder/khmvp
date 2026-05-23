@@ -1,26 +1,41 @@
-"use client";
+import { Alert, Platform } from 'react-native';
 
-import { useTheme } from "next-themes";
-import { Toaster as Sonner, ToasterProps } from "sonner";
-
-const Toaster = ({ ...props }: ToasterProps) => {
-  const { theme = "system" } = useTheme();
-
-  return (
-    <Sonner
-      theme={theme as ToasterProps["theme"]}
-      className="toaster group"
-      style={
-        {
-          "--normal-bg": "var(--popover)",
-          "--normal-text": "var(--popover-foreground)",
-          "--normal-border": "var(--border)",
-        } as React.CSSProperties
-      }
-      {...props}
-    />
-  );
+const showNativeAlert = (title: string, message: string) => {
+  if (Platform.OS === 'web') {
+    alert(title ? `${title}: ${message}` : message);
+  } else {
+    Alert.alert(title, message, [{ text: 'حسناً / OK' }]);
+  }
 };
 
-export { Toaster };
+const toastFn = (message: string, _options?: any) => {
+  showNativeAlert('', message);
+  return 'toast-id';
+};
+
+export const toast = Object.assign(toastFn, {
+  success: (message: string, _options?: any) => {
+    showNativeAlert('نجاح', message);
+    return 'toast-id';
+  },
+  error: (message: string, _options?: any) => {
+    showNativeAlert('خطأ', message);
+    return 'toast-id';
+  },
+  info: (message: string, _options?: any) => {
+    showNativeAlert('معلومات', message);
+    return 'toast-id';
+  },
+  warning: (message: string, _options?: any) => {
+    showNativeAlert('تنبيه', message);
+    return 'toast-id';
+  },
+  loading: (_message: string, _options?: any) => {
+    return 'toast-id';
+  },
+  dismiss: (_id?: string) => {},
+});
+
+export const Toaster = (_props: any) => null;
+export type ToasterProps = any;
 

@@ -1,194 +1,367 @@
-"use client";
-
 import * as React from "react";
-import * as MenubarPrimitive from "@radix-ui/react-menubar";
-import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react";
-
+import { Modal } from "react-native";
+import { CheckIcon, CircleIcon, ChevronRightIcon } from "lucide-react-native";
+import { View, Text, Pressable } from "../../tw";
 import { cn } from "./utils";
+
+interface MenubarContextType {
+  activeMenu: string | null;
+  setActiveMenu: (name: string | null) => void;
+}
+
+const MenubarContext = React.createContext<MenubarContextType | null>(null);
 
 function Menubar({
   className,
+  children,
+  style,
   ...props
-}: React.ComponentProps<typeof MenubarPrimitive.Root>) {
+}: {
+  className?: string;
+  children?: React.ReactNode;
+  style?: any;
+}) {
+  const [activeMenu, setActiveMenu] = React.useState<string | null>(null);
+
   return (
-    <MenubarPrimitive.Root
-      data-slot="menubar"
-      className={cn(
-        "bg-background flex h-9 items-center gap-1 rounded-md border p-1 shadow-xs",
-        className,
-      )}
-      {...props}
-    />
+    <MenubarContext.Provider value={{ activeMenu, setActiveMenu }}>
+      <View
+        className={cn(
+          "bg-white dark:bg-neutral-950 flex flex-row h-9 items-center gap-1 rounded-md border border-neutral-200 dark:border-neutral-800 p-1 shadow-xs",
+          className
+        )}
+        style={style}
+        {...props}
+      >
+        {children}
+      </View>
+    </MenubarContext.Provider>
   );
 }
 
+interface MenubarMenuContextType {
+  value: string;
+}
+
+const MenubarMenuContext = React.createContext<MenubarMenuContextType | null>(null);
+
 function MenubarMenu({
-  ...props
-}: React.ComponentProps<typeof MenubarPrimitive.Menu>) {
-  return <MenubarPrimitive.Menu data-slot="menubar-menu" {...props} />;
+  value,
+  children,
+}: {
+  value?: string;
+  children?: React.ReactNode;
+}) {
+  const generatedId = React.useId();
+  const menuValue = value || generatedId;
+
+  return (
+    <MenubarMenuContext.Provider value={{ value: menuValue }}>
+      {children}
+    </MenubarMenuContext.Provider>
+  );
 }
 
-function MenubarGroup({
-  ...props
-}: React.ComponentProps<typeof MenubarPrimitive.Group>) {
-  return <MenubarPrimitive.Group data-slot="menubar-group" {...props} />;
-}
-
-function MenubarPortal({
-  ...props
-}: React.ComponentProps<typeof MenubarPrimitive.Portal>) {
-  return <MenubarPrimitive.Portal data-slot="menubar-portal" {...props} />;
+function MenubarPortal({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
 }
 
 function MenubarRadioGroup({
+  value,
+  onValueChange,
+  children,
   ...props
-}: React.ComponentProps<typeof MenubarPrimitive.RadioGroup>) {
-  return (
-    <MenubarPrimitive.RadioGroup data-slot="menubar-radio-group" {...props} />
-  );
+}: {
+  value?: string;
+  onValueChange?: (value: string) => void;
+  children: React.ReactNode;
+}) {
+  return <View {...props}>{children}</View>;
 }
 
 function MenubarTrigger({
   className,
+  style,
+  children,
   ...props
-}: React.ComponentProps<typeof MenubarPrimitive.Trigger>) {
+}: {
+  className?: string;
+  style?: any;
+  children?: React.ReactNode;
+}) {
+  const menubarContext = React.useContext(MenubarContext);
+  const menuContext = React.useContext(MenubarMenuContext);
+  if (!menubarContext || !menuContext) {
+    throw new Error("MenubarTrigger must be used within Menubar and MenubarMenu");
+  }
+
+  const { activeMenu, setActiveMenu } = menubarContext;
+  const { value } = menuContext;
+  const isOpen = activeMenu === value;
+
   return (
-    <MenubarPrimitive.Trigger
-      data-slot="menubar-trigger"
+    <Pressable
+      onPress={() => setActiveMenu(isOpen ? null : value)}
       className={cn(
-        "focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground flex items-center rounded-sm px-2 py-1 text-sm font-medium outline-hidden select-none",
-        className,
+        "flex flex-row items-center rounded-sm px-2.5 py-1 text-sm font-medium",
+        isOpen ? "bg-neutral-100 dark:bg-neutral-800" : "",
+        className
       )}
+      style={style}
       {...props}
-    />
+    >
+      {typeof children === "string" ? (
+        <Text className="text-sm font-medium text-neutral-900 dark:text-neutral-50">
+          {children}
+        </Text>
+      ) : (
+        children
+      )}
+    </Pressable>
   );
 }
 
 function MenubarContent({
   className,
-  align = "start",
-  alignOffset = -4,
-  sideOffset = 8,
-  ...props
-}: React.ComponentProps<typeof MenubarPrimitive.Content>) {
+  style,
+  children,
+}: {
+  className?: string;
+  style?: any;
+  children: React.ReactNode;
+}) {
+  const menubarContext = React.useContext(MenubarContext);
+  const menuContext = React.useContext(MenubarMenuContext);
+  if (!menubarContext || !menuContext) {
+    throw new Error("MenubarContent must be used within Menubar and MenubarMenu");
+  }
+
+  const { activeMenu, setActiveMenu } = menubarContext;
+  const { value } = menuContext;
+  const isOpen = activeMenu === value;
+
   return (
-    <MenubarPortal>
-      <MenubarPrimitive.Content
-        data-slot="menubar-content"
-        align={align}
-        alignOffset={alignOffset}
-        sideOffset={sideOffset}
-        className={cn(
-          "bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 min-w-[12rem] origin-(--radix-menubar-content-transform-origin) overflow-hidden rounded-md border p-1 shadow-md",
-          className,
-        )}
-        {...props}
-      />
-    </MenubarPortal>
+    <Modal
+      visible={isOpen}
+      transparent
+      animationType="fade"
+      onRequestClose={() => setActiveMenu(null)}
+    >
+      <Pressable
+        className="flex-1 justify-center items-center bg-black/40"
+        onPress={() => setActiveMenu(null)}
+      >
+        <Pressable
+          className={cn(
+            "bg-white dark:bg-neutral-900 w-[80%] max-w-[320px] rounded-lg border border-neutral-200 dark:border-neutral-800 p-1 shadow-lg",
+            className
+          )}
+          style={style}
+          onPress={(e) => e.stopPropagation()}
+        >
+          {children}
+        </Pressable>
+      </Pressable>
+    </Modal>
   );
+}
+
+function MenubarGroup({ children, ...props }: { children: React.ReactNode }) {
+  return <View {...props}>{children}</View>;
+}
+
+interface MenubarItemProps {
+  className?: string;
+  style?: any;
+  children?: React.ReactNode;
+  onPress?: () => void;
+  inset?: boolean;
+  variant?: "default" | "destructive";
 }
 
 function MenubarItem({
   className,
+  style,
+  children,
+  onPress,
   inset,
   variant = "default",
   ...props
-}: React.ComponentProps<typeof MenubarPrimitive.Item> & {
-  inset?: boolean;
-  variant?: "default" | "destructive";
-}) {
+}: MenubarItemProps) {
+  const menubarContext = React.useContext(MenubarContext);
+  const setActiveMenu = menubarContext?.setActiveMenu;
+
+  const handlePress = () => {
+    if (setActiveMenu) setActiveMenu(null);
+    if (onPress) onPress();
+  };
+
   return (
-    <MenubarPrimitive.Item
-      data-slot="menubar-item"
-      data-inset={inset}
-      data-variant={variant}
+    <Pressable
+      onPress={handlePress}
       className={cn(
-        "focus:bg-accent focus:text-accent-foreground data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 dark:data-[variant=destructive]:focus:bg-destructive/20 data-[variant=destructive]:focus:text-destructive data-[variant=destructive]:*:[svg]:!text-destructive [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-        className,
+        "flex flex-row items-center gap-2 rounded-sm px-3 py-2 text-sm",
+        inset && "pl-8",
+        variant === "destructive" ? "active:bg-destructive/10 dark:active:bg-destructive/20" : "active:bg-neutral-100 dark:active:bg-neutral-800",
+        className
       )}
+      style={style}
       {...props}
-    />
+    >
+      {typeof children === "string" ? (
+        <Text
+          className={cn(
+            "text-sm font-medium",
+            variant === "destructive" ? "text-red-500" : "text-neutral-900 dark:text-neutral-50"
+          )}
+        >
+          {children}
+        </Text>
+      ) : (
+        children
+      )}
+    </Pressable>
   );
+}
+
+interface MenubarCheckboxItemProps {
+  className?: string;
+  style?: any;
+  children?: React.ReactNode;
+  checked?: boolean;
+  onCheckedChange?: (checked: boolean) => void;
+  onPress?: () => void;
 }
 
 function MenubarCheckboxItem({
   className,
+  style,
   children,
   checked,
+  onCheckedChange,
+  onPress,
   ...props
-}: React.ComponentProps<typeof MenubarPrimitive.CheckboxItem>) {
+}: MenubarCheckboxItemProps) {
+  const menubarContext = React.useContext(MenubarContext);
+  const setActiveMenu = menubarContext?.setActiveMenu;
+
+  const handlePress = () => {
+    if (setActiveMenu) setActiveMenu(null);
+    if (onCheckedChange) onCheckedChange(!checked);
+    if (onPress) onPress();
+  };
+
   return (
-    <MenubarPrimitive.CheckboxItem
-      data-slot="menubar-checkbox-item"
+    <Pressable
+      onPress={handlePress}
       className={cn(
-        "focus:bg-accent focus:text-accent-foreground relative flex cursor-default items-center gap-2 rounded-xs py-1.5 pr-2 pl-8 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-        className,
+        "flex flex-row items-center gap-2 rounded-sm py-2 pr-3 pl-8 text-sm active:bg-neutral-100 dark:active:bg-neutral-800",
+        className
       )}
-      checked={checked}
+      style={style}
       {...props}
     >
-      <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
-        <MenubarPrimitive.ItemIndicator>
-          <CheckIcon className="size-4" />
-        </MenubarPrimitive.ItemIndicator>
-      </span>
-      {children}
-    </MenubarPrimitive.CheckboxItem>
+      <View className="absolute left-2 flex size-3.5 items-center justify-center">
+        {checked && <CheckIcon className="size-4 text-neutral-900 dark:text-neutral-50" />}
+      </View>
+      {typeof children === "string" ? (
+        <Text className="text-sm font-medium text-neutral-900 dark:text-neutral-50">
+          {children}
+        </Text>
+      ) : (
+        children
+      )}
+    </Pressable>
   );
 }
 
 function MenubarRadioItem({
   className,
+  style,
   children,
+  checked,
+  onPress,
   ...props
-}: React.ComponentProps<typeof MenubarPrimitive.RadioItem>) {
+}: {
+  className?: string;
+  style?: any;
+  children?: React.ReactNode;
+  checked?: boolean;
+  onPress?: () => void;
+}) {
+  const menubarContext = React.useContext(MenubarContext);
+  const setActiveMenu = menubarContext?.setActiveMenu;
+
+  const handlePress = () => {
+    if (setActiveMenu) setActiveMenu(null);
+    if (onPress) onPress();
+  };
+
   return (
-    <MenubarPrimitive.RadioItem
-      data-slot="menubar-radio-item"
+    <Pressable
+      onPress={handlePress}
       className={cn(
-        "focus:bg-accent focus:text-accent-foreground relative flex cursor-default items-center gap-2 rounded-xs py-1.5 pr-2 pl-8 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-        className,
+        "flex flex-row items-center gap-2 rounded-sm py-2 pr-3 pl-8 text-sm active:bg-neutral-100 dark:active:bg-neutral-800",
+        className
       )}
+      style={style}
       {...props}
     >
-      <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
-        <MenubarPrimitive.ItemIndicator>
-          <CircleIcon className="size-2 fill-current" />
-        </MenubarPrimitive.ItemIndicator>
-      </span>
-      {children}
-    </MenubarPrimitive.RadioItem>
+      <View className="absolute left-2 flex size-3.5 items-center justify-center">
+        {checked && <CircleIcon className="size-2 fill-current text-neutral-900 dark:text-neutral-50" />}
+      </View>
+      {typeof children === "string" ? (
+        <Text className="text-sm font-medium text-neutral-900 dark:text-neutral-50">
+          {children}
+        </Text>
+      ) : (
+        children
+      )}
+    </Pressable>
   );
 }
 
 function MenubarLabel({
   className,
+  style,
+  children,
   inset,
   ...props
-}: React.ComponentProps<typeof MenubarPrimitive.Label> & {
+}: {
+  className?: string;
+  style?: any;
+  children?: React.ReactNode;
   inset?: boolean;
 }) {
   return (
-    <MenubarPrimitive.Label
-      data-slot="menubar-label"
-      data-inset={inset}
-      className={cn(
-        "px-2 py-1.5 text-sm font-medium data-[inset]:pl-8",
-        className,
-      )}
+    <View
+      className={cn("px-3 py-1.5", inset && "pl-8", className)}
+      style={style}
       {...props}
-    />
+    >
+      {typeof children === "string" ? (
+        <Text className="text-xs font-semibold text-neutral-500 dark:text-neutral-400">
+          {children}
+        </Text>
+      ) : (
+        children
+      )}
+    </View>
   );
 }
 
 function MenubarSeparator({
   className,
+  style,
   ...props
-}: React.ComponentProps<typeof MenubarPrimitive.Separator>) {
+}: {
+  className?: string;
+  style?: any;
+}) {
   return (
-    <MenubarPrimitive.Separator
-      data-slot="menubar-separator"
-      className={cn("bg-border -mx-1 my-1 h-px", className)}
+    <View
+      className={cn("bg-neutral-200 dark:bg-neutral-800 -mx-1 my-1 h-px", className)}
+      style={style}
       {...props}
     />
   );
@@ -196,63 +369,77 @@ function MenubarSeparator({
 
 function MenubarShortcut({
   className,
+  style,
+  children,
   ...props
-}: React.ComponentProps<"span">) {
+}: {
+  className?: string;
+  style?: any;
+  children?: React.ReactNode;
+}) {
   return (
-    <span
-      data-slot="menubar-shortcut"
-      className={cn(
-        "text-muted-foreground ml-auto text-xs tracking-widest",
-        className,
+    <View className="ml-auto" style={style} {...props}>
+      {typeof children === "string" ? (
+        <Text className={cn("text-xs text-neutral-400 tracking-widest", className)}>
+          {children}
+        </Text>
+      ) : (
+        children
       )}
-      {...props}
-    />
+    </View>
   );
 }
 
-function MenubarSub({
-  ...props
-}: React.ComponentProps<typeof MenubarPrimitive.Sub>) {
-  return <MenubarPrimitive.Sub data-slot="menubar-sub" {...props} />;
+function MenubarSub({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
 }
 
 function MenubarSubTrigger({
   className,
-  inset,
+  style,
   children,
   ...props
-}: React.ComponentProps<typeof MenubarPrimitive.SubTrigger> & {
-  inset?: boolean;
+}: {
+  className?: string;
+  style?: any;
+  children?: React.ReactNode;
 }) {
   return (
-    <MenubarPrimitive.SubTrigger
-      data-slot="menubar-sub-trigger"
-      data-inset={inset}
-      className={cn(
-        "focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground flex cursor-default items-center rounded-sm px-2 py-1.5 text-sm outline-none select-none data-[inset]:pl-8",
-        className,
-      )}
+    <View
+      className={cn("flex flex-row items-center justify-between px-3 py-2", className)}
+      style={style}
       {...props}
     >
-      {children}
-      <ChevronRightIcon className="ml-auto h-4 w-4" />
-    </MenubarPrimitive.SubTrigger>
+      {typeof children === "string" ? (
+        <Text className="text-sm font-medium text-neutral-900 dark:text-neutral-50">
+          {children}
+        </Text>
+      ) : (
+        children
+      )}
+      <ChevronRightIcon className="size-4 text-neutral-400" />
+    </View>
   );
 }
 
 function MenubarSubContent({
   className,
+  style,
+  children,
   ...props
-}: React.ComponentProps<typeof MenubarPrimitive.SubContent>) {
+}: {
+  className?: string;
+  style?: any;
+  children: React.ReactNode;
+}) {
   return (
-    <MenubarPrimitive.SubContent
-      data-slot="menubar-sub-content"
-      className={cn(
-        "bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 min-w-[8rem] origin-(--radix-menubar-content-transform-origin) overflow-hidden rounded-md border p-1 shadow-lg",
-        className,
-      )}
+    <View
+      className={cn("pl-4 border-l border-neutral-200 dark:border-neutral-800 my-1", className)}
+      style={style}
       {...props}
-    />
+    >
+      {children}
+    </View>
   );
 }
 
@@ -274,4 +461,3 @@ export {
   MenubarSubTrigger,
   MenubarSubContent,
 };
-

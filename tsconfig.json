@@ -16,6 +16,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "strict": true,
+    "noImplicitAny": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
@@ -23,16 +24,17 @@
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "lucide-react": [
+        "./node_modules/lucide-react-native"
+      ],
+      "sonner": [
+        "./src/components/ui/sonner.tsx"
       ]
     }
   },
   "include": [
     "src"
-  ],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
   ],
   "extends": "expo/tsconfig.base"
 }

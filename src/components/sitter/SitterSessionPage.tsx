@@ -1,3 +1,4 @@
+import { View, Text, Image } from '../../tw';
 import { CheckCircle, MapPin, MessageCircle, Shield, Bell, Loader2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import QRCode from 'qrcode';
@@ -202,134 +203,134 @@ export default function SitterSessionPage({ language, booking: initialBooking, o
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pb-20">
+        <View className="min-h-screen bg-gray-50 dark:bg-gray-900 pb-20">
             {/* Header */}
-            <div className="p-4 flex items-center gap-4">
-                <Button variant="ghost" size="icon" onClick={onBack} className="rounded-full">
+            <View className="p-4 flex items-center gap-4">
+                <Button variant="ghost" size="icon" onPress={onBack} className="rounded-full">
                     {language === 'ar' ? <ChevronRight className="w-6 h-6" /> : <ChevronLeft className="w-6 h-6" />}
                 </Button>
-                <h1 className="text-xl font-bold">{t.sessionManagement}</h1>
-            </div>
+                <Text className="text-xl font-bold">{t.sessionManagement}</Text>
+            </View>
 
-            <div className="p-4 max-w-md mx-auto space-y-6">
+            <View className="p-4 max-w-md mx-auto space-y-6">
                 <Card className="p-4">
-                    <div className="flex justify-between items-start">
-                        <div className="flex gap-4">
-                            <img
+                    <View className="flex justify-between items-start">
+                        <View className="flex gap-4">
+                            <Image
                                 src={booking.clientImage}
                                 alt={booking.clientName}
                                 className="w-14 h-14 rounded-full object-cover"
                             />
-                            <div>
-                                <h3 className="font-bold">{booking.clientName}</h3>
-                                <div className="flex items-center gap-1 text-sm text-gray-500 mt-1">
+                            <View>
+                                <Text className="font-bold">{booking.clientName}</Text>
+                                <View className="flex items-center gap-1 text-sm text-gray-500 mt-1">
                                     <MapPin className="w-3 h-3" />
                                     {booking.location}
-                                </div>
-                            </div>
-                        </div>
+                                </View>
+                            </View>
+                        </View>
                         <Button
                             size="icon"
                             variant="outline"
                             className="rounded-full"
-                            onClick={onChat}
+                            onPress={onChat}
                         >
                             <MessageCircle className="w-4 h-4" />
                         </Button>
-                    </div>
+                    </View>
                 </Card>
 
                 {booking.status === 'upcoming' ? (
                     <Card className="p-6 flex flex-col items-center text-center space-y-4">
-                        <h3 className="font-bold text-lg">{t.startService}</h3>
-                        <p className="text-sm text-gray-500">{t.qrInstructions}</p>
-                        <div className="border-4 border-[#FB5E7A] p-2 rounded-xl bg-white inline-block relative min-w-[200px] min-h-[200px]">
+                        <Text className="font-bold text-lg">{t.startService}</Text>
+                        <Text className="text-sm text-gray-500">{t.qrInstructions}</Text>
+                        <View className="border-4 border-[#FB5E7A] p-2 rounded-xl bg-white inline-block relative min-w-[200px] min-h-[200px]">
                             {qrLoading ? (
-                                <div className="absolute inset-0 flex items-center justify-center">
+                                <View className="absolute inset-0 flex items-center justify-center">
                                     <Loader2 className="w-8 h-8 animate-spin text-[#FB5E7A]" />
-                                </div>
+                                </View>
                             ) : qrDataUrl ? (
-                                <img
+                                <Image
                                     src={qrDataUrl}
                                     alt="QR Code"
                                     className="w-48 h-48"
                                 />
                             ) : null}
-                        </div>
+                        </View>
                     </Card>
                 ) : (
-                    <div className="space-y-6">
+                    <View className="space-y-6">
                         <Card className={`p-4 border-2 transition-colors ${hasIncomingCheck ? 'border-red-500 bg-red-50 dark:bg-red-900/20' : 'border-transparent'}`}>
-                            <div className="flex justify-between items-center mb-4">
-                                <h3 className="font-bold flex items-center gap-2">
+                            <View className="flex justify-between items-center mb-4">
+                                <Text className="font-bold flex items-center gap-2">
                                     <Shield className="w-5 h-5 text-green-600" />
                                     {t.safetyCheck}
-                                </h3>
+                                </Text>
                                 {hasIncomingCheck && (
-                                    <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-red-400 opacity-75 right-8"></span>
+                                    <Text className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-red-400 opacity-75 right-8"></Text>
                                 )}
-                            </div>
+                            </View>
 
                             {hasIncomingCheck ? (
-                                <div className="space-y-4 text-center">
-                                    <div className="flex flex-col items-center text-red-600 gap-2 animate-pulse">
+                                <View className="space-y-4 text-center">
+                                    <View className="flex flex-col items-center text-red-600 gap-2 animate-pulse">
                                         <Bell className="w-8 h-8" />
-                                        <p className="font-bold">{t.incomingRequest}</p>
-                                    </div>
+                                        <Text className="font-bold">{t.incomingRequest}</Text>
+                                    </View>
                                     <Button
                                         className="w-full bg-green-600 hover:bg-green-700 h-12 text-lg"
-                                        onClick={handleConfirmSafety}
+                                        onPress={handleConfirmSafety}
                                     >
                                         <CheckCircle className="w-5 h-5 mr-2" />
                                         {t.confirmSafety}
                                     </Button>
-                                </div>
+                                </View>
                             ) : (
-                                <div className="text-center space-y-4">
-                                    <p className="text-gray-500 text-sm py-2">{t.noRequests}</p>
-                                    <div className="pt-8 border-t border-dashed mt-4">
-                                        <p className="text-xs text-gray-400 mb-2 text-center">
+                                <View className="text-center space-y-4">
+                                    <Text className="text-gray-500 text-sm py-2">{t.noRequests}</Text>
+                                    <View className="pt-8 border-t border-dashed mt-4">
+                                        <Text className="text-xs text-gray-400 mb-2 text-center">
                                             {language === 'ar' ? '(أدوات العرض التجريبي)' : '(Demo Tools)'}
-                                        </p>
+                                        </Text>
                                         <Button
                                             variant="outline"
                                             size="sm"
                                             className="w-full border-dashed text-gray-500 hover:text-gray-700"
-                                            onClick={() => setHasIncomingCheck(true)}
+                                            onPress={() => setHasIncomingCheck(true)}
                                         >
                                             <Bell className="w-3 h-3 mr-2" />
                                             {t.simulateRequest}
                                         </Button>
-                                    </div>
-                                </div>
+                                    </View>
+                                </View>
                             )}
                         </Card>
 
                         <Card className="p-6">
-                            <h3 className="font-bold mb-4">{t.sessionTimeline}</h3>
-                            <div className="relative pl-4 pr-4">
-                                <div className="absolute left-2 top-2 bottom-2 w-0.5 bg-gray-200 rtl:right-2 rtl:left-auto"></div>
-                                <div className="space-y-6">
+                            <Text className="font-bold mb-4">{t.sessionTimeline}</Text>
+                            <View className="relative pl-4 pr-4">
+                                <View className="absolute left-2 top-2 bottom-2 w-0.5 bg-gray-200 rtl:right-2 rtl:left-auto"></View>
+                                <View className="space-y-6">
                                     {timePoints.map((_point, index) => {
                                         const isCompleted = (index / booking.duration) * 100 <= progress;
                                         return (
-                                            <div key={index} className="flex items-center gap-4 relative">
-                                                <div className={`
+                                            <View key={index} className="flex items-center gap-4 relative">
+                                                <View className={`
                                                     w-4 h-4 rounded-full z-10 
                                                     ${isCompleted ? 'bg-[#FB5E7A]' : 'bg-gray-300'}
-                                                `}></div>
-                                                <span className={isCompleted ? 'text-black dark:text-white font-medium' : 'text-gray-400'}>
+                                                `}></View>
+                                                <Text className={isCompleted ? 'text-black dark:text-white font-medium' : 'text-gray-400'}>
                                                     {index === 0 ? 'Start' : `${index} ${t.hour}`}
-                                                </span>
-                                            </div>
+                                                </Text>
+                                            </View>
                                         );
                                     })}
-                                </div>
-                            </div>
+                                </View>
+                            </View>
                         </Card>
-                    </div>
+                    </View>
                 )}
-            </div>
-        </div>
+            </View>
+        </View>
     );
 }

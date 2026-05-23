@@ -1,3 +1,4 @@
+import { View, Text } from '../tw';
 import { useState, useRef } from 'react';
 import { Button } from './ui/button';
 import { Card } from './ui/card';
@@ -26,14 +27,8 @@ export default function AuthPage({ onBack }: AuthPageProps) {
   // Store actions for auth management
   const { signIn, signUp, verifyOTP, resendOTP, userType, setUserType } = useAuthStore();
 
-  const [mode, setMode] = useState<'login' | 'signup' | 'forgot' | 'verify'>(() => {
-    const savedMode = sessionStorage.getItem('auth_redirect_mode');
-    if (savedMode === 'signup') {
-      sessionStorage.removeItem('auth_redirect_mode');
-      return 'signup';
-    }
-    return 'login';
-  });
+  // React Native: sessionStorage is not available - always start with 'login'
+  const [mode, setMode] = useState<'login' | 'signup' | 'forgot' | 'verify'>('login');
 
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -45,7 +40,7 @@ export default function AuthPage({ onBack }: AuthPageProps) {
   const [defaultAddress, setDefaultAddress] = useState('');
   const [loading, setLoading] = useState(false);
   const [otp, setOtp] = useState(['', '', '', '', '', '', '', '']);
-  const otpRefs = useRef<(HTMLInputElement | null)[]>([]);
+  const otpRefs = useRef<(any | null)[]>([]);
 
   // Function to handle OTP input changes
   const handleOtpChange = (index: number, value: string) => {
@@ -62,14 +57,14 @@ export default function AuthPage({ onBack }: AuthPageProps) {
     }
   };
 
-  const handleKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (index: number, e: any) => {
     if (e.key === 'Backspace' && !otp[index] && index > 0) {
       otpRefs.current[index - 1]?.focus();
     }
   };
 
-  const handleVerify = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleVerify = async (_e?: any) => {
+    // e.preventDefault();
     const token = otp.join('');
     if (token.length < 8) {
       toast.error(authT.otpRequired);
@@ -103,8 +98,8 @@ export default function AuthPage({ onBack }: AuthPageProps) {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (e: any) => {
+    // e.preventDefault();
     if (mode === 'verify') return handleVerify(e);
 
     setLoading(true);
@@ -154,100 +149,98 @@ export default function AuthPage({ onBack }: AuthPageProps) {
 
   if (mode === 'verify') {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-[#FFD1DA] to-[#FB5E7A]">
+      <View className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-[#FFD1DA] to-[#FB5E7A]">
         <Card className="max-w-md w-full p-8 space-y-6">
-          <div className="text-center space-y-4">
-            <div className="mx-auto w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center">
+          <View className="text-center space-y-4">
+            <View className="mx-auto w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center">
               <CheckCircle2 className="w-6 h-6 text-[#FB5E7A]" />
-            </div>
-            <h2 className="text-[#FB5E7A] text-2xl font-bold">{authT.verificationTitle}</h2>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            </View>
+            <Text className="text-[#FB5E7A] text-2xl font-bold">{authT.verificationTitle}</Text>
+            <Text className="text-sm text-gray-600 dark:text-gray-400">
               {authT.verificationDesc.replace('{email}', email)}
-            </p>
-          </div>
+            </Text>
 
-          <form onSubmit={handleVerify} className="space-y-6">
-            <div className="flex justify-center gap-1 sm:gap-3" dir="ltr">
-              {otp.map((digit, idx) => (
-                <input
-                  key={idx}
-                  ref={(el) => { otpRefs.current[idx] = el; }}
-                  type="text"
+            <View className="flex-row justify-center space-x-2">
+              {otp.map((digit, index) => (
+                <Input
+                  key={index}
+                  ref={(el: any) => (otpRefs.current[index] = el)}
+                  keyboardType="numeric"
                   maxLength={1}
                   value={digit}
-                  onChange={(e) => handleOtpChange(idx, e.target.value)}
-                  onKeyDown={(e) => handleKeyDown(idx, e)}
-                  className="w-8 h-10 sm:w-12 sm:h-14 text-center text-lg sm:text-2xl font-bold border-2 border-[#FB5E7A] rounded-lg focus:ring-2 focus:ring-[#FB5E7A] focus:outline-none bg-white dark:bg-gray-800"
+                  onChangeText={(val) => handleOtpChange(index, val)}
+                  onKeyPress={(e) => handleKeyDown(index, e)}
+                  className="w-12 h-12 text-center text-xl font-bold rounded-xl border-gray-200"
                 />
               ))}
-            </div>
+            </View>
 
             <Button
-              type="submit"
-              disabled={loading}
+              onPress={handleVerify}
+              disabled={loading || otp.join('').length !== 6}
               className="w-full bg-[#FB5E7A] hover:bg-[#e5536e] h-12 text-lg"
             >
               {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : authT.verifyButton}
             </Button>
 
-            <div className="text-center">
+            <View className="text-center">
               <Button
                 type="button"
                 variant="link"
                 className="text-[#FB5E7A]"
-                onClick={handleResend}
+                onPress={handleResend}
                 disabled={loading}
               >
                 {authT.resendOtp}
               </Button>
-            </div>
+            </View>
 
             <Button
               type="button"
               variant="ghost"
               className="w-full text-gray-500"
-              onClick={() => setMode('signup')}
+              onPress={() => setMode('signup')}
             >
               {commonT.back}
             </Button>
-          </form>
+          </View>
         </Card>
-      </div>
+      </View>
     );
   }
 
   if (mode === 'forgot') {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-[#FFD1DA] to-[#FB5E7A]">
+      <View className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-[#FFD1DA] to-[#FB5E7A]">
         <Card className="max-w-md w-full p-8 space-y-6">
           <Button
             variant="ghost"
-            onClick={() => setMode('login')}
+            onPress={() => setMode('login')}
             className="text-[#FB5E7A]"
           >
             {language === 'ar' ? <ArrowRight className="w-4 h-4 ml-2" /> : <ArrowLeft className="w-4 h-4 mr-2" />}
             {commonT.back}
           </Button>
 
-          <div className="text-center space-y-2">
-            <h2 className="text-[#FB5E7A] text-xl font-bold">{authT.resetPassword}</h2>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+          <View className="text-center space-y-2">
+            <Text className="text-[#FB5E7A] text-xl font-bold">{authT.resetPassword}</Text>
+            <Text className="text-sm text-gray-600 dark:text-gray-400">
               {authT.resetDescription}
-            </p>
-          </div>
+            </Text>
+          </View>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
+          <View onSubmit={handleSubmit} className="space-y-4">
+            <View className="space-y-2">
               <Label htmlFor="reset-email">{authT.email}</Label>
               <Input
                 id="reset-email"
                 type="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChangeText={setEmail}
                 required
                 className="border-[#FB5E7A]"
               />
-            </div>
+            </View>
 
             <Button
               type="submit"
@@ -261,23 +254,23 @@ export default function AuthPage({ onBack }: AuthPageProps) {
               type="button"
               variant="link"
               className="w-full text-[#FB5E7A]"
-              onClick={() => setMode('login')}
+              onPress={() => setMode('login')}
             >
               {authT.backToLogin}
             </Button>
-          </form>
+          </View>
         </Card>
-      </div>
+      </View>
     );
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-[#FFD1DA] to-[#FB5E7A]">
+    <View className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-[#FFD1DA] to-[#FB5E7A]">
       <Card className="max-w-md w-full p-8 space-y-6">
         {onBack && (
           <Button
             variant="ghost"
-            onClick={onBack}
+            onPress={onBack}
             className="text-[#FB5E7A]"
           >
             {language === 'ar' ? <ArrowRight className="w-4 h-4 ml-2" /> : <ArrowLeft className="w-4 h-4 mr-2" />}
@@ -286,11 +279,11 @@ export default function AuthPage({ onBack }: AuthPageProps) {
         )}
 
         {mode === 'signup' && (
-          <div className="space-y-4">
+          <View className="space-y-4">
             <Label className="text-center block text-gray-700 dark:text-gray-300 mb-2">
               {authT.chooseRole}
             </Label>
-            <div className="grid grid-cols-2 gap-3">
+            <View className="grid grid-cols-2 gap-3">
               <Button
                 type="button"
                 variant={userType === 'client' ? 'default' : 'outline'}
@@ -298,9 +291,9 @@ export default function AuthPage({ onBack }: AuthPageProps) {
                   ? 'bg-[#FB5E7A] hover:bg-[#e5536e] text-white shadow-md'
                   : 'border-[#FB5E7A] text-[#FB5E7A] hover:bg-pink-50'
                   }`}
-                onClick={() => setUserType('client')}
+                onPress={() => setUserType('client')}
               >
-                <span className="font-bold text-sm">{authT.roleClient}</span>
+                <Text className="font-bold text-sm">{authT.roleClient}</Text>
               </Button>
               <Button
                 type="button"
@@ -309,126 +302,126 @@ export default function AuthPage({ onBack }: AuthPageProps) {
                   ? 'bg-[#FB5E7A] hover:bg-[#e5536e] text-white shadow-md'
                   : 'border-[#FB5E7A] text-[#FB5E7A] hover:bg-pink-50'
                   }`}
-                onClick={() => setUserType('sitter')}
+                onPress={() => setUserType('sitter')}
               >
-                <span className="font-bold text-sm">{authT.roleSitter}</span>
+                <Text className="font-bold text-sm">{authT.roleSitter}</Text>
               </Button>
-            </div>
-          </div>
+            </View>
+          </View>
         )}
 
-        <h2 className="text-center text-2xl font-bold text-[#FB5E7A]">
+        <Text className="text-center text-2xl font-bold text-[#FB5E7A]">
           {mode === 'login' ? authT.login : authT.signup}
-        </h2>
+        </Text>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <View onSubmit={handleSubmit} className="space-y-4">
           {mode === 'signup' && (
-            <div className="space-y-2">
+            <View className="space-y-2">
               <Label htmlFor="fullName">{authT.fullName}</Label>
               <Input
                 id="fullName"
                 type="text"
                 value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
+                onChangeText={setFullName}
                 required
                 className="border-[#FB5E7A]"
               />
-            </div>
+            </View>
           )}
 
-          <div className="space-y-2">
+          <View className="space-y-2">
             <Label htmlFor="email">{authT.emailOrPhone}</Label>
             <Input
               id="email"
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChangeText={setEmail}
               required
               className="border-[#FB5E7A]"
             />
-          </div>
+          </View>
 
           {mode === 'signup' && (
             <>
-              <div className="space-y-2">
+              <View className="space-y-2">
                 <Label htmlFor="phone">{authT.phone}</Label>
                 <Input
                   id="phone"
                   type="tel"
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  onChangeText={setPhone}
                   required
                   className="border-[#FB5E7A]"
                 />
-              </div>
+              </View>
 
               {userType === 'client' && (
                 <>
-                  <div className="space-y-2">
+                  <View className="space-y-2">
                     <Label htmlFor="motherJob">{authT.motherJob}</Label>
                     <Input
                       id="motherJob"
                       type="text"
                       value={motherJob}
-                      onChange={(e) => setMotherJob(e.target.value)}
+                      onChangeText={setMotherJob}
                       required
                       className="border-[#FB5E7A]"
                     />
-                  </div>
+                  </View>
 
-                  <div className="space-y-2">
+                  <View className="space-y-2">
                     <Label htmlFor="fatherJob">{authT.fatherJob}</Label>
                     <Input
                       id="fatherJob"
                       type="text"
                       value={fatherJob}
-                      onChange={(e) => setFatherJob(e.target.value)}
+                      onChangeText={setFatherJob}
                       required
                       className="border-[#FB5E7A]"
                     />
-                  </div>
+                  </View>
 
-                  <div className="space-y-2">
+                  <View className="space-y-2">
                     <Label htmlFor="defaultAddress">{authT.defaultAddress}</Label>
                     <Input
                       id="defaultAddress"
                       type="text"
                       value={defaultAddress}
-                      onChange={(e) => setDefaultAddress(e.target.value)}
+                      onChangeText={setDefaultAddress}
                       required
                       className="border-[#FB5E7A]"
                       placeholder={authT.addressPlaceholder}
                     />
-                  </div>
+                  </View>
                 </>
               )}
             </>
           )}
 
-          <div className="space-y-2">
+          <View className="space-y-2">
             <Label htmlFor="password">{authT.password}</Label>
             <Input
               id="password"
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChangeText={setPassword}
               required
               className="border-[#FB5E7A]"
             />
-          </div>
+          </View>
 
           {mode === 'signup' && (
-            <div className="space-y-2">
+            <View className="space-y-2">
               <Label htmlFor="confirmPassword">{authT.confirmPassword}</Label>
               <Input
                 id="confirmPassword"
                 type="password"
                 value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                onChangeText={setConfirmPassword}
                 required
                 className="border-[#FB5E7A]"
               />
-            </div>
+            </View>
           )}
 
           {mode === 'login' && (
@@ -436,7 +429,7 @@ export default function AuthPage({ onBack }: AuthPageProps) {
               type="button"
               variant="link"
               className="text-[#FB5E7A] p-0 h-auto"
-              onClick={() => setMode('forgot')}
+              onPress={() => setMode('forgot')}
             >
               {authT.forgotPassword}
             </Button>
@@ -448,27 +441,29 @@ export default function AuthPage({ onBack }: AuthPageProps) {
             className="w-full bg-[#FB5E7A] hover:bg-[#e5536e]"
           >
             {loading ? (
-              <div className="flex items-center gap-2">
+              <View className="flex items-center gap-2">
                 <Loader2 className="w-4 h-4 animate-spin" />
                 {commonT.loading}
-              </div>
+              </View>
             ) : mode === 'login' ? authT.loginButton : authT.signupButton}
           </Button>
-        </form>
+        </View>
 
-        <div className="text-center">
-          <span className="text-sm text-gray-600 dark:text-gray-400">
+        <View className="text-center">
+          <Text className="text-sm text-gray-600 dark:text-gray-400">
             {mode === 'login' ? authT.noAccount : authT.haveAccount}{' '}
-          </span>
+          </Text>
           <Button
             variant="link"
             className="text-[#FB5E7A] p-0 h-auto"
-            onClick={() => setMode(mode === 'login' ? 'signup' : 'login')}
+            onPress={() => setMode(mode === 'login' ? 'signup' : 'login')}
           >
             {mode === 'login' ? authT.switchToSignup : authT.switchToLogin}
           </Button>
-        </div>
+        </View>
       </Card>
-    </div>
+    </View>
   );
 }
+
+

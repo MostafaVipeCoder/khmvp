@@ -1,3 +1,4 @@
+import { View, Text, Image } from '../../tw';
 import { Calendar, Clock, MapPin, User, ArrowLeft, ArrowRight, Check, X, CreditCard } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Card } from '../ui/card';
@@ -111,129 +112,129 @@ export default function RequestDetails({ language, request, onBack, onAccept, on
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 pb-8 pt-4">
-      <div className="flex items-center gap-4 mb-6">
-        <Button variant="ghost" size="sm" onClick={onBack} className="text-[#FB5E7A]">
+    <View className="max-w-4xl mx-auto px-4 pb-8 pt-4">
+      <View className="flex items-center gap-4 mb-6">
+        <Button variant="ghost" size="sm" onPress={onBack} className="text-[#FB5E7A]">
           {language === 'ar' ? <ArrowRight className="w-5 h-5" /> : <ArrowLeft className="w-5 h-5" />}
         </Button>
-        <h1 className="text-xl font-bold text-[#FB5E7A]">{t.requestDetails}</h1>
-      </div>
+        <Text className="text-xl font-bold text-[#FB5E7A]">{t.requestDetails}</Text>
+      </View>
 
-      <div className="grid gap-6">
+      <View className="grid gap-6">
         {/* Status Banner for Waiting Payment */}
         {request.status === 'waiting_payment' && (
-          <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 flex items-start gap-3">
+          <View className="bg-orange-50 border border-orange-200 rounded-lg p-4 flex items-start gap-3">
             <Clock className="w-5 h-5 text-orange-500 mt-0.5" />
-            <div>
-              <h4 className="font-semibold text-orange-700 mb-1">{t.waiting_payment}</h4>
-              <p className="text-sm text-orange-600">{t.waitingPaymentDesc}</p>
-            </div>
-          </div>
+            <View>
+              <Text className="font-semibold text-orange-700 mb-1">{t.waiting_payment}</Text>
+              <Text className="text-sm text-orange-600">{t.waitingPaymentDesc}</Text>
+            </View>
+          </View>
         )}
 
         {/* Status Banner for Upcoming (Paid) */}
         {request.status === 'upcoming' && (
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-start gap-3">
+          <View className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-start gap-3">
             <CreditCard className="w-5 h-5 text-green-600 mt-0.5" />
-            <div>
-              <h4 className="font-semibold text-green-700 mb-1">{t.paymentConfirmed}</h4>
-              <p className="text-sm text-green-600">
+            <View>
+              <Text className="font-semibold text-green-700 mb-1">{t.paymentConfirmed}</Text>
+              <Text className="text-sm text-green-600">
                 {language === 'ar'
                   ? 'قامت العميلة بالدفع. الحجز مؤكد الآن.'
                   : 'Client has paid. Booking is now confirmed.'}
-              </p>
-            </div>
-          </div>
+              </Text>
+            </View>
+          </View>
         )}
 
         {/* Client Info Card */}
         <Card className="p-6">
-          <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+          <Text className="text-lg font-semibold mb-4 flex items-center gap-2">
             <User className="w-5 h-5 text-[#FB5E7A]" />
             {t.clientInfo}
-          </h3>
-          <div className="flex items-center gap-4">
-            <img
+          </Text>
+          <View className="flex items-center gap-4">
+            <Image
               src={request.clientImage}
               alt={request.clientName}
               className="w-20 h-20 rounded-full object-cover"
             />
-            <div>
-              <h4 className="text-lg font-medium">{request.clientName}</h4>
-              <p className="text-gray-500 text-sm flex items-center gap-1 mt-1">
+            <View>
+              <Text className="text-lg font-medium">{request.clientName}</Text>
+              <Text className="text-gray-500 text-sm flex items-center gap-1 mt-1">
                 <MapPin className="w-4 h-4" />
                 {request.location}
-              </p>
-            </div>
-          </div>
+              </Text>
+            </View>
+          </View>
         </Card>
 
         {/* Booking Info Card */}
         <Card className="p-6">
-          <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+          <Text className="text-lg font-semibold mb-4 flex items-center gap-2">
             <Calendar className="w-5 h-5 text-[#FB5E7A]" />
             {t.bookingInfo}
-          </h3>
+          </Text>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-4">
-              <div className="flex justify-between border-b pb-2">
-                <span className="text-gray-600 dark:text-gray-400">{t.date}</span>
-                <span className="font-medium">{request.date}</span>
-              </div>
-              <div className="flex justify-between border-b pb-2">
-                <span className="text-gray-600 dark:text-gray-400">{t.time}</span>
-                <span className="font-medium">{request.time}</span>
-              </div>
-              <div className="flex justify-between border-b pb-2">
-                <span className="text-gray-600 dark:text-gray-400">{t.duration}</span>
-                <span className="font-medium">{request.duration} {t.hours}</span>
-              </div>
-              <div className="flex justify-between border-b pb-2">
-                <span className="text-gray-600 dark:text-gray-400">{t.price}</span>
-                <span className="font-medium text-[#FB5E7A]">{request.price} {t.egp}</span>
-              </div>
-            </div>
+          <View className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <View className="space-y-4">
+              <View className="flex justify-between border-b pb-2">
+                <Text className="text-gray-600 dark:text-gray-400">{t.date}</Text>
+                <Text className="font-medium">{request.date}</Text>
+              </View>
+              <View className="flex justify-between border-b pb-2">
+                <Text className="text-gray-600 dark:text-gray-400">{t.time}</Text>
+                <Text className="font-medium">{request.time}</Text>
+              </View>
+              <View className="flex justify-between border-b pb-2">
+                <Text className="text-gray-600 dark:text-gray-400">{t.duration}</Text>
+                <Text className="font-medium">{request.duration} {t.hours}</Text>
+              </View>
+              <View className="flex justify-between border-b pb-2">
+                <Text className="text-gray-600 dark:text-gray-400">{t.price}</Text>
+                <Text className="font-medium text-[#FB5E7A]">{request.price} {t.egp}</Text>
+              </View>
+            </View>
 
-            <div className="space-y-4">
-              <div className="flex justify-between border-b pb-2">
-                <span className="text-gray-600 dark:text-gray-400">{t.type}</span>
+            <View className="space-y-4">
+              <View className="flex justify-between border-b pb-2">
+                <Text className="text-gray-600 dark:text-gray-400">{t.type}</Text>
                 <Badge className={request.type === 'home' ? 'bg-blue-100 text-blue-700' : 'bg-purple-100 text-purple-700'}>
                   {request.type === 'home' ? t.atHome : t.outside}
                 </Badge>
-              </div>
+              </View>
 
               {request.status && (
-                <div className="flex justify-between border-b pb-2">
-                  <span className="text-gray-600 dark:text-gray-400">{t.status}</span>
+                <View className="flex justify-between border-b pb-2">
+                  <Text className="text-gray-600 dark:text-gray-400">{t.status}</Text>
                   {getStatusBadge(request.status)}
-                </div>
+                </View>
               )}
 
-              <div className="flex justify-between border-b pb-2">
-                <span className="text-gray-600 dark:text-gray-400">{t.children}</span>
-                <span className="font-medium">{request.children} {t.child}</span>
-              </div>
-              <div className="flex flex-col gap-2 pt-1">
-                <span className="text-gray-600 dark:text-gray-400">{t.notes}</span>
-                <p className="text-sm bg-gray-50 dark:bg-gray-800 p-3 rounded-lg min-h-[60px]">
+              <View className="flex justify-between border-b pb-2">
+                <Text className="text-gray-600 dark:text-gray-400">{t.children}</Text>
+                <Text className="font-medium">{request.children} {t.child}</Text>
+              </View>
+              <View className="flex flex-col gap-2 pt-1">
+                <Text className="text-gray-600 dark:text-gray-400">{t.notes}</Text>
+                <Text className="text-sm bg-gray-50 dark:bg-gray-800 p-3 rounded-lg min-h-[60px]">
                   {request.notes || (language === 'ar' ? 'لا توجد ملاحظات' : 'No additional notes')}
-                </p>
-              </div>
-            </div>
-          </div>
+                </Text>
+              </View>
+            </View>
+          </View>
         </Card>
 
         {/* Actions */}
         {customActions ? (
-          <div className="pt-4">
+          <View className="pt-4">
             {customActions}
-          </div>
+          </View>
         ) : (
           onAccept && onDecline && (
-            <div className="flex gap-4 pt-4">
+            <View className="flex gap-4 pt-4">
               <Button
-                onClick={onDecline}
+                onPress={onDecline}
                 variant="outline"
                 className="flex-1 h-12 border-red-500 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10"
               >
@@ -241,16 +242,16 @@ export default function RequestDetails({ language, request, onBack, onAccept, on
                 {t.decline}
               </Button>
               <Button
-                onClick={onAccept}
+                onPress={onAccept}
                 className="flex-1 h-12 bg-green-600 hover:bg-green-700 text-white"
               >
                 <Check className="w-5 h-5 mr-2" />
                 {t.accept}
               </Button>
-            </div>
+            </View>
           )
         )}
-      </div>
-    </div>
+      </View>
+    </View>
   );
 }

@@ -1,12 +1,22 @@
-"use client";
+import * as React from "react";
+import { View } from "../../tw";
+import { cn } from "./utils";
 
-import * as AspectRatioPrimitive from "@radix-ui/react-aspect-ratio";
+interface AspectRatioProps {
+  ratio?: number;
+  className?: string;
+  style?: any;
+  children?: React.ReactNode;
+}
 
-function AspectRatio({
-  ...props
-}: React.ComponentProps<typeof AspectRatioPrimitive.Root>) {
-  return <AspectRatioPrimitive.Root data-slot="aspect-ratio" {...props} />;
+function AspectRatio({ ratio = 1, className, style, ...props }: AspectRatioProps) {
+  return (
+    <View
+      className={cn("w-full overflow-hidden", className)}
+      style={[{ aspectRatio: ratio }, style]}
+      {...props}
+    />
+  );
 }
 
 export { AspectRatio };
-

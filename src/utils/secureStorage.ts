@@ -1,75 +1,76 @@
-// Secure Storage Utility
-// Replaces localStorage with sessionStorage for sensitive data
+// Secure Storage Utility using React Native AsyncStorage
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /**
  * Secure storage for authentication data
- * Uses sessionStorage instead of localStorage for better security
  */
 export const secureStorage = {
     // Authentication
-    setAuth: (isAuthenticated: boolean): void => {
-        sessionStorage.setItem('isAuth', isAuthenticated.toString());
+    setAuth: async (isAuthenticated: boolean): Promise<void> => {
+        await AsyncStorage.setItem('isAuth', isAuthenticated.toString());
     },
 
-    getAuth: (): boolean => {
-        return sessionStorage.getItem('isAuth') === 'true';
+    getAuth: async (): Promise<boolean> => {
+        const val = await AsyncStorage.getItem('isAuth');
+        return val === 'true';
     },
 
-    clearAuth: (): void => {
-        sessionStorage.removeItem('isAuth');
+    clearAuth: async (): Promise<void> => {
+        await AsyncStorage.removeItem('isAuth');
     },
 
     // User Type
-    setUserType: (userType: 'client' | 'sitter' | 'khala' | 'admin' | null): void => {
+    setUserType: async (userType: 'client' | 'sitter' | 'khala' | 'admin' | null): Promise<void> => {
         if (userType) {
-            sessionStorage.setItem('userType', userType);
+            await AsyncStorage.setItem('userType', userType);
         } else {
-            sessionStorage.removeItem('userType');
+            await AsyncStorage.removeItem('userType');
         }
     },
 
-    getUserType: (): 'client' | 'sitter' | 'khala' | 'admin' | null => {
-        const type = sessionStorage.getItem('userType');
+    getUserType: async (): Promise<'client' | 'sitter' | 'khala' | 'admin' | null> => {
+        const type = await AsyncStorage.getItem('userType');
         return type as 'client' | 'sitter' | 'khala' | 'admin' | null;
     },
 
-    clearUserType: (): void => {
-        sessionStorage.removeItem('userType');
+    clearUserType: async (): Promise<void> => {
+        await AsyncStorage.removeItem('userType');
     },
 
     // Clear all auth data
-    clearAll: (): void => {
-        sessionStorage.removeItem('isAuth');
-        sessionStorage.removeItem('userType');
+    clearAll: async (): Promise<void> => {
+        await AsyncStorage.removeItem('isAuth');
+        await AsyncStorage.removeItem('userType');
     },
 };
 
 /**
- * Preferences storage (can use localStorage as it's not sensitive)
- * For language, theme, etc.
+ * Preferences storage (language, theme, etc.)
  */
 export const preferencesStorage = {
     // Language
-    setLanguage: (language: 'ar' | 'en'): void => {
-        localStorage.setItem('language', language);
+    setLanguage: async (language: 'ar' | 'en'): Promise<void> => {
+        await AsyncStorage.setItem('language', language);
     },
 
-    getLanguage: (): 'ar' | 'en' => {
-        return (localStorage.getItem('language') as 'ar' | 'en') || 'ar';
+    getLanguage: async (): Promise<'ar' | 'en'> => {
+        const lang = await AsyncStorage.getItem('language');
+        return (lang as 'ar' | 'en') || 'ar';
     },
 
     // Theme
-    setTheme: (theme: 'light' | 'dark'): void => {
-        localStorage.setItem('theme', theme);
+    setTheme: async (theme: 'light' | 'dark'): Promise<void> => {
+        await AsyncStorage.setItem('theme', theme);
     },
 
-    getTheme: (): 'light' | 'dark' => {
-        return (localStorage.getItem('theme') as 'light' | 'dark') || 'light';
+    getTheme: async (): Promise<'light' | 'dark'> => {
+        const theme = await AsyncStorage.getItem('theme');
+        return (theme as 'light' | 'dark') || 'light';
     },
 
     // Clear all preferences
-    clearAll: (): void => {
-        localStorage.removeItem('language');
-        localStorage.removeItem('theme');
+    clearAll: async (): Promise<void> => {
+        await AsyncStorage.removeItem('language');
+        await AsyncStorage.removeItem('theme');
     },
 };

@@ -1,11 +1,12 @@
 import { useEffect, useState, lazy, Suspense } from 'react';
 import type React from 'react';
 import { Toaster } from 'sonner';
-import { ErrorBoundary } from './components/ui/ErrorBoundary';
+import ErrorBoundary from './components/ErrorBoundary';
 import { useAuthStore } from './stores/useAuthStore';
 import type { ClientAppProps } from './components/ClientApp';
 import type { SitterAppProps } from './components/SitterApp';
 import SplashScreen from './components/SplashScreen';
+import { View, Text } from './tw';
 
 export type { Language, UserType } from './stores/useAuthStore';
 
@@ -20,16 +21,16 @@ const SitterApp = lazy<React.ComponentType<SitterAppProps>>(() => import('./comp
  * Displayed during lazy loading of routes or initial app initialization.
  */
 const PageLoader = () => (
-  <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
-    <div className="text-center space-y-4">
-      <div className="w-16 h-16 mx-auto">
-        <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-[#2596be]"></div>
-      </div>
-      <p className="text-gray-600 dark:text-gray-400 text-lg font-medium">
+  <View className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
+    <View className="text-center space-y-4">
+      <View className="w-16 h-16 mx-auto">
+        <View className="animate-spin rounded-full h-16 w-16 border-b-4 border-[#2596be]"></View>
+      </View>
+      <Text className="text-gray-600 dark:text-gray-400 text-lg font-medium">
         جاري التحميل...
-      </p>
-    </div>
-  </div>
+      </Text>
+    </View>
+  </View>
 );
 
 /**
@@ -71,7 +72,7 @@ function App() {
 
   return (
     <ErrorBoundary>
-      <div className={`min-h-screen ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
+      <View className={`min-h-screen ${language === 'ar' ? 'rtl' : 'ltr'}`}>
         {/* Toast Notifications */}
         <Toaster
           position={language === 'ar' ? 'top-left' : 'top-right'}
@@ -102,7 +103,7 @@ function App() {
             />
           )}
         </Suspense>
-      </div>
+      </View>
     </ErrorBoundary>
   );
 }

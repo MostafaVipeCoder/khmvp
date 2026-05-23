@@ -1,3 +1,4 @@
+import { View, Text, Image } from '../../tw';
 import { useState, useEffect } from 'react';
 import { Calendar, Clock, MapPin, MessageCircle, QrCode, CheckCircle, Loader2 } from 'lucide-react';
 import { Card } from '../ui/card';
@@ -261,86 +262,86 @@ export default function ClientActiveBookings({ onNavigate }: ClientActiveBooking
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 pb-8">
+    <View className="max-w-4xl mx-auto px-4 pb-8">
       {/* Sticky Header */}
-      <div className="sticky top-0 z-50 bg-white dark:bg-gray-950 pt-6 pb-4 -mx-4 px-4 mb-4 border-b border-gray-100 dark:border-gray-800">
-        <h1 className="text-[#FB5E7A] text-2xl font-bold">{activeT.mySchedule}</h1>
-      </div>
+      <View className="sticky top-0 z-50 bg-white dark:bg-gray-950 pt-6 pb-4 -mx-4 px-4 mb-4 border-b border-gray-100 dark:border-gray-800">
+        <Text className="text-[#FB5E7A] text-2xl font-bold">{activeT.mySchedule}</Text>
+      </View>
 
       {isLoading ? (
-        <div className="flex flex-col items-center justify-center py-20 text-gray-400">
+        <View className="flex flex-col items-center justify-center py-20 text-gray-400">
           <Loader2 className="w-12 h-12 animate-spin mb-4" />
-          <p>{activeT.loading}</p>
-        </div>
+          <Text>{activeT.loading}</Text>
+        </View>
       ) : activeBookings.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-16 text-center">
-          <div className="w-20 h-20 bg-gray-50 dark:bg-gray-800 rounded-full flex items-center justify-center mb-6">
+        <View className="flex flex-col items-center justify-center py-16 text-center">
+          <View className="w-20 h-20 bg-gray-50 dark:bg-gray-800 rounded-full flex items-center justify-center mb-6">
             <Calendar className="w-10 h-10 text-gray-400" />
-          </div>
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
+          </View>
+          <Text className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
             {activeT.noActiveBookings}
-          </h3>
-          <p className="text-gray-500 mb-8 max-w-sm mx-auto">
+          </Text>
+          <Text className="text-gray-500 mb-8 max-w-sm mx-auto">
             {language === 'ar'
               ? 'ليس لديك أي حجز نشط حالياً. تصفح قائمة الخالات واحجز موعدك الآن.'
               : 'You don\'t have any active bookings. Browse our sitters and book your session now.'}
-          </p>
+          </Text>
           <Button
-            onClick={() => onNavigate?.('home')}
+            onPress={() => onNavigate?.('home')}
             className="bg-[#FB5E7A] hover:bg-[#e5536e] px-8"
           >
             {language === 'ar' ? 'ابحث عن خالة' : 'Find a Sitter'}
           </Button>
-        </div>
+        </View>
       ) : (
-        <div className="space-y-4">
+        <View className="space-y-4">
           {activeBookings.map((booking: FormattedBooking) => (
             <Card key={booking.id} className={`p-4 ${booking.status === 'ongoing' ? 'border-green-500 border-2' : ''}`}>
-              <div className="flex gap-4">
-                <img
+              <View className="flex gap-4">
+                <Image
                   src={booking.sitterImage}
                   alt={booking.sitterName}
                   className="w-16 h-16 rounded-full object-cover"
                 />
-                <div className="flex-1">
-                  <div className="flex items-start justify-between mb-2">
-                    <div>
-                      <h3 className="mb-1">{t.client.homePage.khala}{booking.sitterName}</h3>
+                <View className="flex-1">
+                  <View className="flex items-start justify-between mb-2">
+                    <View>
+                      <Text className="mb-1">{t.client.homePage.khala}{booking.sitterName}</Text>
                       {getStatusBadge(booking.status)}
-                    </div>
-                  </div>
+                    </View>
+                  </View>
 
-                  <div className="space-y-1 text-sm text-gray-600 dark:text-gray-400 mb-3">
-                    <div className="flex items-center gap-2">
+                  <View className="space-y-1 text-sm text-gray-600 dark:text-gray-400 mb-3">
+                    <View className="flex items-center gap-2">
                       <Calendar className="w-4 h-4" />
-                      <span>{booking.date}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
+                      <Text>{booking.date}</Text>
+                    </View>
+                    <View className="flex items-center gap-2">
                       <Clock className="w-4 h-4" />
-                      <span>{booking.time} ({booking.duration} {activeT.hours})</span>
-                    </div>
-                    <div className="flex items-center gap-2">
+                      <Text>{booking.time} ({booking.duration} {activeT.hours})</Text>
+                    </View>
+                    <View className="flex items-center gap-2">
                       <MapPin className="w-4 h-4" />
-                      <span>{booking.location}</span>
-                    </div>
-                  </div>
+                      <Text>{booking.location}</Text>
+                    </View>
+                  </View>
 
-                  <div className="flex items-center justify-between">
-                    <div>
+                  <View className="flex items-center justify-between">
+                    <View>
                       <Badge variant="outline">
                         {booking.type === 'home' ? activeT.atHome : activeT.outside}
                       </Badge>
-                      <div className="text-[#FB5E7A] mt-1 font-bold">
+                      <View className="text-[#FB5E7A] mt-1 font-bold">
                         {booking.price} {activeT.egp}
-                      </div>
-                    </div>
+                      </View>
+                    </View>
 
-                    <div className="flex gap-2">
+                    <View className="flex gap-2">
                       <Button
                         size="sm"
                         variant="outline"
                         className="rounded-full w-10 h-10 p-0"
-                        onClick={() => {
+                        onPress={() => {
                           setChatBooking(booking);
                           setShowChat(true);
                         }}
@@ -352,7 +353,7 @@ export default function ClientActiveBookings({ onNavigate }: ClientActiveBooking
                         <Button
                           size="sm"
                           className="rounded-full w-10 h-10 p-0 bg-[#FB5E7A] hover:bg-[#e5536e]"
-                          onClick={() => {
+                          onPress={() => {
                             setScanningBooking(booking);
                             setShowScanner(true);
                           }}
@@ -360,27 +361,27 @@ export default function ClientActiveBookings({ onNavigate }: ClientActiveBooking
                           <QrCode className="w-4 h-4 text-white" />
                         </Button>
                       )}
-                    </div>
-                  </div>
-                </div>
-              </div>
+                    </View>
+                  </View>
+                </View>
+              </View>
 
               {booking.status === 'ongoing' && (
-                <div className="mt-4 pt-4 border-t">
+                <View className="mt-4 pt-4 border-t">
                   <Button
                     className="w-full bg-green-600 hover:bg-green-700"
-                    onClick={() => {
+                    onPress={() => {
                       setTrackingBooking(booking);
                       setShowTracking(true);
                     }}
                   >
                     {activeT.trackBooking}
                   </Button>
-                </div>
+                </View>
               )}
             </Card>
           ))}
-        </div>
+        </View>
       )}
 
       {/* Scanner Modal */}
@@ -393,22 +394,22 @@ export default function ClientActiveBookings({ onNavigate }: ClientActiveBooking
           <DialogHeader>
             <DialogTitle>{activeT.scanTitle}</DialogTitle>
           </DialogHeader>
-          <div className="flex flex-col items-center gap-4 py-6">
-            <div id="reader" className="w-full bg-black rounded-lg overflow-hidden min-h-[300px]"></div>
+          <View className="flex flex-col items-center gap-4 py-6">
+            <View id="reader" className="w-full bg-black rounded-lg overflow-hidden min-h-[300px]"></View>
 
-            <p className="text-sm text-center text-gray-500 px-4">{activeT.scanDesc}</p>
+            <Text className="text-sm text-center text-gray-500 px-4">{activeT.scanDesc}</Text>
 
             <Button
               variant="outline"
               className="w-full border-dashed"
-              onClick={handleScanSuccess}
+              onPress={handleScanSuccess}
             >
               <CheckCircle className="w-4 h-4 mr-2" />
               {activeT.simulateScan}
             </Button>
-          </div>
+          </View>
         </DialogContent>
       </Dialog>
-    </div>
+    </View>
   );
 }

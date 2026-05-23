@@ -1,5 +1,7 @@
 import { Component, ErrorInfo, ReactNode } from "react";
-import { AlertTriangle } from "lucide-react";
+import { DevSettings } from "react-native";
+import { AlertTriangle } from "lucide-react-native";
+import { View, Text } from "../../tw";
 import { Button } from "./button";
 import { monitoring } from "@/lib/monitoring";
 
@@ -35,28 +37,28 @@ export class ErrorBoundary extends Component<Props, State> {
             }
 
             return (
-                <div className="flex flex-col items-center justify-center min-h-[400px] p-6 text-center">
-                    <div className="bg-red-50 p-4 rounded-full mb-4">
+                <View className="flex-1 flex-col items-center justify-center min-h-[400px] p-6 text-center bg-white dark:bg-neutral-900">
+                    <View className="bg-red-50 dark:bg-red-950/20 p-4 rounded-full mb-4">
                         <AlertTriangle className="w-8 h-8 text-red-500" />
-                    </div>
-                    <h2 className="text-xl font-bold text-gray-900 mb-2">Something went wrong</h2>
-                    <p className="text-gray-500 mb-6 max-w-md">
-                        We apologize for the inconvenience. Please try refreshing the page.
-                    </p>
-                    <div className="flex gap-4">
+                    </View>
+                    <Text className="text-xl font-bold text-neutral-900 dark:text-neutral-50 mb-2">Something went wrong</Text>
+                    <Text className="text-neutral-500 dark:text-neutral-400 mb-6 text-center max-w-[280px]">
+                        We apologize for the inconvenience. Please try again or restart the app.
+                    </Text>
+                    <View className="flex flex-row gap-4">
                         <Button
                             variant="outline"
-                            onClick={() => window.location.reload()}
+                            onPress={() => DevSettings.reload()}
                         >
-                            Reload Page
+                            Reload App
                         </Button>
                         <Button
-                            onClick={() => this.setState({ hasError: false })}
+                            onPress={() => this.setState({ hasError: false })}
                         >
                             Try Again
                         </Button>
-                    </div>
-                </div>
+                    </View>
+                </View>
             );
         }
 

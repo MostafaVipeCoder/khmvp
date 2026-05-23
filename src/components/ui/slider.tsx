@@ -1,62 +1,52 @@
-"use client";
 
-import * as React from "react";
-import * as SliderPrimitive from "@radix-ui/react-slider";
-
+import { View } from "../../tw";
 import { cn } from "./utils";
+
+interface SliderProps {
+  className?: string;
+  value?: number[];
+  defaultValue?: number[];
+  min?: number;
+  max?: number;
+  onValueChange?: (value: number[]) => void;
+  style?: any;
+}
 
 function Slider({
   className,
-  defaultValue,
   value,
+  defaultValue,
   min = 0,
   max = 100,
+  onValueChange,
+  style,
   ...props
-}: React.ComponentProps<typeof SliderPrimitive.Root>) {
-  const _values = React.useMemo(
-    () =>
-      Array.isArray(value)
-        ? value
-        : Array.isArray(defaultValue)
-          ? defaultValue
-          : [min, max],
-    [value, defaultValue, min, max],
-  );
+}: SliderProps) {
+  const _values = value || defaultValue || [min];
+  
+  // Calculate percentage for the first thumb (mocking single thumb slider)
+  const percentage = Math.max(0, Math.min(100, ((_values[0] - min) / (max - min)) * 100));
 
   return (
-    <SliderPrimitive.Root
-      data-slot="slider"
-      defaultValue={defaultValue}
-      value={value}
-      min={min}
-      max={max}
+    <View
       className={cn(
-        "relative flex w-full touch-none items-center select-none data-[disabled]:opacity-50 data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col",
+        "relative flex w-full flex-row items-center",
         className,
       )}
+      style={style}
       {...props}
     >
-      <SliderPrimitive.Track
-        data-slot="slider-track"
-        className={cn(
-          "bg-muted relative grow overflow-hidden rounded-full data-[orientation=horizontal]:h-4 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5",
-        )}
-      >
-        <SliderPrimitive.Range
-          data-slot="slider-range"
-          className={cn(
-            "bg-primary absolute data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full",
-          )}
+      <View className="bg-neutral-200 dark:bg-neutral-800 relative grow overflow-hidden rounded-full h-2 w-full">
+        <View
+          className="bg-primary absolute h-full"
+          style={{ width: `${percentage}%` }}
         />
-      </SliderPrimitive.Track>
-      {Array.from({ length: _values.length }, (_, index) => (
-        <SliderPrimitive.Thumb
-          data-slot="slider-thumb"
-          key={index}
-          className="border-primary bg-background ring-ring/50 block size-4 shrink-0 rounded-full border shadow-sm transition-[color,box-shadow] hover:ring-4 focus-visible:ring-4 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50"
-        />
-      ))}
-    </SliderPrimitive.Root>
+      </View>
+      <View
+        className="border-primary bg-white dark:bg-neutral-900 absolute block size-4 rounded-full border-2 shadow-sm"
+        style={{ left: `${percentage}%`, marginLeft: -8 }}
+      />
+    </View>
   );
 }
 

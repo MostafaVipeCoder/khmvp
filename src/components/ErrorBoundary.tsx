@@ -1,5 +1,7 @@
+import { View, Text } from '../tw';
 import { Component, ErrorInfo, type ReactNode } from 'react';
-import { AlertTriangle, RefreshCw } from 'lucide-react';
+import { Alert } from 'react-native';
+import { AlertTriangle, RefreshCw, Mail } from 'lucide-react-native';
 import { Button } from './ui/button';
 import { Card } from './ui/card';
 
@@ -34,18 +36,19 @@ class ErrorBoundary extends Component<Props, State> {
 
     componentDidCatch(error: Error, errorInfo: ErrorInfo) {
         console.error('Error caught by ErrorBoundary:', error, errorInfo);
-        this.setState({
-            error,
-            errorInfo,
-        });
+        this.setState({ error, errorInfo });
     }
 
     handleReset = () => {
-        this.setState({
-            hasError: false,
-            error: null,
-            errorInfo: null,
-        });
+        this.setState({ hasError: false, error: null, errorInfo: null });
+    };
+
+    handleContactSupport = () => {
+        Alert.alert(
+            'الدعم الفني',
+            'يرجى التواصل معنا على:\nsupport@khalaeyal.com',
+            [{ text: 'حسناً' }]
+        );
     };
 
     render() {
@@ -55,75 +58,57 @@ class ErrorBoundary extends Component<Props, State> {
             }
 
             return (
-                <div className="min-h-screen flex items-center justify-center p-4 bg-gray-50 dark:bg-gray-900">
-                    <Card className="max-w-lg w-full p-8">
-                        <div className="text-center space-y-6">
+                <View className="flex-1 items-center justify-center p-4 bg-gray-50 dark:bg-gray-900">
+                    <Card className="w-full p-8">
+                        <View className="items-center">
                             {/* Icon */}
-                            <div className="flex justify-center">
-                                <div className="w-16 h-16 rounded-full bg-red-100 dark:bg-red-900/20 flex items-center justify-center">
-                                    <AlertTriangle className="w-8 h-8 text-red-600 dark:text-red-400" />
-                                </div>
-                            </div>
+                            <View className="w-16 h-16 rounded-full bg-red-100 dark:bg-red-900/20 items-center justify-center mb-6">
+                                <AlertTriangle className="w-8 h-8 text-red-600" />
+                            </View>
 
                             {/* Title */}
-                            <div>
-                                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-                                    عذراً، حدث خطأ ما
-                                </h2>
-                                <p className="text-gray-600 dark:text-gray-400">
-                                    نعتذر عن هذا الإزعاج. حدث خطأ غير متوقع في التطبيق.
-                                </p>
-                            </div>
+                            <Text className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2 text-center">
+                                عذراً، حدث خطأ ما
+                            </Text>
+                            <Text className="text-gray-600 dark:text-gray-400 text-center mb-6">
+                                نعتذر عن هذا الإزعاج. حدث خطأ غير متوقع في التطبيق.
+                            </Text>
 
                             {/* Error Details (Development Only) */}
-                            {process.env.NODE_ENV === 'development' && this.state.error && (
-                                <div className="text-left bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-                                    <p className="text-sm font-mono text-red-600 dark:text-red-400 mb-2">
+                            {__DEV__ && this.state.error && (
+                                <View className="w-full bg-gray-100 dark:bg-gray-800 p-4 rounded-lg mb-6">
+                                    <Text className="text-sm text-red-600 dark:text-red-400 mb-2">
                                         {this.state.error.toString()}
-                                    </p>
+                                    </Text>
                                     {this.state.errorInfo && (
-                                        <details className="text-xs text-gray-600 dark:text-gray-400">
-                                            <summary className="cursor-pointer hover:text-gray-900 dark:hover:text-gray-200">
-                                                عرض التفاصيل التقنية
-                                            </summary>
-                                            <pre className="mt-2 overflow-auto max-h-40">
-                                                {this.state.errorInfo.componentStack}
-                                            </pre>
-                                        </details>
+                                        <Text className="text-xs text-gray-600 dark:text-gray-400">
+                                            {this.state.errorInfo.componentStack}
+                                        </Text>
                                     )}
-                                </div>
+                                </View>
                             )}
 
                             {/* Actions */}
-                            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                            <View className="w-full gap-3">
                                 <Button
-                                    onClick={this.handleReset}
-                                    className="bg-[#FB5E7A] hover:bg-[#e5536e]"
+                                    onPress={this.handleReset}
+                                    className="bg-[#FB5E7A] hover:bg-[#e5536e] w-full"
                                 >
                                     <RefreshCw className="w-4 h-4 mr-2" />
                                     حاول مرة أخرى
                                 </Button>
                                 <Button
-                                    onClick={() => window.location.href = '/'}
+                                    onPress={this.handleContactSupport}
                                     variant="outline"
+                                    className="w-full"
                                 >
-                                    العودة للرئيسية
-                                </Button>
-                            </div>
-
-                            {/* Support Info */}
-                            <p className="text-sm text-gray-500 dark:text-gray-400">
-                                إذا استمرت المشكلة، يرجى{' '}
-                                <a
-                                    href="mailto:support@khalaeyal.com"
-                                    className="text-[#FB5E7A] hover:underline"
-                                >
+                                    <Mail className="w-4 h-4 mr-2" />
                                     التواصل مع الدعم الفني
-                                </a>
-                            </p>
-                        </div>
+                                </Button>
+                            </View>
+                        </View>
                     </Card>
-                </div>
+                </View>
             );
         }
 

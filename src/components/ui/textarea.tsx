@@ -1,18 +1,39 @@
 import * as React from "react";
-
+import { TextInput } from "../../tw";
 import { cn } from "./utils";
 
-function Textarea({ className, ...props }: React.ComponentProps<"textarea">) {
-  return (
-    <textarea
-      data-slot="textarea"
-      className={cn(
-        "resize-none border-input placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 flex field-sizing-content min-h-16 w-full rounded-md border bg-input-background px-3 py-2 text-base transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-        className,
-      )}
-      {...props}
-    />
-  );
+export interface TextareaProps extends Omit<React.ComponentPropsWithoutRef<typeof TextInput>, "onChange"> {
+  onChange?: (e: any) => void;
 }
+
+const Textarea = React.forwardRef<any, TextareaProps>(
+  ({ className, onChange, onChangeText, style, ...props }, ref) => {
+    const handleChangeText = (text: string) => {
+      if (onChangeText) {
+        onChangeText(text);
+      }
+      if (onChange) {
+        onChange({ target: { value: text } });
+      }
+    };
+
+    return (
+      <TextInput
+        ref={ref}
+        multiline={true}
+        numberOfLines={4}
+        onChangeText={handleChangeText}
+        className={cn(
+          "placeholder:text-muted-foreground border-neutral-300 dark:border-neutral-700 min-w-0 rounded-md border px-3 py-2 text-base bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 min-h-16",
+          className,
+        )}
+        style={style}
+        {...props}
+      />
+    );
+  }
+);
+
+Textarea.displayName = "Textarea";
 
 export { Textarea };

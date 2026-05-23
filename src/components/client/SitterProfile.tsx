@@ -1,3 +1,4 @@
+import { View, Text, Pressable, Image } from '../../tw';
 import { useState, useEffect } from 'react';
 import {
   Star, MapPin, Calendar, Clock, Shield, ArrowLeft, ArrowRight, Home as HomeIcon,
@@ -347,64 +348,64 @@ export default function SitterProfile({ sitter, onBack }: SitterProfileProps) {
     }
   };
   return (
-    <div className="max-w-4xl mx-auto px-4 pb-8">
+    <View className="max-w-4xl mx-auto px-4 pb-8">
       {/* Sticky Header */}
-      <div className="sticky top-0 z-50 bg-white dark:bg-gray-950 pt-6 pb-4 -mx-4 px-4 mb-4 border-b border-gray-100 dark:border-gray-800">
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" onClick={onBack} className="rounded-full text-[#FB5E7A]">
+      <View className="sticky top-0 z-50 bg-white dark:bg-gray-950 pt-6 pb-4 -mx-4 px-4 mb-4 border-b border-gray-100 dark:border-gray-800">
+        <View className="flex items-center gap-4">
+          <Button variant="ghost" size="icon" onPress={onBack} className="rounded-full text-[#FB5E7A]">
             {language === 'ar' ? <ArrowRight className="w-6 h-6" /> : <ArrowLeft className="w-6 h-6" />}
           </Button>
-          <h1 className="text-[#FB5E7A] text-2xl font-bold truncate">{sitter.name}</h1>
-        </div>
-      </div>
+          <Text className="text-[#FB5E7A] text-2xl font-bold truncate">{sitter.name}</Text>
+        </View>
+      </View>
 
       <Card className="p-6 mb-6">
-        <div className="flex flex-col md:flex-row gap-6">
-          <div className="flex-shrink-0">
-            <img src={sitter.image} alt={sitter.name} loading="lazy" className="w-32 h-32 rounded-full object-cover mx-auto md:mx-0" />
-          </div>
-          <div className="flex-1">
-            <div className="flex items-start justify-between mb-2">
-              <div>
-                <h2 className="text-[#FB5E7A] mb-1">{sitter.name}</h2>
-                <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 mb-2">
+        <View className="flex flex-col md:flex-row gap-6">
+          <View className="flex-shrink-0">
+            <Image src={sitter.image} alt={sitter.name} loading="lazy" className="w-32 h-32 rounded-full object-cover mx-auto md:mx-0" />
+          </View>
+          <View className="flex-1">
+            <View className="flex items-start justify-between mb-2">
+              <View>
+                <Text className="text-[#FB5E7A] mb-1">{sitter.name}</Text>
+                <View className="flex items-center gap-2 text-gray-600 dark:text-gray-400 mb-2">
                   <MapPin className="w-4 h-4" />
-                  <span>{sitter.location}</span>
-                </div>
-              </div>
+                  <Text>{sitter.location}</Text>
+                </View>
+              </View>
               <Badge className="bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300">
                 <Shield className="w-3 h-3 mr-1" />
                 {sitterT.verified}
               </Badge>
-            </div>
-            <div className="flex items-center gap-4 mb-4">
-              <div className="flex items-center gap-1">
+            </View>
+            <View className="flex items-center gap-4 mb-4">
+              <View className="flex items-center gap-1">
                 <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                <span>{sitter.rating}</span>
-                <span className="text-sm text-gray-500">({sitter.reviews} {sitterT.reviews})</span>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-              <div className="text-center p-3 bg-[#FFD1DA]/20 rounded-lg">
-                <div className="text-[#FB5E7A] font-bold">{sitter.experience}</div>
-                <div className="text-xs text-gray-600">{sitterT.experience}</div>
-              </div>
-              <div className="text-center p-3 bg-[#FFD1DA]/20 rounded-lg">
-                <div className="text-[#FB5E7A] font-bold">{sitter.reviews}</div>
-                <div className="text-xs text-gray-600">{sitterT.completedJobs}</div>
-              </div>
-              <div className="text-center p-3 bg-[#FFD1DA]/20 rounded-lg">
-                <div className="text-[#FB5E7A] font-bold">{hourlyRate > 0 ? `${hourlyRate} ${sitterT.egp}` : '---'}</div>
-                <div className="text-xs text-gray-600">{sitterT.pricePerHour}</div>
-              </div>
-              <div className="text-center p-3 bg-[#FFD1DA]/20 rounded-lg flex items-center justify-center">
-                <span className="text-xs font-medium text-gray-700">
+                <Text>{sitter.rating}</Text>
+                <Text className="text-sm text-gray-500">({sitter.reviews} {sitterT.reviews})</Text>
+              </View>
+            </View>
+            <View className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+              <View className="text-center p-3 bg-[#FFD1DA]/20 rounded-lg">
+                <View className="text-[#FB5E7A] font-bold">{sitter.experience}</View>
+                <View className="text-xs text-gray-600">{sitterT.experience}</View>
+              </View>
+              <View className="text-center p-3 bg-[#FFD1DA]/20 rounded-lg">
+                <View className="text-[#FB5E7A] font-bold">{sitter.reviews}</View>
+                <View className="text-xs text-gray-600">{sitterT.completedJobs}</View>
+              </View>
+              <View className="text-center p-3 bg-[#FFD1DA]/20 rounded-lg">
+                <View className="text-[#FB5E7A] font-bold">{hourlyRate > 0 ? `${hourlyRate} ${sitterT.egp}` : '---'}</View>
+                <View className="text-xs text-gray-600">{sitterT.pricePerHour}</View>
+              </View>
+              <View className="text-center p-3 bg-[#FFD1DA]/20 rounded-lg flex items-center justify-center">
+                <Text className="text-xs font-medium text-gray-700">
                   {sitter.availabilityType === 'home' && sitterT.atHomeOnly}
                   {sitter.availabilityType === 'outside' && sitterT.outsideOnly}
                   {sitter.availabilityType === 'both' && sitterT.both}
-                </span>
-              </div>
-            </div>
+                </Text>
+              </View>
+            </View>
 
             {!(sitter.services && sitter.services.filter((s) => s.is_active !== false).length > 0) && (
               <Alert className="mb-4 bg-gray-50 border-gray-200">
@@ -417,7 +418,7 @@ export default function SitterProfile({ sitter, onBack }: SitterProfileProps) {
 
             {/* Main Book Trigger */}
             <Button
-              onClick={() => setShowServicesDialog(true)}
+              onPress={() => setShowServicesDialog(true)}
               disabled={!(sitter.services && sitter.services.filter((s) => s.is_active !== false).length > 0)}
               className="w-full bg-[#FB5E7A] hover:bg-[#e5536e] h-12 text-lg font-bold disabled:bg-gray-400 disabled:cursor-not-allowed"
             >
@@ -433,31 +434,31 @@ export default function SitterProfile({ sitter, onBack }: SitterProfileProps) {
                 <DialogHeader>
                   <DialogTitle>{sitterT.selectServiceTitle}</DialogTitle>
                 </DialogHeader>
-                <div className="space-y-4 py-4">
+                <View className="space-y-4 py-4">
                   {sitter.services && sitter.services.filter((s) => s.is_active !== false).map((service) => (
-                    <div key={service.id} className="p-4 border rounded-lg flex justify-between items-center hover:bg-gray-50">
-                      <div>
-                        <h3 className="font-bold text-[#FB5E7A]">
+                    <View key={service.id} className="p-4 border rounded-lg flex justify-between items-center hover:bg-gray-50">
+                      <View>
+                        <Text className="font-bold text-[#FB5E7A]">
                           {service.name === 'hourly' && sitterT.serviceHourly}
                           {service.name === 'weekly' && sitterT.serviceWeekly}
                           {service.name === 'monthly' && sitterT.serviceMonthly}
                           {!['hourly', 'weekly', 'monthly'].includes(service.name) && service.name}
-                        </h3>
-                        <p className="text-sm text-gray-600 font-medium">
+                        </Text>
+                        <Text className="text-sm text-gray-600 font-medium">
                           {service.pricePerHour || service.price} {sitterT.egp} / {sitterT.perHourLabel}
-                        </p>
-                        {service.description && <p className="text-xs text-gray-500 mt-1">{service.description}</p>}
-                      </div>
+                        </Text>
+                        {service.description && <Text className="text-xs text-gray-500 mt-1">{service.description}</Text>}
+                      </View>
                       <Button
                         size="sm"
-                        onClick={() => handleServiceSelect(service)}
+                        onPress={() => handleServiceSelect(service)}
                         className="bg-[#FB5E7A] hover:bg-[#e5536e]"
                       >
                         {sitterT.bookNow}
                       </Button>
-                    </div>
+                    </View>
                   ))}
-                </div>
+                </View>
               </DialogContent>
             </Dialog>
 
@@ -467,39 +468,39 @@ export default function SitterProfile({ sitter, onBack }: SitterProfileProps) {
                 <DialogHeader>
                   <DialogTitle>{sitterT.bookingDetails}</DialogTitle>
                 </DialogHeader>
-                <div className="space-y-4 py-4">
-                  <div className="space-y-3">
+                <View className="space-y-4 py-4">
+                  <View className="space-y-3">
                     <Label className="text-sm font-semibold">{sitterT.serviceType}</Label>
-                    <RadioGroup value={serviceType} onValueChange={(v: "home" | "outside") => setServiceType(v)} className="flex flex-col gap-2">
+                    <RadioGroup value={serviceType} onValueChange={(v: string) => setServiceType(v as "home" | "outside")} className="flex flex-col gap-2">
                       {(sitter.availabilityType === 'home' || sitter.availabilityType === 'both') && (
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                        <View className="flex items-center space-x-2 rtl:space-x-reverse p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
                           <RadioGroupItem value="home" id="home" />
                           <Label htmlFor="home" className="flex items-center flex-1 cursor-pointer">
                             <HomeIcon className="w-4 h-4 mr-2 ml-2" />
                             {sitterT.atHome}
                           </Label>
-                        </div>
+                        </View>
                       )}
                       {(sitter.availabilityType === 'outside' || sitter.availabilityType === 'both') && (
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                        <View className="flex items-center space-x-2 rtl:space-x-reverse p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
                           <RadioGroupItem value="outside" id="outside" />
                           <Label htmlFor="outside" className="flex items-center flex-1 cursor-pointer">
                             <Building2 className="w-4 h-4 mr-2 ml-2" />
                             {sitterT.outside}
                           </Label>
-                        </div>
+                        </View>
                       )}
                     </RadioGroup>
-                  </div>
+                  </View>
 
-                  <div className="space-y-3">
+                  <View className="space-y-3">
                     <Label className="text-sm font-semibold">{sitterT.selectDate}</Label>
-                    <div className="flex flex-wrap gap-2 text-xs text-gray-500 mb-2">
-                      <div className="flex items-center gap-1">
-                        <div className="w-3 h-3 rounded-full bg-[#FB5E7A]/20" />
-                        <span>{sitterT.available}</span>
-                      </div>
-                    </div>
+                    <View className="flex flex-wrap gap-2 text-xs text-gray-500 mb-2">
+                      <View className="flex items-center gap-1">
+                        <View className="w-3 h-3 rounded-full bg-[#FB5E7A]/20" />
+                        <Text>{sitterT.available}</Text>
+                      </View>
+                    </View>
                     <CalendarComponent
                       mode="multiple"
                       selected={selectedDates}
@@ -513,24 +514,24 @@ export default function SitterProfile({ sitter, onBack }: SitterProfileProps) {
                       }}
                       className="rounded-md border p-3"
                     />
-                  </div>
+                  </View>
 
-                  <div className="space-y-4">
+                  <View className="space-y-4">
                     <Label className="text-sm font-semibold">{sitterT.selectTime}</Label>
                     {availableTimeSlots.length > 0 ? (
-                      <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+                      <View className="grid grid-cols-3 sm:grid-cols-4 gap-2">
                         {availableTimeSlots.flatMap((slot, slotIdx) => {
                           const startHour = parseInt(slot.start.split(':')[0]);
                           const endHour = parseInt(slot.end.split(':')[0]);
-                          const hours = [];
+                          const hours: string[] = [];
                           for (let h = startHour; h < endHour; h++) {
                             hours.push(`${h.toString().padStart(2, '0')}:00`);
                           }
                           return hours.map((time) => (
-                            <button
+                            <Pressable
                               key={`${slotIdx}-${time}`}
                               type="button"
-                              onClick={() => setSelectedTime(time)}
+                              onPress={() => setSelectedTime(time)}
                               className={`
                                   py-2 px-1 text-sm rounded-lg border transition-all duration-200
                                   ${selectedTime === time
@@ -539,63 +540,63 @@ export default function SitterProfile({ sitter, onBack }: SitterProfileProps) {
                                 `}
                             >
                               {formatTime12h(time)}
-                            </button>
+                            </Pressable>
                           ));
                         })}
-                      </div>
+                      </View>
                     ) : (
-                      <div className="p-4 border border-dashed rounded-lg text-center text-sm text-gray-500 bg-gray-50">
+                      <View className="p-4 border border-dashed rounded-lg text-center text-sm text-gray-500 bg-gray-50">
                         {selectedDates && selectedDates.length > 0
                           ? sitterT.noSlotsAvailable
                           : sitterT.selectDateFirst}
-                      </div>
+                      </View>
                     )}
 
                     {availableTimeSlots.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mt-2">
+                      <View className="flex flex-wrap gap-2 mt-2">
                         {availableTimeSlots.map((slot, idx) => (
-                          <div key={idx} className="flex items-center gap-1.5 px-2 py-1 bg-[#FB5E7A]/5 border border-[#FB5E7A]/10 rounded-full">
+                          <View key={idx} className="flex items-center gap-1.5 px-2 py-1 bg-[#FB5E7A]/5 border border-[#FB5E7A]/10 rounded-full">
                             <Clock className="w-3 h-3 text-[#FB5E7A]" />
-                            <span className="text-[10px] font-medium text-[#FB5E7A]">
+                            <Text className="text-[10px] font-medium text-[#FB5E7A]">
                               {formatTime12h(slot.start)} - {formatTime12h(slot.end)}
-                            </span>
-                          </div>
+                            </Text>
+                          </View>
                         ))}
-                      </div>
+                      </View>
                     )}
-                  </div>
+                  </View>
 
-                  <div className="space-y-3">
+                  <View className="space-y-3">
                     <Label className="text-sm font-semibold">{sitterT.durationLabel}</Label>
-                    <div className="flex items-center border rounded-lg h-11 px-1 bg-white">
+                    <View className="flex items-center border rounded-lg h-11 px-1 bg-white">
                       <Button
                         variant="ghost"
                         size="icon"
-                        onClick={() => setDuration(Math.max(2, duration - 1))}
+                        onPress={() => setDuration(Math.max(2, duration - 1))}
                         className="h-9 w-9 text-gray-500"
                       >
                         <Minus className="w-4 h-4" />
                       </Button>
-                      <div className="flex-1 text-center font-medium">
+                      <View className="flex-1 text-center font-medium">
                         {duration} {sitterT.minimumHoursLabel}
-                      </div>
+                      </View>
                       <Button
                         variant="ghost"
                         size="icon"
-                        onClick={() => setDuration(duration + 1)}
+                        onPress={() => setDuration(duration + 1)}
                         className="h-9 w-9 text-gray-500"
                       >
                         <Plus className="w-4 h-4" />
                       </Button>
-                    </div>
-                  </div>
+                    </View>
+                  </View>
 
-                  <div className="space-y-3">
+                  <View className="space-y-3">
                     <Label className="text-sm font-semibold">{sitterT.childrenCount}</Label>
 
-                    <div className="space-y-2">
+                    <View className="space-y-2">
                       {childrenList.length > 0 && childrenList.map((child: any) => (
-                        <div key={child.id} className="flex items-center space-x-2 rtl:space-x-reverse p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                        <View key={child.id} className="flex items-center space-x-2 rtl:space-x-reverse p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
                           <Checkbox
                             id={child.id}
                             checked={selectedChildIds.includes(child.id)}
@@ -607,71 +608,71 @@ export default function SitterProfile({ sitter, onBack }: SitterProfileProps) {
                           <Label htmlFor={child.id} className="flex-1 cursor-pointer font-medium">
                             {child.name} ({child.age} {sitterT.yearsLabel})
                           </Label>
-                        </div>
+                        </View>
                       ))}
-                    </div>
+                    </View>
 
-                    <div className="flex flex-col gap-2 mt-2">
+                    <View className="flex flex-col gap-2 mt-2">
                       {!isAddingNewChild ? (
-                        <Button variant="outline" size="sm" onClick={() => setIsAddingNewChild(true)} className="w-full">
+                        <Button variant="outline" size="sm" onPress={() => setIsAddingNewChild(true)} className="w-full">
                           <Plus className="w-4 h-4 mr-2" />
                           {sitterT.addAnotherChild}
                         </Button>
                       ) : (
-                        <div className="p-3 bg-gray-50 border rounded-lg space-y-3">
+                        <View className="p-3 bg-gray-50 border rounded-lg space-y-3">
                           <Label className="text-sm font-medium">{sitterT.newChildTitle}</Label>
                           <Input
                             placeholder={sitterT.childNamePlaceholder}
                             value={newChildDetails.name}
-                            onChange={(e) => setNewChildDetails({ ...newChildDetails, name: e.target.value })}
+                            onChange={(e: any) => setNewChildDetails({ ...newChildDetails, name: e.target.value })}
                           />
                           <Input
                             type="number"
                             placeholder={sitterT.childAgePlaceholder}
                             value={newChildDetails.age}
-                            onChange={(e) => setNewChildDetails({ ...newChildDetails, age: e.target.value })}
+                            onChange={(e: any) => setNewChildDetails({ ...newChildDetails, age: e.target.value })}
                           />
-                          <div className="flex gap-2 justify-end">
-                            <Button variant="ghost" size="sm" onClick={() => setIsAddingNewChild(false)}>
+                          <View className="flex gap-2 justify-end">
+                            <Button variant="ghost" size="sm" onPress={() => setIsAddingNewChild(false)}>
                               {sitterT.cancel}
                             </Button>
-                            <Button size="sm" onClick={handleAddNewChild} disabled={!newChildDetails.name}>
+                            <Button size="sm" onPress={handleAddNewChild} disabled={!newChildDetails.name}>
                               {sitterT.confirm}
                             </Button>
-                          </div>
-                          <p className="text-xs text-muted-foreground">
+                          </View>
+                          <Text className="text-xs text-muted-foreground">
                             {sitterT.extraCostNotice}
-                          </p>
-                        </div>
+                          </Text>
+                        </View>
                       )}
-                    </div>
-                  </div>
+                    </View>
+                  </View>
 
                   {serviceType === 'home' && (
-                    <div className="space-y-3">
+                    <View className="space-y-3">
                       <Label className="text-sm font-semibold">{sitterT.address}</Label>
 
                       {selectedAddress && !showAddressInput && (
-                        <div className="p-3 border rounded-lg bg-gray-50 flex justify-between items-center">
-                          <div className="flex items-center gap-2 text-sm">
+                        <View className="p-3 border rounded-lg bg-gray-50 flex justify-between items-center">
+                          <View className="flex items-center gap-2 text-sm">
                             <MapPin className="w-4 h-4 text-gray-500" />
-                            <span>{selectedAddress}</span>
-                          </div>
-                          <Button variant="link" size="sm" onClick={() => setShowAddressInput(true)}>
+                            <Text>{selectedAddress}</Text>
+                          </View>
+                          <Button variant="link" size="sm" onPress={() => setShowAddressInput(true)}>
                             {sitterT.change}
                           </Button>
-                        </div>
+                        </View>
                       )}
 
                       {(!selectedAddress || showAddressInput) && (
-                        <div className="space-y-3">
+                        <View className="space-y-3">
                           <Input
                             value={newAddress}
-                            onChange={(e) => setNewAddress(e.target.value)}
+                            onChange={(e: any) => setNewAddress(e.target.value)}
                             placeholder={sitterT.newAddress}
                             className="h-11"
                           />
-                          <div className="flex items-center space-x-2 rtl:space-x-reverse">
+                          <View className="flex items-center space-x-2 rtl:space-x-reverse">
                             <Checkbox
                               id="save-address"
                               checked={saveNewAddress}
@@ -680,27 +681,27 @@ export default function SitterProfile({ sitter, onBack }: SitterProfileProps) {
                             <Label htmlFor="save-address" className="text-sm text-gray-600">
                               {sitterT.saveAsDefault}
                             </Label>
-                          </div>
-                        </div>
+                          </View>
+                        </View>
                       )}
-                    </div>
+                    </View>
                   )}
 
-                  <div className="space-y-3">
+                  <View className="space-y-3">
                     <Label className="text-sm font-semibold">{sitterT.notes}</Label>
                     <Textarea
                       value={notes}
-                      onChange={(e) => setNotes(e.target.value)}
+                      onChange={(e: any) => setNotes(e.target.value)}
                       placeholder={sitterT.notes}
                       rows={3}
                       className="resize-none"
                     />
-                  </div>
+                  </View>
 
-                  <div className="p-4 bg-[#FFD1DA]/10 border border-[#FFD1DA] rounded-lg font-bold flex justify-between items-center mt-6">
-                    <span className="text-gray-700">{sitterT.estimatedCost}</span>
-                    <span className="text-[#FB5E7A] text-xl font-black">{estimatedCost} {sitterT.egp}</span>
-                  </div>
+                  <View className="p-4 bg-[#FFD1DA]/10 border border-[#FFD1DA] rounded-lg font-bold flex justify-between items-center mt-6">
+                    <Text className="text-gray-700">{sitterT.estimatedCost}</Text>
+                    <Text className="text-[#FB5E7A] text-xl font-black">{estimatedCost} {sitterT.egp}</Text>
+                  </View>
 
                   {serviceType === 'home' && !selectedAddress && !newAddress && (
                     <Alert className="mb-4 bg-red-50 border-red-200">
@@ -711,27 +712,27 @@ export default function SitterProfile({ sitter, onBack }: SitterProfileProps) {
                     </Alert>
                   )}
 
-                  <div className="flex gap-3 pt-6">
+                  <View className="flex gap-3 pt-6">
                     <Button
                       variant="outline"
-                      onClick={() => setShowBookingDialog(false)}
+                      onPress={() => setShowBookingDialog(false)}
                       className="flex-1 h-12"
                     >
                       {sitterT.cancel}
                     </Button>
                     <Button
-                      onClick={handleBooking}
+                      onPress={handleBooking}
                       disabled={isBooking || !selectedDates?.length || (serviceType === 'home' && !selectedAddress && !newAddress)}
                       className="flex-[2] bg-[#FB5E7A] hover:bg-[#e5536e] h-12 font-bold"
                     >
                       {isBooking ? (language === 'ar' ? 'جاري الإرسال...' : 'Sending...') : sitterT.confirmBooking}
                     </Button>
-                  </div>
-                </div>
+                  </View>
+                </View>
               </DialogContent>
             </Dialog>
-          </div>
-        </div>
+          </View>
+        </View>
       </Card>
 
       <Tabs defaultValue="about">
@@ -742,64 +743,64 @@ export default function SitterProfile({ sitter, onBack }: SitterProfileProps) {
         </TabsList>
         <TabsContent value="about" className="space-y-6">
           <Card className="p-6">
-            <h3 className="text-lg font-semibold mb-3">{sitterT.about}</h3>
-            <p className="text-gray-600 dark:text-gray-400">
+            <Text className="text-lg font-semibold mb-3">{sitterT.about}</Text>
+            <Text className="text-gray-600 dark:text-gray-400">
               {sitter.raw?.bio || (language === 'ar' ? 'لا يوجد نبذة تعريفية' : 'No bio available')}
-            </p>
+            </Text>
           </Card>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <View className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="p-6">
-              <h3 className="text-lg font-semibold mb-3">{sitterT.languages}</h3>
-              <div className="flex flex-wrap gap-2">
+              <Text className="text-lg font-semibold mb-3">{sitterT.languages}</Text>
+              <View className="flex flex-wrap gap-2">
                 {sitter.languages.map((lang: string) => (
                   <Badge key={lang} variant="secondary">{lang}</Badge>
                 ))}
-              </div>
+              </View>
             </Card>
             <Card className="p-6">
-              <h3 className="text-lg font-semibold mb-3">{sitterT.specialties}</h3>
-              <div className="flex flex-wrap gap-2">
+              <Text className="text-lg font-semibold mb-3">{sitterT.specialties}</Text>
+              <View className="flex flex-wrap gap-2">
                 {sitter.specialties.map((spec: string) => (
                   <Badge key={spec} variant="secondary">{spec}</Badge>
                 ))}
-              </div>
+              </View>
             </Card>
-          </div>
+          </View>
         </TabsContent>
         <TabsContent value="services">
           <Card className="p-6">
-            <h3 className="text-lg font-semibold mb-4">{sitterT.skills}</h3>
-            <div className="space-y-4">
+            <Text className="text-lg font-semibold mb-4">{sitterT.skills}</Text>
+            <View className="space-y-4">
               {sitter.services.map((service) => (
-                <div key={service.id} className="flex justify-between items-center p-3 border rounded-lg">
-                  <div>
-                    <div className="font-semibold text-gray-900 border-none">
+                <View key={service.id} className="flex justify-between items-center p-3 border rounded-lg">
+                  <View>
+                    <View className="font-semibold text-gray-900 border-none">
                       {service.name === 'hourly' && sitterT.serviceHourly}
                       {service.name === 'weekly' && sitterT.serviceWeekly}
                       {service.name === 'monthly' && sitterT.serviceMonthly}
                       {!['hourly', 'weekly', 'monthly'].includes(service.name) && service.name}
-                    </div>
+                    </View>
                     {service.description && (
-                      <p className="text-sm text-gray-500">{service.description}</p>
+                      <Text className="text-sm text-gray-500">{service.description}</Text>
                     )}
-                  </div>
-                  <div className="text-[#FB5E7A] font-bold">
+                  </View>
+                  <View className="text-[#FB5E7A] font-bold">
                     {service.pricePerHour || service.price} {sitterT.egp} / {sitterT.perHourLabel}
-                  </div>
-                </div>
+                  </View>
+                </View>
               ))}
-            </div>
+            </View>
           </Card>
         </TabsContent>
         <TabsContent value="reviews">
           <Card className="p-6">
-            <h3 className="text-lg font-semibold mb-4">{sitterT.reviewsTab}</h3>
-            <div className="flex items-center justify-center p-8 text-gray-500">
+            <Text className="text-lg font-semibold mb-4">{sitterT.reviewsTab}</Text>
+            <View className="flex items-center justify-center p-8 text-gray-500">
               {sitterT.noReviews}
-            </div>
+            </View>
           </Card>
         </TabsContent>
       </Tabs>
-    </div>
+    </View>
   );
 }

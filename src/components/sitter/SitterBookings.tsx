@@ -1,3 +1,4 @@
+import { View, Text, Pressable, Image } from '../../tw';
 import { useState, useRef, useEffect } from 'react';
 import { Calendar as CalendarIcon, Clock, MapPin, FileText, Mic, StopCircle, Star, Eye, Activity, MessageCircle } from 'lucide-react';
 import { Card } from '../ui/card';
@@ -273,20 +274,20 @@ export default function SitterBookings({ language }: SitterBookingsProps) {
 
   const renderBookingCard = (booking: Booking) => (
     <Card key={booking.id} className={`p-4 ${booking.status === 'ongoing' ? 'border-green-500 border-2' : ''}`}>
-      <div className="flex gap-4">
-        <img
+      <View className="flex gap-4">
+        <Image
           src={booking.clientImage}
           alt={booking.clientName}
           className="w-16 h-16 rounded-full object-cover"
         />
-        <div className="flex-1">
-          <div className="flex items-start justify-between mb-2">
-            <div>
-              <h4 className="mb-1">{booking.clientName}</h4>
+        <View className="flex-1">
+          <View className="flex items-start justify-between mb-2">
+            <View>
+              <Text className="mb-1">{booking.clientName}</Text>
               <Badge variant="outline">
                 {booking.children} {t.children}
               </Badge>
-            </div>
+            </View>
             <Badge className={
               booking.status === 'pending' ? 'bg-yellow-100 text-yellow-700' :
                 booking.status === 'waiting_payment' ? 'bg-orange-100 text-orange-700' :
@@ -298,41 +299,41 @@ export default function SitterBookings({ language }: SitterBookingsProps) {
                 booking.status === 'waiting_payment' ? t.waiting_payment :
                   t[booking.status]}
             </Badge>
-          </div>
+          </View>
 
-          <div className="grid grid-cols-2 gap-2 text-sm text-gray-600 dark:text-gray-400 mb-3">
-            <div className="flex items-center gap-1">
+          <View className="grid grid-cols-2 gap-2 text-sm text-gray-600 dark:text-gray-400 mb-3">
+            <View className="flex items-center gap-1">
               <CalendarIcon className="w-4 h-4" />
-              <span>{booking.date}</span>
-            </div>
-            <div className="flex items-center gap-1">
+              <Text>{booking.date}</Text>
+            </View>
+            <View className="flex items-center gap-1">
               <Clock className="w-4 h-4" />
-              <span>{booking.time}</span>
-            </div>
-            <div className="flex items-center gap-1">
+              <Text>{booking.time}</Text>
+            </View>
+            <View className="flex items-center gap-1">
               <Clock className="w-4 h-4" />
-              <span>{booking.duration} {t.hours}</span>
-            </div>
-            <div className="flex items-center gap-1">
+              <Text>{booking.duration} {t.hours}</Text>
+            </View>
+            <View className="flex items-center gap-1">
               <MapPin className="w-4 h-4" />
-              <span>{booking.location}</span>
-            </div>
-          </div>
+              <Text>{booking.location}</Text>
+            </View>
+          </View>
 
-          <div className="flex items-center justify-between">
+          <View className="flex items-center justify-between">
             <Badge className={booking.type === 'home' ? 'bg-blue-100 text-blue-700' : 'bg-purple-100 text-purple-700'}>
               {booking.type === 'home' ? t.atHome : t.outside}
             </Badge>
-            <div className="text-[#FB5E7A]">{booking.price} {t.egp}</div>
-          </div>
+            <View className="text-[#FB5E7A]">{booking.price} {t.egp}</View>
+          </View>
 
-          <div className="flex gap-2 mt-3">
+          <View className="flex gap-2 mt-3">
             {/* Ongoing/Upcoming Special Actions */}
             {(booking.status === 'ongoing' || booking.status === 'upcoming') ? (
-              <div className="flex gap-2 w-full">
+              <View className="flex gap-2 w-full">
                 <Button
                   className={`flex-1 ${booking.status === 'ongoing' ? 'bg-green-600 hover:bg-green-700' : 'bg-[#FB5E7A] hover:bg-[#e5536e]'}`}
-                  onClick={() => {
+                  onPress={() => {
                     setSessionBooking(booking);
                     setShowSessionPage(true);
                   }}
@@ -342,26 +343,26 @@ export default function SitterBookings({ language }: SitterBookingsProps) {
                 </Button>
                 <Button
                   variant="outline"
-                  onClick={() => {
+                  onPress={() => {
                     setChatBooking(booking);
                     setShowChat(true);
                   }}
                 >
                   <MessageCircle className="w-4 h-4" />
                 </Button>
-              </div>
+              </View>
             ) : (
               <Button
                 className="w-full bg-[#FB5E7A] hover:bg-[#e5536e]"
-                onClick={() => setSelectedBookingDetail(booking)}
+                onPress={() => setSelectedBookingDetail(booking)}
               >
                 <Eye className="w-4 h-4 mr-2" />
                 {t.viewDetails}
               </Button>
             )}
-          </div>
-        </div>
-      </div>
+          </View>
+        </View>
+      </View>
     </Card>
   );
 
@@ -378,14 +379,14 @@ export default function SitterBookings({ language }: SitterBookingsProps) {
     }
 
     return (
-      <div className="flex flex-col gap-2 w-full">
-        <div className="flex gap-2">
+      <View className="flex flex-col gap-2 w-full">
+        <View className="flex gap-2">
           {(selectedBookingDetail.status === 'upcoming' || selectedBookingDetail.status === 'ongoing') && (
             <>
               <Button
                 size="lg"
                 className="flex-1 bg-green-600 hover:bg-green-700"
-                onClick={() => {
+                onPress={() => {
                   setSessionBooking(selectedBookingDetail);
                   setShowSessionPage(true);
                 }}
@@ -398,7 +399,7 @@ export default function SitterBookings({ language }: SitterBookingsProps) {
           {selectedBookingDetail.status === 'completed' && (
             <Button
               size="lg"
-              onClick={() => {
+              onPress={() => {
                 setShowReportDialog(true);
               }}
               className="flex-1 bg-[#FB5E7A] hover:bg-[#e5536e]"
@@ -407,8 +408,8 @@ export default function SitterBookings({ language }: SitterBookingsProps) {
               {t.sendReport}
             </Button>
           )}
-        </div>
-      </div>
+        </View>
+      </View>
     );
   };
 
@@ -447,7 +448,7 @@ export default function SitterBookings({ language }: SitterBookingsProps) {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 pb-8">
+    <View className="max-w-4xl mx-auto px-4 pb-8">
       {selectedBookingDetail ? (
         <RequestDetails
           language={language}
@@ -460,12 +461,12 @@ export default function SitterBookings({ language }: SitterBookingsProps) {
       ) : (
         <>
           {loading ? (
-            <div className="text-center py-12 text-gray-500">Loading...</div>
+            <View className="text-center py-12 text-gray-500">Loading...</View>
           ) : (
             <Tabs defaultValue="list" className="space-y-4">
               {/* Consolidated Sticky Header */}
-              <div className="sticky top-0 z-50 bg-gray-50 dark:bg-gray-900 pt-6 pb-2 -mx-4 px-4 mb-2 border-b border-gray-100 dark:border-gray-800">
-                <h1 className="text-[#FB5E7A] text-2xl font-bold mb-4">{t.myBookings}</h1>
+              <View className="sticky top-0 z-50 bg-gray-50 dark:bg-gray-900 pt-6 pb-2 -mx-4 px-4 mb-2 border-b border-gray-100 dark:border-gray-800">
+                <Text className="text-[#FB5E7A] text-2xl font-bold mb-4">{t.myBookings}</Text>
 
                 <TabsList className="grid w-full grid-cols-2 mb-4">
                   <TabsTrigger value="list">{t.list}</TabsTrigger>
@@ -482,7 +483,7 @@ export default function SitterBookings({ language }: SitterBookingsProps) {
                     </TabsList>
                   </Tabs>
                 </TabsContent>
-              </div>
+              </View>
 
               <TabsContent value="list" className="space-y-4 mt-0">
                 <Tabs value={activeSubTab} onValueChange={setActiveSubTab} className="space-y-4">
@@ -490,7 +491,7 @@ export default function SitterBookings({ language }: SitterBookingsProps) {
 
                   <TabsContent value="ongoing" className="space-y-4">
                     {bookings.filter(b => b.status === 'ongoing').length === 0 ? (
-                      <div className="text-center py-12 text-gray-500">{t.noBookings}</div>
+                      <View className="text-center py-12 text-gray-500">{t.noBookings}</View>
                     ) : (
                       bookings.filter(b => b.status === 'ongoing').map(renderBookingCard)
                     )}
@@ -498,7 +499,7 @@ export default function SitterBookings({ language }: SitterBookingsProps) {
 
                   <TabsContent value="requests" className="space-y-4">
                     {bookings.filter(b => b.status === 'pending').length === 0 ? (
-                      <div className="text-center py-12 text-gray-500">{t.noBookings}</div>
+                      <View className="text-center py-12 text-gray-500">{t.noBookings}</View>
                     ) : (
                       bookings.filter(b => b.status === 'pending').map(renderBookingCard)
                     )}
@@ -506,7 +507,7 @@ export default function SitterBookings({ language }: SitterBookingsProps) {
 
                   <TabsContent value="confirmed" className="space-y-4">
                     {bookings.filter(b => b.status === 'waiting_payment' || b.status === 'upcoming').length === 0 ? (
-                      <div className="text-center py-12 text-gray-500">{t.noBookings}</div>
+                      <View className="text-center py-12 text-gray-500">{t.noBookings}</View>
                     ) : (
                       bookings.filter(b => b.status === 'waiting_payment' || b.status === 'upcoming').map(renderBookingCard)
                     )}
@@ -514,7 +515,7 @@ export default function SitterBookings({ language }: SitterBookingsProps) {
 
                   <TabsContent value="completed" className="space-y-4">
                     {bookings.filter(b => b.status === 'completed').length === 0 ? (
-                      <div className="text-center py-12 text-gray-500">{t.noBookings}</div>
+                      <View className="text-center py-12 text-gray-500">{t.noBookings}</View>
                     ) : (
                       bookings.filter(b => b.status === 'completed').map(renderBookingCard)
                     )}
@@ -531,14 +532,14 @@ export default function SitterBookings({ language }: SitterBookingsProps) {
                     className="mx-auto"
                   />
 
-                  <div className="mt-6 space-y-4">
-                    <h3 className="font-bold">{selectedDate.toLocaleDateString(language === 'ar' ? 'ar-EG' : 'en-US')}</h3>
+                  <View className="mt-6 space-y-4">
+                    <Text className="font-bold">{selectedDate.toLocaleDateString(language === 'ar' ? 'ar-EG' : 'en-US')}</Text>
                     {getBookingsForDate(selectedDate).length === 0 ? (
-                      <p className="text-center py-8 text-gray-500">{t.noBookings}</p>
+                      <Text className="text-center py-8 text-gray-500">{t.noBookings}</Text>
                     ) : (
                       getBookingsForDate(selectedDate).map(renderBookingCard)
                     )}
-                  </div>
+                  </View>
                 </Card>
               </TabsContent>
             </Tabs>
@@ -555,14 +556,14 @@ export default function SitterBookings({ language }: SitterBookingsProps) {
               {language === 'ar' ? 'يرجى كتابة تقرير مفصل عن الجلسة أو تسجيل رسالة صوتية.' : 'Please write a detailed report about the session or record a voice message.'}
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-6 py-4">
-            <div className="space-y-2 text-center">
+          <View className="space-y-6 py-4">
+            <View className="space-y-2 text-center">
               <Label>{t.rateClient}</Label>
-              <div className="flex justify-center gap-2">
+              <View className="flex justify-center gap-2">
                 {[1, 2, 3, 4, 5].map((star) => (
-                  <button
+                  <Pressable
                     key={star}
-                    onClick={() => setClientRating(star)}
+                    onPress={() => setClientRating(star)}
                     className="focus:outline-none"
                   >
                     <Star
@@ -571,52 +572,52 @@ export default function SitterBookings({ language }: SitterBookingsProps) {
                         : 'text-gray-300'
                         }`}
                     />
-                  </button>
+                  </Pressable>
                 ))}
-              </div>
-            </div>
+              </View>
+            </View>
 
-            <div className="border-t pt-4 space-y-4">
+            <View className="border-t pt-4 space-y-4">
               <Textarea
                 value={report}
                 onChange={(e) => setReport(e.target.value)}
                 placeholder={t.writeReport}
                 rows={4}
               />
-              <div className="text-center text-gray-500 text-sm">{t.or}</div>
-              <div className="flex flex-col items-center gap-3">
+              <View className="text-center text-gray-500 text-sm">{t.or}</View>
+              <View className="flex flex-col items-center gap-3">
                 <Button
                   variant={isRecording ? "destructive" : "outline"}
                   size="lg"
-                  onClick={toggleRecording}
+                  onPress={toggleRecording}
                   className={`rounded-full w-16 h-16 flex items-center justify-center ${isRecording ? 'animate-pulse' : ''}`}
                 >
                   {isRecording ? <StopCircle className="w-8 h-8" /> : <Mic className="w-8 h-8" />}
                 </Button>
-                <span className="text-sm font-mono">
+                <Text className="text-sm font-mono">
                   {isRecording ? formatDuration(recordingDuration) : (audioBlob ? t.voiceMessage : t.recordVoice)}
-                </span>
-              </div>
-            </div>
-            <div className="flex gap-2 pt-4">
+                </Text>
+              </View>
+            </View>
+            <View className="flex gap-2 pt-4">
               <Button
                 variant="outline"
-                onClick={() => setShowReportDialog(false)}
+                onPress={() => setShowReportDialog(false)}
                 className="flex-1"
               >
                 {t.cancel}
               </Button>
               <Button
-                onClick={handleSendReport}
+                onPress={handleSendReport}
                 disabled={(!report.trim() && !audioBlob) || clientRating === 0}
                 className="flex-1 bg-[#FB5E7A] hover:bg-[#e5536e]"
               >
                 {t.submit}
               </Button>
-            </div>
-          </div>
+            </View>
+          </View>
         </DialogContent>
       </Dialog>
-    </div>
+    </View>
   );
 }

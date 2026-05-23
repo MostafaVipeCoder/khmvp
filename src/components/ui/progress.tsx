@@ -1,30 +1,33 @@
-"use client";
 
-import * as React from "react";
-import * as ProgressPrimitive from "@radix-ui/react-progress";
-
+import { View } from "../../tw";
 import { cn } from "./utils";
+
+interface ProgressProps {
+  className?: string;
+  value?: number | null;
+  style?: any;
+}
 
 function Progress({
   className,
   value,
+  style,
   ...props
-}: React.ComponentProps<typeof ProgressPrimitive.Root>) {
+}: ProgressProps) {
   return (
-    <ProgressPrimitive.Root
-      data-slot="progress"
+    <View
       className={cn(
         "bg-primary/20 relative h-2 w-full overflow-hidden rounded-full",
         className,
       )}
+      style={style}
       {...props}
     >
-      <ProgressPrimitive.Indicator
-        data-slot="progress-indicator"
-        className="bg-primary h-full w-full flex-1 transition-all"
-        style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
+      <View
+        className="bg-primary h-full transition-all"
+        style={{ width: `${value || 0}%` }}
       />
-    </ProgressPrimitive.Root>
+    </View>
   );
 }
 

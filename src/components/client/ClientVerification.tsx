@@ -1,3 +1,4 @@
+import { View, Text } from '../../tw';
 import { useState } from 'react';
 import { ArrowLeft, ArrowRight, Upload, Check, X, FileText, AlertCircle, Shield } from 'lucide-react';
 import { Button } from '../ui/button';
@@ -95,13 +96,13 @@ export default function ClientVerification({ language, onBack }: ClientVerificat
 
   const t = translations[language];
 
-  const handleNationalIdFrontUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleNationalIdFrontUpload = (e: React.ChangeEvent<any>) => {
     if (e.target.files && e.target.files[0]) {
       setNationalIdFrontFile(e.target.files[0]);
     }
   };
 
-  const handleNationalIdBackUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleNationalIdBackUpload = (e: React.ChangeEvent<any>) => {
     if (e.target.files && e.target.files[0]) {
       setNationalIdBackFile(e.target.files[0]);
     }
@@ -138,28 +139,28 @@ export default function ClientVerification({ language, onBack }: ClientVerificat
   const isDocumentsComplete = nationalIdFrontFile && nationalIdBackFile;
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <View className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <div className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center gap-4">
+      <View className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <View className="max-w-7xl mx-auto px-4 py-4">
+          <View className="flex items-center gap-4">
             <Button
-              onClick={onBack}
+              onPress={onBack}
               variant="ghost"
               className="p-2"
             >
               {language === 'ar' ? <ArrowRight className="size-5" /> : <ArrowLeft className="size-5" />}
             </Button>
-            <div className="flex-1">
-              <h1 className="text-xl">{t.verification}</h1>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{t.verificationRequired}</p>
-            </div>
+            <View className="flex-1">
+              <Text className="text-xl">{t.verification}</Text>
+              <Text className="text-sm text-gray-600 dark:text-gray-400">{t.verificationRequired}</Text>
+            </View>
             {getStatusBadge()}
-          </div>
-        </div>
-      </div>
+          </View>
+        </View>
+      </View>
 
-      <div className="max-w-4xl mx-auto p-4 space-y-6">
+      <View className="max-w-4xl mx-auto p-4 space-y-6">
         {/* Status Alerts */}
         {verificationStatus === 'not_submitted' && (
           <Alert className="border-yellow-500 bg-yellow-50 dark:bg-yellow-900/20">
@@ -192,11 +193,11 @@ export default function ClientVerification({ language, onBack }: ClientVerificat
           <Alert className="border-red-500 bg-red-50 dark:bg-red-900/20">
             <X className="h-4 w-4 text-red-600" />
             <AlertDescription className="text-red-800 dark:text-red-200">
-              <div>{t.verificationRejected}</div>
+              <View>{t.verificationRejected}</View>
               {rejectionReason && (
-                <div className="mt-2 text-sm">
+                <View className="mt-2 text-sm">
                   <strong>{t.rejectionReason}:</strong> {rejectionReason}
-                </div>
+                </View>
               )}
             </AlertDescription>
           </Alert>
@@ -204,49 +205,49 @@ export default function ClientVerification({ language, onBack }: ClientVerificat
 
         {/* Why Verification */}
         <Card className="p-6 bg-[#FB5E7A]/5 border-[#FB5E7A]/20">
-          <div className="flex items-start gap-3">
+          <View className="flex items-start gap-3">
             <Shield className="w-6 h-6 text-[#FB5E7A] mt-1 shrink-0" />
-            <div>
-              <h2 className="text-lg mb-3">{t.whyVerification}</h2>
-              <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                <li className="flex items-start gap-2">
+            <View>
+              <Text className="text-lg mb-3">{t.whyVerification}</Text>
+              <View className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                <View className="flex items-start gap-2">
                   <Check className="size-4 text-[#FB5E7A] mt-0.5 shrink-0" />
-                  <span>{t.reason1}</span>
-                </li>
-                <li className="flex items-start gap-2">
+                  <Text>{t.reason1}</Text>
+                </View>
+                <View className="flex items-start gap-2">
                   <Check className="size-4 text-[#FB5E7A] mt-0.5 shrink-0" />
-                  <span>{t.reason2}</span>
-                </li>
-                <li className="flex items-start gap-2">
+                  <Text>{t.reason2}</Text>
+                </View>
+                <View className="flex items-start gap-2">
                   <Check className="size-4 text-[#FB5E7A] mt-0.5 shrink-0" />
-                  <span>{t.reason3}</span>
-                </li>
-              </ul>
-            </div>
-          </div>
+                  <Text>{t.reason3}</Text>
+                </View>
+              </View>
+            </View>
+          </View>
         </Card>
 
         {/* Requirements */}
         <Card className="p-6">
-          <h2 className="text-lg mb-4">{t.requirements}</h2>
-          <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-            <li className="flex items-start gap-2">
+          <Text className="text-lg mb-4">{t.requirements}</Text>
+          <View className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+            <View className="flex items-start gap-2">
               <Check className="size-4 text-green-500 mt-0.5 shrink-0" />
-              <span>{t.requirement1}</span>
-            </li>
-            <li className="flex items-start gap-2">
+              <Text>{t.requirement1}</Text>
+            </View>
+            <View className="flex items-start gap-2">
               <Check className="size-4 text-green-500 mt-0.5 shrink-0" />
-              <span>{t.requirement2}</span>
-            </li>
-            <li className="flex items-start gap-2">
+              <Text>{t.requirement2}</Text>
+            </View>
+            <View className="flex items-start gap-2">
               <Check className="size-4 text-green-500 mt-0.5 shrink-0" />
-              <span>{t.requirement3}</span>
-            </li>
-            <li className="flex items-start gap-2">
+              <Text>{t.requirement3}</Text>
+            </View>
+            <View className="flex items-start gap-2">
               <Check className="size-4 text-green-500 mt-0.5 shrink-0" />
-              <span>{t.requirement4}</span>
-            </li>
-          </ul>
+              <Text>{t.requirement4}</Text>
+            </View>
+          </View>
 
           <Alert className="mt-4">
             <AlertCircle className="h-4 w-4" />
@@ -258,31 +259,31 @@ export default function ClientVerification({ language, onBack }: ClientVerificat
 
         {/* National ID Upload */}
         <Card className="p-6">
-          <div className="space-y-4">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-full bg-[#FB5E7A]/10 flex items-center justify-center">
+          <View className="space-y-4">
+            <View className="flex items-center gap-3 mb-4">
+              <View className="w-12 h-12 rounded-full bg-[#FB5E7A]/10 flex items-center justify-center">
                 <FileText className="w-6 h-6 text-[#FB5E7A]" />
-              </div>
-              <div className="flex-1">
-                <h2 className="text-lg">{t.nationalId}</h2>
-                <p className="text-sm text-gray-600 dark:text-gray-400">{t.nationalIdDesc}</p>
-              </div>
+              </View>
+              <View className="flex-1">
+                <Text className="text-lg">{t.nationalId}</Text>
+                <Text className="text-sm text-gray-600 dark:text-gray-400">{t.nationalIdDesc}</Text>
+              </View>
               {nationalIdFrontFile && nationalIdBackFile && <Check className="size-6 text-green-500" />}
-            </div>
+            </View>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <View className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Front Side */}
-              <div className="border-2 border-dashed rounded-lg p-6 text-center">
+              <View className="border-2 border-dashed rounded-lg p-6 text-center">
                 {nationalIdFrontFile ? (
-                  <div className="space-y-3">
+                  <View className="space-y-3">
                     <FileText className="size-12 mx-auto text-green-500" />
-                    <div>
-                      <p className="text-sm">{nationalIdFrontFile.name}</p>
-                      <p className="text-xs text-gray-500">{(nationalIdFrontFile.size / 1024).toFixed(2)} KB</p>
-                    </div>
+                    <View>
+                      <Text className="text-sm">{nationalIdFrontFile.name}</Text>
+                      <Text className="text-xs text-gray-500">{(nationalIdFrontFile.size / 1024).toFixed(2)} KB</Text>
+                    </View>
                     <Label htmlFor="national-id-front-change" className="cursor-pointer">
                       <Button variant="outline" size="sm" asChild>
-                        <span>{t.changeDocument}</span>
+                        <Text>{t.changeDocument}</Text>
                       </Button>
                     </Label>
                     <Input
@@ -292,13 +293,13 @@ export default function ClientVerification({ language, onBack }: ClientVerificat
                       onChange={handleNationalIdFrontUpload}
                       className="hidden"
                     />
-                  </div>
+                  </View>
                 ) : (
-                  <div className="space-y-3">
+                  <View className="space-y-3">
                     <Upload className="size-12 mx-auto text-gray-400" />
                     <Label htmlFor="national-id-front-upload" className="cursor-pointer">
                       <Button variant="outline" asChild>
-                        <span>{t.uploadFront}</span>
+                        <Text>{t.uploadFront}</Text>
                       </Button>
                     </Label>
                     <Input
@@ -308,22 +309,22 @@ export default function ClientVerification({ language, onBack }: ClientVerificat
                       onChange={handleNationalIdFrontUpload}
                       className="hidden"
                     />
-                  </div>
+                  </View>
                 )}
-              </div>
+              </View>
 
               {/* Back Side */}
-              <div className="border-2 border-dashed rounded-lg p-6 text-center">
+              <View className="border-2 border-dashed rounded-lg p-6 text-center">
                 {nationalIdBackFile ? (
-                  <div className="space-y-3">
+                  <View className="space-y-3">
                     <FileText className="size-12 mx-auto text-green-500" />
-                    <div>
-                      <p className="text-sm">{nationalIdBackFile.name}</p>
-                      <p className="text-xs text-gray-500">{(nationalIdBackFile.size / 1024).toFixed(2)} KB</p>
-                    </div>
+                    <View>
+                      <Text className="text-sm">{nationalIdBackFile.name}</Text>
+                      <Text className="text-xs text-gray-500">{(nationalIdBackFile.size / 1024).toFixed(2)} KB</Text>
+                    </View>
                     <Label htmlFor="national-id-back-change" className="cursor-pointer">
                       <Button variant="outline" size="sm" asChild>
-                        <span>{t.changeDocument}</span>
+                        <Text>{t.changeDocument}</Text>
                       </Button>
                     </Label>
                     <Input
@@ -333,13 +334,13 @@ export default function ClientVerification({ language, onBack }: ClientVerificat
                       onChange={handleNationalIdBackUpload}
                       className="hidden"
                     />
-                  </div>
+                  </View>
                 ) : (
-                  <div className="space-y-3">
+                  <View className="space-y-3">
                     <Upload className="size-12 mx-auto text-gray-400" />
                     <Label htmlFor="national-id-back-upload" className="cursor-pointer">
                       <Button variant="outline" asChild>
-                        <span>{t.uploadBack}</span>
+                        <Text>{t.uploadBack}</Text>
                       </Button>
                     </Label>
                     <Input
@@ -349,17 +350,17 @@ export default function ClientVerification({ language, onBack }: ClientVerificat
                       onChange={handleNationalIdBackUpload}
                       className="hidden"
                     />
-                  </div>
+                  </View>
                 )}
-              </div>
-            </div>
-          </div>
+              </View>
+            </View>
+          </View>
         </Card>
 
         {/* Submit Button */}
         {verificationStatus !== 'approved' && (
           <Button
-            onClick={handleSubmit}
+            onPress={handleSubmit}
             disabled={!isDocumentsComplete || verificationStatus === 'pending'}
             className="w-full bg-[#FB5E7A] hover:bg-[#e5536e] disabled:opacity-50"
             size="lg"
@@ -367,7 +368,7 @@ export default function ClientVerification({ language, onBack }: ClientVerificat
             {verificationStatus === 'rejected' ? t.resubmit : t.submit}
           </Button>
         )}
-      </div>
-    </div>
+      </View>
+    </View>
   );
 }

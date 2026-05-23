@@ -1,3 +1,4 @@
+import { View, Text } from '../../tw';
 import { useState, useEffect } from 'react';
 import { ArrowLeft, ArrowRight, Upload, Check, X, FileText, AlertCircle, Shield, Loader2 } from 'lucide-react';
 import { Button } from '../ui/button';
@@ -155,19 +156,19 @@ export default function SitterVerification({ language, onBack }: SitterVerificat
     }
   };
 
-  const handlePoliceRecordUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePoliceRecordUpload = (e: React.ChangeEvent<any>) => {
     if (e.target.files && e.target.files[0]) {
       setPoliceRecordFile(e.target.files[0]);
     }
   };
 
-  const handleNationalIdFrontUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleNationalIdFrontUpload = (e: React.ChangeEvent<any>) => {
     if (e.target.files && e.target.files[0]) {
       setNationalIdFrontFile(e.target.files[0]);
     }
   };
 
-  const handleNationalIdBackUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleNationalIdBackUpload = (e: React.ChangeEvent<any>) => {
     if (e.target.files && e.target.files[0]) {
       setNationalIdBackFile(e.target.files[0]);
     }
@@ -239,50 +240,50 @@ export default function SitterVerification({ language, onBack }: SitterVerificat
     existingUrl: string | undefined,
     label: string,
     id: string,
-    _onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+    _onChange: (e: React.ChangeEvent<any>) => void
   ) => {
     if (file) {
       // New file selected
       return (
-        <div className="space-y-3">
+        <View className="space-y-3">
           <FileText className="size-10 mx-auto text-blue-500" />
-          <div>
-            <p className="text-xs">{file.name}</p>
-            <p className="text-xs text-gray-500">{(file.size / 1024).toFixed(2)} KB</p>
-          </div>
+          <View>
+            <Text className="text-xs">{file.name}</Text>
+            <Text className="text-xs text-gray-500">{(file.size / 1024).toFixed(2)} KB</Text>
+          </View>
           <Label htmlFor={id} className="cursor-pointer">
             <Button variant="outline" size="sm" asChild>
-              <span>{t.changeDocument}</span>
+              <Text>{t.changeDocument}</Text>
             </Button>
           </Label>
-        </div>
+        </View>
       );
     } else if (existingUrl) {
       // Already uploaded
       return (
-        <div className="space-y-3">
+        <View className="space-y-3">
           <Check className="size-10 mx-auto text-green-500" />
-          <div>
-            <p className="text-sm font-medium text-green-600">{t.alreadyUploaded}</p>
-          </div>
+          <View>
+            <Text className="text-sm font-medium text-green-600">{t.alreadyUploaded}</Text>
+          </View>
           <Label htmlFor={id} className="cursor-pointer">
             <Button variant="outline" size="sm" asChild>
-              <span>{t.changeDocument}</span>
+              <Text>{t.changeDocument}</Text>
             </Button>
           </Label>
-        </div>
+        </View>
       );
     } else {
       // Nothing selected
       return (
-        <div className="space-y-3">
+        <View className="space-y-3">
           <Upload className="size-10 mx-auto text-gray-400" />
           <Label htmlFor={id} className="cursor-pointer">
             <Button variant="outline" size="sm" asChild>
-              <span>{label}</span>
+              <Text>{label}</Text>
             </Button>
           </Label>
-        </div>
+        </View>
       );
     }
   };
@@ -292,28 +293,28 @@ export default function SitterVerification({ language, onBack }: SitterVerificat
     (nationalIdBackFile || existingDocs.nationalIdBack);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <View className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <div className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center gap-4">
+      <View className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <View className="max-w-7xl mx-auto px-4 py-4">
+          <View className="flex items-center gap-4">
             <Button
-              onClick={onBack}
+              onPress={onBack}
               variant="ghost"
               className="p-2"
             >
               {language === 'ar' ? <ArrowRight className="size-5" /> : <ArrowLeft className="size-5" />}
             </Button>
-            <div className="flex-1">
-              <h1 className="text-xl">{t.verification}</h1>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{t.verificationRequired}</p>
-            </div>
+            <View className="flex-1">
+              <Text className="text-xl">{t.verification}</Text>
+              <Text className="text-sm text-gray-600 dark:text-gray-400">{t.verificationRequired}</Text>
+            </View>
             {getStatusBadge()}
-          </div>
-        </div>
-      </div>
+          </View>
+        </View>
+      </View>
 
-      <div className="max-w-4xl mx-auto p-4 space-y-6">
+      <View className="max-w-4xl mx-auto p-4 space-y-6">
         {/* Status Alerts */}
         {verificationStatus === 'not_submitted' && (
           <Alert className="border-yellow-500 bg-yellow-50 dark:bg-yellow-900/20">
@@ -346,11 +347,11 @@ export default function SitterVerification({ language, onBack }: SitterVerificat
           <Alert className="border-red-500 bg-red-50 dark:bg-red-900/20">
             <X className="h-4 w-4 text-red-600" />
             <AlertDescription className="text-red-800 dark:text-red-200">
-              <div>{t.verificationRejected}</div>
+              <View>{t.verificationRejected}</View>
               {rejectionReason && (
-                <div className="mt-2 text-sm">
+                <View className="mt-2 text-sm">
                   <strong>{t.rejectionReason}:</strong> {rejectionReason}
-                </div>
+                </View>
               )}
             </AlertDescription>
           </Alert>
@@ -358,30 +359,30 @@ export default function SitterVerification({ language, onBack }: SitterVerificat
 
         {/* Requirements */}
         <Card className="p-6">
-          <div className="flex items-start gap-3 mb-4">
+          <View className="flex items-start gap-3 mb-4">
             <Shield className="w-6 h-6 text-[#FB5E7A] mt-1" />
-            <div>
-              <h2 className="text-lg mb-2">{t.requirements}</h2>
-              <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                <li className="flex items-start gap-2">
+            <View>
+              <Text className="text-lg mb-2">{t.requirements}</Text>
+              <View className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                <View className="flex items-start gap-2">
                   <Check className="size-4 text-green-500 mt-0.5 shrink-0" />
-                  <span>{t.requirement1}</span>
-                </li>
-                <li className="flex items-start gap-2">
+                  <Text>{t.requirement1}</Text>
+                </View>
+                <View className="flex items-start gap-2">
                   <Check className="size-4 text-green-500 mt-0.5 shrink-0" />
-                  <span>{t.requirement2}</span>
-                </li>
-                <li className="flex items-start gap-2">
+                  <Text>{t.requirement2}</Text>
+                </View>
+                <View className="flex items-start gap-2">
                   <Check className="size-4 text-green-500 mt-0.5 shrink-0" />
-                  <span>{t.requirement3}</span>
-                </li>
-                <li className="flex items-start gap-2">
+                  <Text>{t.requirement3}</Text>
+                </View>
+                <View className="flex items-start gap-2">
                   <Check className="size-4 text-green-500 mt-0.5 shrink-0" />
-                  <span>{t.requirement4}</span>
-                </li>
-              </ul>
-            </div>
-          </div>
+                  <Text>{t.requirement4}</Text>
+                </View>
+              </View>
+            </View>
+          </View>
 
           <Alert>
             <AlertCircle className="h-4 w-4" />
@@ -393,19 +394,19 @@ export default function SitterVerification({ language, onBack }: SitterVerificat
 
         {/* Police Record Upload */}
         <Card className="p-6">
-          <div className="space-y-4">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-full bg-[#FB5E7A]/10 flex items-center justify-center">
+          <View className="space-y-4">
+            <View className="flex items-center gap-3 mb-4">
+              <View className="w-12 h-12 rounded-full bg-[#FB5E7A]/10 flex items-center justify-center">
                 <FileText className="w-6 h-6 text-[#FB5E7A]" />
-              </div>
-              <div className="flex-1">
-                <h2 className="text-lg">{t.policeRecord}</h2>
-                <p className="text-sm text-gray-600 dark:text-gray-400">{t.policeRecordDesc}</p>
-              </div>
+              </View>
+              <View className="flex-1">
+                <Text className="text-lg">{t.policeRecord}</Text>
+                <Text className="text-sm text-gray-600 dark:text-gray-400">{t.policeRecordDesc}</Text>
+              </View>
               {(policeRecordFile || existingDocs.policeRecord) && <Check className="size-6 text-green-500" />}
-            </div>
+            </View>
 
-            <div className="border-2 border-dashed rounded-lg p-6 text-center">
+            <View className="border-2 border-dashed rounded-lg p-6 text-center">
               {renderUploadState(policeRecordFile, existingDocs.policeRecord, t.uploadDocument, 'police-record-upload', handlePoliceRecordUpload)}
               <Input
                 id="police-record-upload"
@@ -414,27 +415,27 @@ export default function SitterVerification({ language, onBack }: SitterVerificat
                 onChange={handlePoliceRecordUpload}
                 className="hidden"
               />
-            </div>
-          </div>
+            </View>
+          </View>
         </Card>
 
         {/* National ID Upload */}
         <Card className="p-6">
-          <div className="space-y-4">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center">
+          <View className="space-y-4">
+            <View className="flex items-center gap-3 mb-4">
+              <View className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center">
                 <FileText className="w-6 h-6 text-blue-500" />
-              </div>
-              <div className="flex-1">
-                <h2 className="text-lg">{t.nationalId}</h2>
-                <p className="text-sm text-gray-600 dark:text-gray-400">{t.nationalIdDesc}</p>
-              </div>
+              </View>
+              <View className="flex-1">
+                <Text className="text-lg">{t.nationalId}</Text>
+                <Text className="text-sm text-gray-600 dark:text-gray-400">{t.nationalIdDesc}</Text>
+              </View>
               {(nationalIdFrontFile || existingDocs.nationalIdFront) && (nationalIdBackFile || existingDocs.nationalIdBack) && <Check className="size-6 text-green-500" />}
-            </div>
+            </View>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <View className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Front Side */}
-              <div className="border-2 border-dashed rounded-lg p-4 text-center">
+              <View className="border-2 border-dashed rounded-lg p-4 text-center">
                 {renderUploadState(nationalIdFrontFile, existingDocs.nationalIdFront, t.uploadFront, 'national-id-front', handleNationalIdFrontUpload)}
                 <Input
                   id="national-id-front"
@@ -443,10 +444,10 @@ export default function SitterVerification({ language, onBack }: SitterVerificat
                   onChange={handleNationalIdFrontUpload}
                   className="hidden"
                 />
-              </div>
+              </View>
 
               {/* Back Side */}
-              <div className="border-2 border-dashed rounded-lg p-4 text-center">
+              <View className="border-2 border-dashed rounded-lg p-4 text-center">
                 {renderUploadState(nationalIdBackFile, existingDocs.nationalIdBack, t.uploadBack, 'national-id-back', handleNationalIdBackUpload)}
                 <Input
                   id="national-id-back"
@@ -455,15 +456,15 @@ export default function SitterVerification({ language, onBack }: SitterVerificat
                   onChange={handleNationalIdBackUpload}
                   className="hidden"
                 />
-              </div>
-            </div>
-          </div>
+              </View>
+            </View>
+          </View>
         </Card>
 
         {/* Submit Button */}
         {verificationStatus !== 'approved' && (
           <Button
-            onClick={handleSubmit}
+            onPress={handleSubmit}
             disabled={!isDocumentsComplete || isSubmitting || (verificationStatus === 'pending' && !policeRecordFile && !nationalIdFrontFile && !nationalIdBackFile)}
             className="w-full bg-[#FB5E7A] hover:bg-[#e5536e] disabled:opacity-50"
             size="lg"
@@ -478,7 +479,7 @@ export default function SitterVerification({ language, onBack }: SitterVerificat
             )}
           </Button>
         )}
-      </div>
-    </div>
+      </View>
+    </View>
   );
 }

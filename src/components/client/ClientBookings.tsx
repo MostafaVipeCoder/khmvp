@@ -1,3 +1,4 @@
+import { View, Text, Pressable, Image } from '../../tw';
 import { useState, useRef, useEffect } from 'react';
 import { Calendar, Clock, MapPin, Star, X, CreditCard, MessageCircle, QrCode, CheckCircle, Mic, StopCircle } from 'lucide-react';
 import { Card } from '../ui/card';
@@ -268,50 +269,50 @@ export default function ClientBookings({ }: ClientBookingsProps) {
 
   const renderBookingCard = (booking: Booking) => (
     <Card key={booking.id} className="p-4">
-      <div className="flex gap-4">
-        <img
+      <View className="flex gap-4">
+        <Image
           src={booking.sitterImage}
           alt={booking.sitterName}
           className="w-16 h-16 rounded-full object-cover"
         />
-        <div className="flex-1">
-          <div className="flex items-start justify-between mb-2">
-            <div>
-              <h3 className="mb-1">{bookingsT.khalaLabel}{booking.sitterName}</h3>
+        <View className="flex-1">
+          <View className="flex items-start justify-between mb-2">
+            <View>
+              <Text className="mb-1">{bookingsT.khalaLabel}{booking.sitterName}</Text>
               {getStatusBadge(booking.status)}
-            </div>
-          </div>
+            </View>
+          </View>
 
-          <div className="space-y-1 text-sm text-gray-600 dark:text-gray-400 mb-3">
-            <div className="flex items-center gap-2">
+          <View className="space-y-1 text-sm text-gray-600 dark:text-gray-400 mb-3">
+            <View className="flex items-center gap-2">
               <Calendar className="w-4 h-4" />
-              <span>{booking.date}</span>
-            </div>
-            <div className="flex items-center gap-2">
+              <Text>{booking.date}</Text>
+            </View>
+            <View className="flex items-center gap-2">
               <Clock className="w-4 h-4" />
-              <span>{booking.time} ({booking.duration} {bookingsT.hours})</span>
-            </div>
-            <div className="flex items-center gap-2">
+              <Text>{booking.time} ({booking.duration} {bookingsT.hours})</Text>
+            </View>
+            <View className="flex items-center gap-2">
               <MapPin className="w-4 h-4" />
-              <span>{booking.location}</span>
-            </div>
-          </div>
+              <Text>{booking.location}</Text>
+            </View>
+          </View>
 
-          <div className="flex items-center justify-between">
-            <div>
+          <View className="flex items-center justify-between">
+            <View>
               <Badge variant="outline">
                 {booking.type === 'home' ? bookingsT.atHome : bookingsT.outside}
               </Badge>
-              <div className="text-[#FB5E7A] mt-1 font-bold">
+              <View className="text-[#FB5E7A] mt-1 font-bold">
                 {bookingsT.total}: {booking.price} {bookingsT.egp}
-              </div>
-            </div>
+              </View>
+            </View>
 
-            <div className="flex gap-2">
+            <View className="flex gap-2">
               {booking.status === 'completed' && !booking.rating && (
                 <Button
                   size="sm"
-                  onClick={() => {
+                  onPress={() => {
                     setSelectedBooking(booking);
                     setShowRatingDialog(true);
                   }}
@@ -326,7 +327,7 @@ export default function ClientBookings({ }: ClientBookingsProps) {
                 <Button
                   size="sm"
                   className="bg-green-600 hover:bg-green-700"
-                  onClick={() => {
+                  onPress={() => {
                     setPaymentBooking(booking);
                     setShowPaymentPage(true);
                   }}
@@ -341,7 +342,7 @@ export default function ClientBookings({ }: ClientBookingsProps) {
                   <Button
                     size="sm"
                     variant="outline"
-                    onClick={() => {
+                    onPress={() => {
                       setChatBooking(booking);
                       setShowChat(true);
                     }}
@@ -351,7 +352,7 @@ export default function ClientBookings({ }: ClientBookingsProps) {
                   <Button
                     size="sm"
                     className="bg-[#FB5E7A] hover:bg-[#e5536e]"
-                    onClick={() => {
+                    onPress={() => {
                       setSelectedBooking(booking);
                       setShowScanner(true);
                     }}
@@ -366,7 +367,7 @@ export default function ClientBookings({ }: ClientBookingsProps) {
                 <Button
                   size="sm"
                   variant="outline"
-                  onClick={() => {
+                  onPress={() => {
                     setChatBooking(booking);
                     setShowChat(true);
                   }}
@@ -382,7 +383,7 @@ export default function ClientBookings({ }: ClientBookingsProps) {
                   size="sm"
                   variant="outline"
                   className="text-red-600"
-                  onClick={() => {
+                  onPress={() => {
                     setSelectedBooking(booking);
                     setShowCancelDialog(true);
                   }}
@@ -391,35 +392,35 @@ export default function ClientBookings({ }: ClientBookingsProps) {
                   {bookingsT.cancel}
                 </Button>
               )}
-            </div>
-          </div>
-        </div>
-      </div>
+            </View>
+          </View>
+        </View>
+      </View>
     </Card>
   );
 
   return (
-    <div className="max-w-4xl mx-auto px-4 pb-8">
+    <View className="max-w-4xl mx-auto px-4 pb-8">
       {loading ? (
-        <div className="text-center py-12 text-gray-500">{bookingsT.loading}</div>
+        <View className="text-center py-12 text-gray-500">{bookingsT.loading}</View>
       ) : (
         <Tabs defaultValue="pending" className="space-y-4">
           {/* Sticky Header */}
-          <div className="sticky top-0 z-50 bg-gray-50 dark:bg-gray-900 pt-4 pb-4 -mx-4 px-4 mb-2 border-b border-gray-100 dark:border-gray-800">
-            <h1 className="text-[#FB5E7A] mb-4 text-2xl font-bold">{bookingsT.title}</h1>
+          <View className="sticky top-0 z-50 bg-gray-50 dark:bg-gray-900 pt-4 pb-4 -mx-4 px-4 mb-2 border-b border-gray-100 dark:border-gray-800">
+            <Text className="text-[#FB5E7A] mb-4 text-2xl font-bold">{bookingsT.title}</Text>
             <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="pending">{bookingsT.pending}</TabsTrigger>
               <TabsTrigger value="waiting_payment">{bookingsT.waitingPayment}</TabsTrigger>
               <TabsTrigger value="upcoming">{bookingsT.upcoming}</TabsTrigger>
               <TabsTrigger value="history">{bookingsT.completed}</TabsTrigger>
             </TabsList>
-          </div>
+          </View>
 
           <TabsContent value="pending" className="space-y-4 pt-2">
             {filterBookings('pending').length === 0 ? (
-              <div className="text-center py-12 text-gray-500">
+              <View className="text-center py-12 text-gray-500">
                 {bookingsT.noRequests}
-              </div>
+              </View>
             ) : (
               filterBookings('pending').map(renderBookingCard)
             )}
@@ -427,9 +428,9 @@ export default function ClientBookings({ }: ClientBookingsProps) {
 
           <TabsContent value="waiting_payment" className="space-y-4">
             {filterBookings('waiting_payment').length === 0 ? (
-              <div className="text-center py-12 text-gray-500">
+              <View className="text-center py-12 text-gray-500">
                 {bookingsT.noRequests}
-              </div>
+              </View>
             ) : (
               filterBookings('waiting_payment').map(renderBookingCard)
             )}
@@ -437,9 +438,9 @@ export default function ClientBookings({ }: ClientBookingsProps) {
 
           <TabsContent value="upcoming" className="space-y-4">
             {filterBookings('upcoming').length === 0 ? (
-              <div className="text-center py-12 text-gray-500">
+              <View className="text-center py-12 text-gray-500">
                 {bookingsT.noRequests}
-              </div>
+              </View>
             ) : (
               filterBookings('upcoming').map(renderBookingCard)
             )}
@@ -447,9 +448,9 @@ export default function ClientBookings({ }: ClientBookingsProps) {
 
           <TabsContent value="history" className="space-y-4">
             {filterBookings('history').length === 0 ? (
-              <div className="text-center py-12 text-gray-500">
+              <View className="text-center py-12 text-gray-500">
                 {bookingsT.noRequests}
-              </div>
+              </View>
             ) : (
               filterBookings('history').map(renderBookingCard)
             )}
@@ -463,14 +464,14 @@ export default function ClientBookings({ }: ClientBookingsProps) {
           <DialogHeader>
             <DialogTitle>{bookingsT.rateService}</DialogTitle>
           </DialogHeader>
-          <div className="space-y-4 py-4">
-            <div className="space-y-2">
+          <View className="space-y-4 py-4">
+            <View className="space-y-2">
               <Label>{bookingsT.rating}</Label>
-              <div className="flex gap-2 justify-center">
+              <View className="flex gap-2 justify-center">
                 {[1, 2, 3, 4, 5].map((star) => (
-                  <button
+                  <Pressable
                     key={star}
-                    onClick={() => setRating(star)}
+                    onPress={() => setRating(star)}
                     className="focus:outline-none"
                   >
                     <Star
@@ -479,12 +480,12 @@ export default function ClientBookings({ }: ClientBookingsProps) {
                         : 'text-gray-300'
                         }`}
                     />
-                  </button>
+                  </Pressable>
                 ))}
-              </div>
-            </div>
+              </View>
+            </View>
 
-            <div className="space-y-2">
+            <View className="space-y-2">
               <Label htmlFor="review">{bookingsT.writeReview}</Label>
               <Textarea
                 id="review"
@@ -493,30 +494,30 @@ export default function ClientBookings({ }: ClientBookingsProps) {
                 rows={4}
                 placeholder={bookingsT.reviewPlaceholder}
               />
-            </div>
+            </View>
 
-            <div className="flex flex-col items-center gap-3 border-t pt-4">
+            <View className="flex flex-col items-center gap-3 border-t pt-4">
               <Button
                 variant={isRecording ? "destructive" : "outline"}
                 size="lg"
-                onClick={toggleRecording}
+                onPress={toggleRecording}
                 className={`rounded-full w-16 h-16 flex items-center justify-center ${isRecording ? 'animate-pulse' : ''}`}
               >
                 {isRecording ? <StopCircle className="w-8 h-8" /> : <Mic className="w-8 h-8" />}
               </Button>
-              <span className="text-sm font-mono mt-2 text-gray-600 dark:text-gray-400">
+              <Text className="text-sm font-mono mt-2 text-gray-600 dark:text-gray-400">
                 {isRecording ? formatDuration(recordingDuration) : (audioBlob ? bookingsT.voiceMessage : bookingsT.tapToRecord)}
-              </span>
-            </div>
+              </Text>
+            </View>
 
             <Button
-              onClick={handleRating}
+              onPress={handleRating}
               disabled={rating === 0}
               className="w-full bg-[#FB5E7A] hover:bg-[#e5536e]"
             >
               {bookingsT.submit}
             </Button>
-          </div>
+          </View>
         </DialogContent>
       </Dialog>
 
@@ -526,24 +527,24 @@ export default function ClientBookings({ }: ClientBookingsProps) {
           <DialogHeader>
             <DialogTitle>{bookingsT.cancelBooking}</DialogTitle>
           </DialogHeader>
-          <div className="space-y-4 py-4">
-            <p className="text-gray-600 dark:text-gray-400">{bookingsT.cancelConfirm}</p>
-            <div className="flex gap-2">
+          <View className="space-y-4 py-4">
+            <Text className="text-gray-600 dark:text-gray-400">{bookingsT.cancelConfirm}</Text>
+            <View className="flex gap-2">
               <Button
                 variant="outline"
-                onClick={() => setShowCancelDialog(false)}
+                onPress={() => setShowCancelDialog(false)}
                 className="flex-1"
               >
                 {bookingsT.no}
               </Button>
               <Button
-                onClick={handleCancelBooking}
+                onPress={handleCancelBooking}
                 className="flex-1 bg-red-500 hover:bg-red-600"
               >
                 {bookingsT.yes}
               </Button>
-            </div>
-          </div>
+            </View>
+          </View>
         </DialogContent>
       </Dialog>
 
@@ -553,21 +554,21 @@ export default function ClientBookings({ }: ClientBookingsProps) {
           <DialogHeader>
             <DialogTitle>{bookingsT.scanTitle}</DialogTitle>
           </DialogHeader>
-          <div className="flex flex-col items-center gap-4 py-6">
-            <div className="w-64 h-64 bg-black rounded-lg flex items-center justify-center relative overflow-hidden">
-              <div className="absolute inset-0 border-2 border-[#FB5E7A] opacity-50 m-8"></div>
-              <p className="text-white text-sm text-center px-4">{bookingsT.scanDesc}</p>
-            </div>
+          <View className="flex flex-col items-center gap-4 py-6">
+            <View className="w-64 h-64 bg-black rounded-lg flex items-center justify-center relative overflow-hidden">
+              <View className="absolute inset-0 border-2 border-[#FB5E7A] opacity-50 m-8"></View>
+              <Text className="text-white text-sm text-center px-4">{bookingsT.scanDesc}</Text>
+            </View>
             <Button
               className="w-full bg-[#FB5E7A] hover:bg-[#e5536e]"
-              onClick={handleScanSuccess}
+              onPress={handleScanSuccess}
             >
               <CheckCircle className="w-4 h-4 mr-2" />
               {bookingsT.simulateScan}
             </Button>
-          </div>
+          </View>
         </DialogContent>
       </Dialog>
-    </div>
+    </View>
   );
 }

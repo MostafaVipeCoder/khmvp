@@ -1,3 +1,4 @@
+import { View, Text } from '../../tw';
 import { useState, useEffect } from 'react';
 import { Bell, Calendar, MessageCircle, AlertCircle } from 'lucide-react';
 import { Card } from '../ui/card';
@@ -147,56 +148,56 @@ export default function SitterNotifications({ language }: SitterNotificationsPro
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 pb-8">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-[#FB5E7A]">{t.notifications}</h1>
+    <View className="max-w-4xl mx-auto px-4 pb-8">
+      <View className="flex items-center justify-between mb-6">
+        <Text className="text-[#FB5E7A]">{t.notifications}</Text>
         {notifications.some(n => !n.is_read) && (
-          <Button onClick={handleMarkAllRead} variant="ghost" size="sm" className="text-[#FB5E7A]">
+          <Button onPress={handleMarkAllRead} variant="ghost" size="sm" className="text-[#FB5E7A]">
             {t.markAllRead}
           </Button>
         )}
-      </div>
+      </View>
 
-      <div className="space-y-2">
+      <View className="space-y-2">
         {notifications.length === 0 ? (
-          <div className="text-center py-12 text-gray-500">
+          <View className="text-center py-12 text-gray-500">
             <Bell className="w-12 h-12 mx-auto mb-4 text-gray-400" />
             {t.noNotifications}
-          </div>
+          </View>
         ) : (
           notifications.map((notification) => {
             const IconComponent = getIcon(notification.type);
             return (
               <Card
                 key={notification.id}
-                onClick={() => handleMarkAsRead(notification.id, notification.is_read)}
+                onPress={() => handleMarkAsRead(notification.id, notification.is_read)}
                 className={`p-4 cursor-pointer hover:shadow-md transition-shadow ${!notification.is_read ? 'bg-[#FFD1DA]/10 border-[#FB5E7A]/30' : ''
                   }`}
               >
-                <div className="flex gap-4">
-                  <div className={`flex-shrink-0 w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center ${getIconColor(notification.type)}`}>
+                <View className="flex gap-4">
+                  <View className={`flex-shrink-0 w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center ${getIconColor(notification.type)}`}>
                     <IconComponent className="w-5 h-5" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-start justify-between mb-1">
-                      <h3 className="text-sm font-medium">{notification.title}</h3>
+                  </View>
+                  <View className="flex-1">
+                    <View className="flex items-start justify-between mb-1">
+                      <Text className="text-sm font-medium">{notification.title}</Text>
                       {!notification.is_read && (
                         <Badge className="bg-[#FB5E7A] text-white text-xs">
                           {t.new}
                         </Badge>
                       )}
-                    </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                    </View>
+                    <Text className="text-sm text-gray-600 dark:text-gray-400 mb-1">
                       {notification.message}
-                    </p>
-                    <span className="text-xs text-gray-500">{formatTime(notification.created_at)}</span>
-                  </div>
-                </div>
+                    </Text>
+                    <Text className="text-xs text-gray-500">{formatTime(notification.created_at)}</Text>
+                  </View>
+                </View>
               </Card>
             );
           })
         )}
-      </div>
-    </div>
+      </View>
+    </View>
   );
 }

@@ -1,34 +1,114 @@
-"use client";
+import * as React from "react";
+import { View, Pressable } from "../../tw";
 
-import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
-
-function Collapsible({
-  ...props
-}: React.ComponentProps<typeof CollapsiblePrimitive.Root>) {
-  return <CollapsiblePrimitive.Root data-slot="collapsible" {...props} />;
+interface CollapsibleContextType {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 }
 
-function CollapsibleTrigger({
+const CollapsibleContext = React.createContext<CollapsibleContextType | null>(null);
+
+interface CollapsibleProps {
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  className?: string;
+  style?: any;
+  children?: React.ReactNode;
+}
+
+function Collapsible({
+  open,
+  defaultOpen = false,
+  onOpenChange,
+  className,
+  style,
+  children,
   ...props
-}: React.ComponentProps<typeof CollapsiblePrimitive.CollapsibleTrigger>) {
+}: CollapsibleProps) {
+  const [localOpen, setLocalOpen] = React.useState(defaultOpen || !!open);
+
+  React.useEffect(() => {
+    if (open !== undefined) {
+      setLocalOpen(open);
+    }
+  }, [open]);
+
+  const handleOpenChange = (nextOpen: boolean) => {
+    if (open === undefined) {
+      setLocalOpen(nextOpen);
+    }
+    if (onOpenChange) {
+      onOpenChange(nextOpen);
+    }
+  };
+
   return (
-    <CollapsiblePrimitive.CollapsibleTrigger
-      data-slot="collapsible-trigger"
-      {...props}
-    />
+    <CollapsibleContext.Provider value={{ open: localOpen, onOpenChange: handleOpenChange }}>
+      <View className={className} style={style} {...props}>
+        {children}
+      </View>
+    </CollapsibleContext.Provider>
   );
 }
 
-function CollapsibleContent({
+interface CollapsibleTriggerProps {
+  className?: string;
+  style?: any;
+  children?: React.ReactNode;
+}
+
+function CollapsibleTrigger({
+  className,
+  style,
+  children,
   ...props
-}: React.ComponentProps<typeof CollapsiblePrimitive.CollapsibleContent>) {
+}: CollapsibleTriggerProps) {
+  const context = React.useContext(CollapsibleContext);
+  if (!context) {
+    throw new Error("CollapsibleTrigger must be used within Collapsible");
+  }
+
+  const { open, onOpenChange } = context;
+
   return (
-    <CollapsiblePrimitive.CollapsibleContent
-      data-slot="collapsible-content"
+    <Pressable
+      onPress={() => onOpenChange(!open)}
+      className={className}
+      style={style}
       {...props}
-    />
+    >
+      {children}
+    </Pressable>
+  );
+}
+
+interface CollapsibleContentProps {
+  className?: string;
+  style?: any;
+  children?: React.ReactNode;
+}
+
+function CollapsibleContent({
+  className,
+  style,
+  children,
+  ...props
+}: CollapsibleContentProps) {
+  const context = React.useContext(CollapsibleContext);
+  if (!context) {
+    throw new Error("CollapsibleContent must be used within Collapsible");
+  }
+
+  const { open } = context;
+
+  if (!open) return null;
+
+  return (
+    <View className={className} style={style} {...props}>
+      {children}
+    </View>
   );
 }
 
 export { Collapsible, CollapsibleTrigger, CollapsibleContent };
-

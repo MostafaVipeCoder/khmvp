@@ -1,62 +1,128 @@
-"use client";
-
 import * as React from "react";
-import * as TooltipPrimitive from "@radix-ui/react-tooltip";
-
+import { Modal } from "react-native";
+import { Text, Pressable } from "../../tw";
 import { cn } from "./utils";
 
-function TooltipProvider({
-  delayDuration = 0,
-  ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Provider>) {
-  return (
-    <TooltipPrimitive.Provider
-      data-slot="tooltip-provider"
-      delayDuration={delayDuration}
-      {...props}
-    />
-  );
+interface TooltipContextType {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+}
+
+const TooltipContext = React.createContext<TooltipContextType | null>(null);
+
+function TooltipProvider({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
 }
 
 function Tooltip({
-  ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Root>) {
+  open: controlledOpen,
+  onOpenChange,
+  children,
+}: {
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  children: React.ReactNode;
+}) {
+  const [localOpen, setLocalOpen] = React.useState(controlledOpen || false);
+
+  React.useEffect(() => {
+    if (controlledOpen !== undefined) {
+      setLocalOpen(controlledOpen);
+    }
+  }, [controlledOpen]);
+
+  const handleOpenChange = (nextOpen: boolean) => {
+    if (controlledOpen === undefined) {
+      setLocalOpen(nextOpen);
+    }
+    if (onOpenChange) {
+      onOpenChange(nextOpen);
+    }
+  };
+
   return (
-    <TooltipProvider>
-      <TooltipPrimitive.Root data-slot="tooltip" {...props} />
-    </TooltipProvider>
+    <TooltipContext.Provider value={{ open: localOpen, setOpen: handleOpenChange }}>
+      {children}
+    </TooltipContext.Provider>
   );
 }
 
 function TooltipTrigger({
+  asChild = true,
+  children,
   ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Trigger>) {
-  return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />;
+}: {
+  asChild?: boolean;
+  children: React.ReactNode;
+}) {
+  const context = React.useContext(TooltipContext);
+  if (!context) throw new Error("TooltipTrigger must be used within Tooltip");
+
+  const { setOpen } = context;
+
+  if (asChild && React.isValidElement(children)) {
+    const child = children as React.ReactElement<any>;
+    return React.cloneElement(child, {
+      onPress: () => {
+        if (child.props.onPress) child.props.onPress();
+        setOpen(true);
+      },
+    });
+  }
+
+  return (
+    <Pressable onPress={() => setOpen(true)} {...props}>
+      {children}
+    </Pressable>
+  );
 }
 
 function TooltipContent({
   className,
-  sideOffset = 0,
   children,
-  ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Content>) {
+  style,
+  sideOffset: _sideOffset = 0,
+}: {
+  className?: string;
+  style?: any;
+  children: React.ReactNode;
+  sideOffset?: number;
+}) {
+  const context = React.useContext(TooltipContext);
+  if (!context) throw new Error("TooltipContent must be used within Tooltip");
+
+  const { open, setOpen } = context;
+
   return (
-    <TooltipPrimitive.Portal>
-      <TooltipPrimitive.Content
-        data-slot="tooltip-content"
-        sideOffset={sideOffset}
-        className={cn(
-          "bg-primary text-primary-foreground animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 w-fit origin-(--radix-tooltip-content-transform-origin) rounded-md px-3 py-1.5 text-xs text-balance",
-          className,
-        )}
-        {...props}
+    <Modal
+      visible={open}
+      transparent
+      animationType="fade"
+      onRequestClose={() => setOpen(false)}
+    >
+      <Pressable
+        className="flex-1 justify-center items-center bg-transparent"
+        onPress={() => setOpen(false)}
       >
-        {children}
-        <TooltipPrimitive.Arrow className="bg-primary fill-primary z-50 size-2.5 translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px]" />
-      </TooltipPrimitive.Content>
-    </TooltipPrimitive.Portal>
+        <Pressable
+          className={cn(
+            "bg-neutral-900 dark:bg-neutral-100 rounded-md px-3 py-1.5 shadow-md",
+            className
+          )}
+          style={style}
+          onPress={(e) => e.stopPropagation()}
+        >
+          {typeof children === "string" ? (
+            <Text className="text-xs text-neutral-50 dark:text-neutral-900 font-medium">
+              {children}
+            </Text>
+          ) : (
+            children
+          )}
+        </Pressable>
+      </Pressable>
+    </Modal>
   );
 }
 
 export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider };
-

@@ -1,3 +1,4 @@
+import { View, Text } from '../../tw';
 import { useState, useEffect } from 'react';
 import { DollarSign, TrendingUp, Calendar, CreditCard, Download, Loader2 } from 'lucide-react';
 import { Card } from '../ui/card';
@@ -149,100 +150,100 @@ export default function SitterEarnings({ language }: SitterEarningsProps) {
     .reduce((sum, t) => sum + Number(t.amount), 0);
 
   return (
-    <div className="max-w-4xl mx-auto px-4 pb-8">
+    <View className="max-w-4xl mx-auto px-4 pb-8">
       {/* Sticky Header */}
-      <div className="sticky top-0 z-50 bg-gray-50 dark:bg-gray-900 pt-6 pb-4 -mx-4 px-4 mb-4 border-b border-gray-100 dark:border-gray-800">
-        <div className="flex items-center justify-between">
-          <h1 className="text-[#FB5E7A] text-2xl font-bold">{t.earnings}</h1>
+      <View className="sticky top-0 z-50 bg-gray-50 dark:bg-gray-900 pt-6 pb-4 -mx-4 px-4 mb-4 border-b border-gray-100 dark:border-gray-800">
+        <View className="flex items-center justify-between">
+          <Text className="text-[#FB5E7A] text-2xl font-bold">{t.earnings}</Text>
           <Button
             className="bg-[#FB5E7A] hover:bg-[#e5536e]"
-            onClick={handleWithdraw}
+            onPress={handleWithdraw}
             disabled={isWithdrawing || balance <= 0}
           >
             {isWithdrawing ? <Loader2 className="animate-spin" /> : <CreditCard className="w-4 h-4 mr-2" />}
             {t.withdraw}
           </Button>
-        </div>
-      </div>
+        </View>
+      </View>
 
       {/* Balance Card */}
       <Card className="p-6 mb-6 bg-gradient-to-br from-[#FB5E7A] to-[#e5536e] text-white">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <p className="text-white/80 mb-1">{t.availableBalance}</p>
-            <h1 className="text-white text-4xl">{balance} {t.egp}</h1>
-          </div>
-          <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center">
+        <View className="flex items-center justify-between mb-4">
+          <View>
+            <Text className="text-white/80 mb-1">{t.availableBalance}</Text>
+            <Text className="text-white text-4xl">{balance} {t.egp}</Text>
+          </View>
+          <View className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center">
             <DollarSign className="w-8 h-8" />
-          </div>
-        </div>
+          </View>
+        </View>
 
-        <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/20">
-          <div>
-            <p className="text-white/80 text-sm mb-1">{t.thisMonth}</p>
-            <p className="text-xl">{thisMonthEarnings} {t.egp}</p>
-          </div>
-          <div>
-            <p className="text-white/80 text-sm mb-1">{t.lastMonth}</p>
-            <p className="text-xl">{lastMonthEarnings} {t.egp}</p>
-          </div>
-        </div>
+        <View className="grid grid-cols-2 gap-4 pt-4 border-t border-white/20">
+          <View>
+            <Text className="text-white/80 text-sm mb-1">{t.thisMonth}</Text>
+            <Text className="text-xl">{thisMonthEarnings} {t.egp}</Text>
+          </View>
+          <View>
+            <Text className="text-white/80 text-sm mb-1">{t.lastMonth}</Text>
+            <Text className="text-xl">{lastMonthEarnings} {t.egp}</Text>
+          </View>
+        </View>
       </Card>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+      <View className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         <Card className="p-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">{t.totalEarnings}</p>
-              <h3 className="text-green-600">+{thisMonthEarnings} {t.egp}</h3>
-            </div>
-            <div className="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center">
+          <View className="flex items-center justify-between">
+            <View>
+              <Text className="text-sm text-gray-600 dark:text-gray-400 mb-1">{t.totalEarnings}</Text>
+              <Text className="text-green-600">+{thisMonthEarnings} {t.egp}</Text>
+            </View>
+            <View className="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center">
               <TrendingUp className="w-6 h-6 text-green-600" />
-            </div>
-          </div>
+            </View>
+          </View>
         </Card>
 
         <Card className="p-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">{t.totalWithdrawals}</p>
-              <h3 className="text-red-600">-{totalWithdrawals} {t.egp}</h3>
-            </div>
-            <div className="w-12 h-12 rounded-full bg-red-100 dark:bg-red-900 flex items-center justify-center">
+          <View className="flex items-center justify-between">
+            <View>
+              <Text className="text-sm text-gray-600 dark:text-gray-400 mb-1">{t.totalWithdrawals}</Text>
+              <Text className="text-red-600">-{totalWithdrawals} {t.egp}</Text>
+            </View>
+            <View className="w-12 h-12 rounded-full bg-red-100 dark:bg-red-900 flex items-center justify-center">
               <CreditCard className="w-6 h-6 text-red-600" />
-            </div>
-          </div>
+            </View>
+          </View>
         </Card>
-      </div>
+      </View>
 
       {/* Transaction History */}
       <Card className="p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h3>{t.history}</h3>
+        <View className="flex items-center justify-between mb-4">
+          <Text>{t.history}</Text>
           <Button variant="ghost" size="sm">
             <Download className="w-4 h-4 mr-2" />
             {t.downloadReport}
           </Button>
-        </div>
+        </View>
 
         {isLoading ? (
-          <div className="text-center py-12">
+          <View className="text-center py-12">
             <Loader2 className="w-8 h-8 mx-auto animate-spin text-gray-400" />
-          </div>
+          </View>
         ) : transactions.length === 0 ? (
-          <div className="text-center py-12 text-gray-500">
+          <View className="text-center py-12 text-gray-500">
             {t.noTransactions}
-          </div>
+          </View>
         ) : (
-          <div className="space-y-3">
+          <View className="space-y-3">
             {transactions.map((transaction) => (
-              <div
+              <View
                 key={transaction.id}
                 className="flex items-center justify-between p-3 border-b last:border-b-0"
               >
-                <div className="flex items-center gap-3">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center ${transaction.type === 'earning'
+                <View className="flex items-center gap-3">
+                  <View className={`w-10 h-10 rounded-full flex items-center justify-center ${transaction.type === 'earning'
                     ? 'bg-green-100 dark:bg-green-900'
                     : 'bg-red-100 dark:bg-red-900'
                     }`}>
@@ -251,20 +252,20 @@ export default function SitterEarnings({ language }: SitterEarningsProps) {
                     ) : (
                       <CreditCard className="w-5 h-5 text-red-600" />
                     )}
-                  </div>
-                  <div>
-                    <h4 className="text-sm mb-1">{transaction.description}</h4>
-                    <div className="flex items-center gap-2 text-xs text-gray-500">
+                  </View>
+                  <View>
+                    <Text className="text-sm mb-1">{transaction.description}</Text>
+                    <View className="flex items-center gap-2 text-xs text-gray-500">
                       <Calendar className="w-3 h-3" />
-                      <span>{new Date(transaction.created_at).toLocaleDateString()}</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <div className={`mb-1 ${transaction.type === 'earning' ? 'text-green-600' : 'text-red-600'
+                      <Text>{new Date(transaction.created_at).toLocaleDateString()}</Text>
+                    </View>
+                  </View>
+                </View>
+                <View className="text-right">
+                  <View className={`mb-1 ${transaction.type === 'earning' ? 'text-green-600' : 'text-red-600'
                     }`}>
                     {transaction.type === 'earning' ? '+' : '-'}{transaction.amount} {t.egp}
-                  </div>
+                  </View>
                   <Badge
                     className={
                       transaction.status === 'completed'
@@ -276,12 +277,12 @@ export default function SitterEarnings({ language }: SitterEarningsProps) {
                   >
                     {t[transaction.status as keyof typeof t]}
                   </Badge>
-                </div>
-              </div>
+                </View>
+              </View>
             ))}
-          </div>
+          </View>
         )}
       </Card>
-    </div>
+    </View>
   );
 }

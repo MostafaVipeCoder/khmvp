@@ -1,49 +1,130 @@
-"use client";
-
 import * as React from "react";
-import * as PopoverPrimitive from "@radix-ui/react-popover";
-
+import { Modal } from "react-native";
+import { Pressable } from "../../tw";
 import { cn } from "./utils";
 
+interface PopoverContextType {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+}
+
+const PopoverContext = React.createContext<PopoverContextType | null>(null);
+
+interface PopoverProps {
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  children: React.ReactNode;
+}
+
 function Popover({
-  ...props
-}: React.ComponentProps<typeof PopoverPrimitive.Root>) {
-  return <PopoverPrimitive.Root data-slot="popover" {...props} />;
+  open: controlledOpen,
+  onOpenChange,
+  children,
+}: PopoverProps) {
+  const [localOpen, setLocalOpen] = React.useState(controlledOpen || false);
+
+  React.useEffect(() => {
+    if (controlledOpen !== undefined) {
+      setLocalOpen(controlledOpen);
+    }
+  }, [controlledOpen]);
+
+  const handleOpenChange = (nextOpen: boolean) => {
+    if (controlledOpen === undefined) {
+      setLocalOpen(nextOpen);
+    }
+    if (onOpenChange) {
+      onOpenChange(nextOpen);
+    }
+  };
+
+  return (
+    <PopoverContext.Provider value={{ open: localOpen, setOpen: handleOpenChange }}>
+      {children}
+    </PopoverContext.Provider>
+  );
+}
+
+interface PopoverTriggerProps {
+  asChild?: boolean;
+  children: React.ReactNode;
 }
 
 function PopoverTrigger({
+  asChild = true,
+  children,
   ...props
-}: React.ComponentProps<typeof PopoverPrimitive.Trigger>) {
-  return <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />;
+}: PopoverTriggerProps) {
+  const context = React.useContext(PopoverContext);
+  if (!context) throw new Error("PopoverTrigger must be used within Popover");
+
+  const { setOpen } = context;
+
+  if (asChild && React.isValidElement(children)) {
+    const child = children as React.ReactElement<any>;
+    return React.cloneElement(child, {
+      onPress: () => {
+        if (child.props.onPress) child.props.onPress();
+        setOpen(true);
+      },
+    });
+  }
+
+  return (
+    <Pressable onPress={() => setOpen(true)} {...props}>
+      {children}
+    </Pressable>
+  );
+}
+
+interface PopoverContentProps {
+  className?: string;
+  style?: any;
+  children: React.ReactNode;
+  align?: "center" | "start" | "end";
+  sideOffset?: number;
 }
 
 function PopoverContent({
   className,
-  align = "center",
-  sideOffset = 4,
-  ...props
-}: React.ComponentProps<typeof PopoverPrimitive.Content>) {
+  children,
+  style,
+  align: _align = "center",
+  sideOffset: _sideOffset = 4,
+}: PopoverContentProps) {
+  const context = React.useContext(PopoverContext);
+  if (!context) throw new Error("PopoverContent must be used within Popover");
+
+  const { open, setOpen } = context;
+
   return (
-    <PopoverPrimitive.Portal>
-      <PopoverPrimitive.Content
-        data-slot="popover-content"
-        align={align}
-        sideOffset={sideOffset}
-        className={cn(
-          "bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 w-72 origin-(--radix-popover-content-transform-origin) rounded-md border p-4 shadow-md outline-hidden",
-          className,
-        )}
-        {...props}
-      />
-    </PopoverPrimitive.Portal>
+    <Modal
+      visible={open}
+      transparent
+      animationType="fade"
+      onRequestClose={() => setOpen(false)}
+    >
+      <Pressable
+        className="flex-1 justify-center items-center bg-black/40"
+        onPress={() => setOpen(false)}
+      >
+        <Pressable
+          className={cn(
+            "bg-white dark:bg-neutral-900 w-[85%] max-w-[340px] rounded-lg border border-neutral-200 dark:border-neutral-800 p-4 shadow-lg",
+            className
+          )}
+          style={style}
+          onPress={(e) => e.stopPropagation()}
+        >
+          {children}
+        </Pressable>
+      </Pressable>
+    </Modal>
   );
 }
 
-function PopoverAnchor({
-  ...props
-}: React.ComponentProps<typeof PopoverPrimitive.Anchor>) {
-  return <PopoverPrimitive.Anchor data-slot="popover-anchor" {...props} />;
+function PopoverAnchor({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
 }
 
 export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor };
-

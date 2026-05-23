@@ -1,3 +1,4 @@
+import { View, Text, Image } from '../../tw';
 import { useState, useEffect } from 'react';
 import { ArrowLeft, ArrowRight, Check, X, Clock, MapPin, Calendar, User, AlertCircle, Loader2 } from 'lucide-react';
 import { Button } from '../ui/button';
@@ -216,29 +217,29 @@ export default function BookingRequests({ language, isVerified, onBack }: Bookin
   const otherRequests = requests.filter(r => r.status !== 'pending');
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <View className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <div className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center gap-4">
+      <View className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <View className="max-w-7xl mx-auto px-4 py-4">
+          <View className="flex items-center gap-4">
             <Button
-              onClick={onBack}
+              onPress={onBack}
               variant="ghost"
               className="p-2"
             >
               {language === 'ar' ? <ArrowRight className="size-5" /> : <ArrowLeft className="size-5" />}
             </Button>
-            <div className="flex-1">
-              <h1 className="text-xl">{t.bookingRequests}</h1>
-            </div>
+            <View className="flex-1">
+              <Text className="text-xl">{t.bookingRequests}</Text>
+            </View>
             {pendingRequests.length > 0 && (
               <Badge className="bg-[#FB5E7A]">{pendingRequests.length}</Badge>
             )}
-          </div>
-        </div>
-      </div>
+          </View>
+        </View>
+      </View>
 
-      <div className="max-w-4xl mx-auto p-4 space-y-6">
+      <View className="max-w-4xl mx-auto p-4 space-y-6">
         {/* Verification Alert */}
         {!isVerified && (
           <Alert className="border-yellow-500 bg-yellow-50 dark:bg-yellow-900/20">
@@ -251,56 +252,56 @@ export default function BookingRequests({ language, isVerified, onBack }: Bookin
 
         {/* Pending Requests */}
         {pendingRequests.length > 0 && (
-          <div className="space-y-4">
-            <h2 className="text-lg">{t.pending}</h2>
+          <View className="space-y-4">
+            <Text className="text-lg">{t.pending}</Text>
             {pendingRequests.map((request) => (
               <Card key={request.id} className="p-4">
-                <div className="space-y-4">
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-center gap-3">
+                <View className="space-y-4">
+                  <View className="flex items-start justify-between">
+                    <View className="flex items-center gap-3">
                       <Avatar className="w-12 h-12">
-                        <img src={request.client?.avatar_url || ''} alt={request.client?.full_name} />
+                        <Image src={request.client?.avatar_url || ''} alt={request.client?.full_name} />
                       </Avatar>
-                      <div>
-                        <h3>{request.client?.full_name}</h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">{request.booking_type === 'home' ? t.atHome : t.outside}</p>
-                      </div>
-                    </div>
+                      <View>
+                        <Text>{request.client?.full_name}</Text>
+                        <Text className="text-sm text-gray-600 dark:text-gray-400">{request.booking_type === 'home' ? t.atHome : t.outside}</Text>
+                      </View>
+                    </View>
                     {getStatusBadge(request.status)}
-                  </div>
+                  </View>
 
-                  <div className="grid grid-cols-2 gap-3 text-sm">
-                    <div className="flex items-center gap-2">
+                  <View className="grid grid-cols-2 gap-3 text-sm">
+                    <View className="flex items-center gap-2">
                       <Calendar className="size-4 text-gray-400" />
-                      <span>{request.date}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
+                      <Text>{request.date}</Text>
+                    </View>
+                    <View className="flex items-center gap-2">
                       <Clock className="size-4 text-gray-400" />
-                      <span>{request.start_time}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
+                      <Text>{request.start_time}</Text>
+                    </View>
+                    <View className="flex items-center gap-2">
                       <User className="size-4 text-gray-400" />
-                      <span>{request.children_count || 1} {t.children}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-[#FB5E7A]">{request.total_price} {t.egp}</span>
-                    </div>
-                  </div>
+                      <Text>{request.children_count || 1} {t.children}</Text>
+                    </View>
+                    <View className="flex items-center gap-2">
+                      <Text className="text-[#FB5E7A]">{request.total_price} {t.egp}</Text>
+                    </View>
+                  </View>
 
-                  <div className="flex items-start gap-2 text-sm">
+                  <View className="flex items-start gap-2 text-sm">
                     <MapPin className="size-4 text-gray-400 mt-0.5 shrink-0" />
-                    <span className="text-gray-600 dark:text-gray-400">{request.location}</span>
-                  </div>
+                    <Text className="text-gray-600 dark:text-gray-400">{request.location}</Text>
+                  </View>
 
                   {request.notes && (
-                    <div className="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg text-sm">
+                    <View className="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg text-sm">
                       <strong>{t.notes}:</strong> {request.notes}
-                    </div>
+                    </View>
                   )}
 
-                  <div className="flex gap-2 pt-2 border-t">
+                  <View className="flex gap-2 pt-2 border-t">
                     <Button
-                      onClick={() => {
+                      onPress={() => {
                         setSelectedRequest(request);
                         setShowConfirmDialog('accept');
                       }}
@@ -311,7 +312,7 @@ export default function BookingRequests({ language, isVerified, onBack }: Bookin
                       {t.accept}
                     </Button>
                     <Button
-                      onClick={() => {
+                      onPress={() => {
                         setSelectedRequest(request);
                         setShowConfirmDialog('decline');
                       }}
@@ -322,72 +323,72 @@ export default function BookingRequests({ language, isVerified, onBack }: Bookin
                       <X className="size-4" />
                       {t.decline}
                     </Button>
-                  </div>
-                </div>
+                  </View>
+                </View>
               </Card>
             ))}
-          </div>
+          </View>
         )}
 
         {/* Other Requests */}
         {otherRequests.length > 0 && (
-          <div className="space-y-4">
-            <h2 className="text-lg">{t.accepted} / {t.rejected}</h2>
+          <View className="space-y-4">
+            <Text className="text-lg">{t.accepted} / {t.rejected}</Text>
             {otherRequests.map((request) => (
               <Card key={request.id} className="p-4 opacity-75">
-                <div className="space-y-3">
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-center gap-3">
+                <View className="space-y-3">
+                  <View className="flex items-start justify-between">
+                    <View className="flex items-center gap-3">
                       <Avatar className="w-10 h-10">
-                        <img src={request.client?.avatar_url || ''} alt={request.client?.full_name} />
+                        <Image src={request.client?.avatar_url || ''} alt={request.client?.full_name} />
                       </Avatar>
-                      <div>
-                        <h3 className="text-sm">{request.client?.full_name}</h3>
-                        <p className="text-xs text-gray-600 dark:text-gray-400">{request.booking_type === 'home' ? t.atHome : t.outside}</p>
-                      </div>
-                    </div>
+                      <View>
+                        <Text className="text-sm">{request.client?.full_name}</Text>
+                        <Text className="text-xs text-gray-600 dark:text-gray-400">{request.booking_type === 'home' ? t.atHome : t.outside}</Text>
+                      </View>
+                    </View>
                     {getStatusBadge(request.status)}
-                  </div>
+                  </View>
 
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-600 dark:text-gray-400">{request.date} - {request.start_time}</span>
-                    <span className="text-[#FB5E7A]">{request.total_price} {t.egp}</span>
-                  </div>
-                </div>
+                  <View className="flex items-center justify-between text-sm">
+                    <Text className="text-gray-600 dark:text-gray-400">{request.date} - {request.start_time}</Text>
+                    <Text className="text-[#FB5E7A]">{request.total_price} {t.egp}</Text>
+                  </View>
+                </View>
               </Card>
             ))}
-          </div>
+          </View>
         )}
 
         {/* Loading State */}
         {loading && (
-          <div className="flex justify-center p-12">
+          <View className="flex justify-center p-12">
             <Loader2 className="w-8 h-8 text-[#FB5E7A] animate-spin" />
-          </div>
+          </View>
         )}
 
         {/* No Requests */}
         {!loading && requests.length === 0 && (
           <Card className="p-12 text-center">
             <AlertCircle className="size-12 mx-auto mb-4 text-gray-400" />
-            <p className="text-gray-600 dark:text-gray-400">{t.noRequests}</p>
+            <Text className="text-gray-600 dark:text-gray-400">{t.noRequests}</Text>
           </Card>
         )}
-      </div>
+      </View>
 
       {/* Confirm Dialog */}
       {showConfirmDialog && selectedRequest && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+        <View className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <Card className="max-w-md w-full p-6">
-            <h3 className="text-lg mb-4">
+            <Text className="text-lg mb-4">
               {showConfirmDialog === 'accept' ? t.acceptRequest : t.declineRequest}
-            </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
+            </Text>
+            <Text className="text-sm text-gray-600 dark:text-gray-400 mb-6">
               {showConfirmDialog === 'accept' ? t.acceptConfirm : t.declineConfirm}
-            </p>
-            <div className="flex gap-3">
+            </Text>
+            <View className="flex gap-3">
               <Button
-                onClick={() => {
+                onPress={() => {
                   if (showConfirmDialog === 'accept') {
                     handleAccept(selectedRequest);
                   } else {
@@ -399,7 +400,7 @@ export default function BookingRequests({ language, isVerified, onBack }: Bookin
                 {t.confirm}
               </Button>
               <Button
-                onClick={() => {
+                onPress={() => {
                   setShowConfirmDialog(null);
                   setSelectedRequest(null);
                 }}
@@ -408,10 +409,10 @@ export default function BookingRequests({ language, isVerified, onBack }: Bookin
               >
                 {t.cancel}
               </Button>
-            </div>
+            </View>
           </Card>
-        </div>
+        </View>
       )}
-    </div>
+    </View>
   );
 }

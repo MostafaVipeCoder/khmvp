@@ -1,3 +1,4 @@
+import { View, Text } from '../../tw';
 import { useState, useEffect } from 'react';
 import { ArrowLeft, ArrowRight, Save, Plus, Trash2, Clock, Calendar, CalendarDays, Loader2 } from 'lucide-react';
 import { Button } from '../ui/button';
@@ -203,7 +204,7 @@ export default function ServicesManagement({ language, onBack }: ServicesManagem
       setLoading(true);
       if (!user?.id) return;
 
-      const promises = [];
+      const promises: Promise<any>[] = [];
 
       // Always save all services with their enabled/disabled status
       promises.push(sitterService.upsertService(
@@ -247,89 +248,89 @@ export default function ServicesManagement({ language, onBack }: ServicesManagem
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <View className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <div className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center gap-4">
+      <View className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <View className="max-w-7xl mx-auto px-4 py-4">
+          <View className="flex items-center gap-4">
             <Button
-              onClick={onBack}
+              onPress={onBack}
               variant="ghost"
               className="p-2"
             >
               {language === 'ar' ? <ArrowRight className="size-5" /> : <ArrowLeft className="size-5" />}
             </Button>
-            <div className="flex-1">
-              <h1 className="text-xl">{t.servicesManagement}</h1>
-            </div>
+            <View className="flex-1">
+              <Text className="text-xl">{t.servicesManagement}</Text>
+            </View>
             <Button
-              onClick={saveServices}
+              onPress={saveServices}
               disabled={loading}
               className="bg-[#FB5E7A] hover:bg-[#e5536e]"
             >
               {loading ? <Loader2 className="size-4 animate-spin" /> : <Save className="size-4" />}
               {t.saveServices}
             </Button>
-          </div>
-        </div>
-      </div>
+          </View>
+        </View>
+      </View>
 
-      <div className="max-w-7xl mx-auto p-4 space-y-6">
+      <View className="max-w-7xl mx-auto p-4 space-y-6">
         {/* Hourly Service */}
         <Card className="p-6">
-          <div className="space-y-4">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-[#FB5E7A]/10 flex items-center justify-center">
+          <View className="space-y-4">
+            <View className="flex items-center justify-between mb-4">
+              <View className="flex items-center gap-3">
+                <View className="w-12 h-12 rounded-full bg-[#FB5E7A]/10 flex items-center justify-center">
                   <Clock className="w-6 h-6 text-[#FB5E7A]" />
-                </div>
-                <div>
-                  <h2 className="text-lg">{t.hourlyUrgent}</h2>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{t.hourlyDesc}</p>
-                </div>
-              </div>
+                </View>
+                <View>
+                  <Text className="text-lg">{t.hourlyUrgent}</Text>
+                  <Text className="text-sm text-gray-600 dark:text-gray-400">{t.hourlyDesc}</Text>
+                </View>
+              </View>
               <Checkbox
                 id="hourly-enabled"
                 checked={hourlyService.enabled}
                 onCheckedChange={(checked: boolean) => setHourlyService(prev => ({ ...prev, enabled: checked }))}
               />
-            </div>
+            </View>
 
             {hourlyService.enabled && (
-              <div className="space-y-4 border-t pt-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
+              <View className="space-y-4 border-t pt-4">
+                <View className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <View>
                     <Label>{t.pricePerHour}</Label>
-                    <div className="relative mt-2">
+                    <View className="relative mt-2">
                       <Input
                         type="number"
                         value={hourlyService.price}
                         onChange={(e) => setHourlyService(prev => ({ ...prev, price: Number(e.target.value) }))}
                         className="pr-16"
                       />
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-gray-500">
+                      <Text className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-gray-500">
                         {t.egp}
-                      </span>
-                    </div>
-                  </div>
+                      </Text>
+                    </View>
+                  </View>
 
-                  <div>
+                  <View>
                     <Label>{t.minimumHours}</Label>
-                    <div className="relative mt-2">
+                    <View className="relative mt-2">
                       <Input
                         type="number"
                         value={hourlyService.minimumHours}
                         onChange={(e) => setHourlyService(prev => ({ ...prev, minimumHours: Number(e.target.value) }))}
                         className="pr-16"
                       />
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-gray-500">
+                      <Text className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-gray-500">
                         {t.hours}
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                      </Text>
+                    </View>
+                  </View>
+                </View>
 
-                <div>
+                <View>
                   <Label>{t.description}</Label>
                   <Textarea
                     value={hourlyService.description}
@@ -337,97 +338,97 @@ export default function ServicesManagement({ language, onBack }: ServicesManagem
                     className="mt-2"
                     rows={3}
                   />
-                </div>
+                </View>
 
-                <div>
+                <View>
                   <Label>{t.features}</Label>
-                  <div className="space-y-2 mt-2">
+                  <View className="space-y-2 mt-2">
                     {hourlyService.features.map((feature, index) => (
-                      <div key={index} className="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-800 rounded">
-                        <span className="flex-1 text-sm">{feature}</span>
+                      <View key={index} className="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-800 rounded">
+                        <Text className="flex-1 text-sm">{feature}</Text>
                         <Button
-                          onClick={() => removeFeature('hourly', index)}
+                          onPress={() => removeFeature('hourly', index)}
                           variant="ghost"
                           size="sm"
                           className="text-red-500 hover:text-red-600"
                         >
                           <Trash2 className="size-4" />
                         </Button>
-                      </div>
+                      </View>
                     ))}
-                    <div className="flex gap-2">
+                    <View className="flex gap-2">
                       <Input
                         value={newHourlyFeature}
                         onChange={(e) => setNewHourlyFeature(e.target.value)}
                         placeholder={t.feature}
                         onKeyPress={(e) => e.key === 'Enter' && addFeature('hourly')}
                       />
-                      <Button onClick={() => addFeature('hourly')} variant="outline">
+                      <Button onPress={() => addFeature('hourly')} variant="outline">
                         <Plus className="size-4" />
                       </Button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                    </View>
+                  </View>
+                </View>
+              </View>
             )}
-          </div>
+          </View>
         </Card>
 
         {/* Weekly Service */}
         <Card className="p-6">
-          <div className="space-y-4">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center">
+          <View className="space-y-4">
+            <View className="flex items-center justify-between mb-4">
+              <View className="flex items-center gap-3">
+                <View className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center">
                   <Calendar className="w-6 h-6 text-blue-500" />
-                </div>
-                <div>
-                  <h2 className="text-lg">{t.weeklyContract}</h2>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{t.weeklyDesc}</p>
-                </div>
-              </div>
+                </View>
+                <View>
+                  <Text className="text-lg">{t.weeklyContract}</Text>
+                  <Text className="text-sm text-gray-600 dark:text-gray-400">{t.weeklyDesc}</Text>
+                </View>
+              </View>
               <Checkbox
                 id="weekly-enabled"
                 checked={weeklyService.enabled}
                 onCheckedChange={(checked: boolean) => setWeeklyService(prev => ({ ...prev, enabled: checked }))}
               />
-            </div>
+            </View>
 
             {weeklyService.enabled && (
-              <div className="space-y-4 border-t pt-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
+              <View className="space-y-4 border-t pt-4">
+                <View className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <View>
                     <Label>{t.pricePerWeek}</Label>
-                    <div className="relative mt-2">
+                    <View className="relative mt-2">
                       <Input
                         type="number"
                         value={weeklyService.price}
                         onChange={(e) => setWeeklyService(prev => ({ ...prev, price: Number(e.target.value) }))}
                         className="pr-16"
                       />
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-gray-500">
+                      <Text className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-gray-500">
                         {t.egp}
-                      </span>
-                    </div>
-                  </div>
+                      </Text>
+                    </View>
+                  </View>
 
-                  <div>
+                  <View>
                     <Label>{t.minimumWeeklyHours}</Label>
-                    <div className="relative mt-2">
+                    <View className="relative mt-2">
                       <Input
                         type="number"
                         value={weeklyService.minimumHours}
                         onChange={(e) => setWeeklyService(prev => ({ ...prev, minimumHours: Number(e.target.value) }))}
                         className="pr-16"
                       />
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-gray-500">
+                      <Text className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-gray-500">
                         {t.hours}
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                      </Text>
+                    </View>
+                  </View>
+                </View>
 
-                <div>
+                <View>
                   <Label>{t.description}</Label>
                   <Textarea
                     value={weeklyService.description}
@@ -435,97 +436,97 @@ export default function ServicesManagement({ language, onBack }: ServicesManagem
                     className="mt-2"
                     rows={3}
                   />
-                </div>
+                </View>
 
-                <div>
+                <View>
                   <Label>{t.features}</Label>
-                  <div className="space-y-2 mt-2">
+                  <View className="space-y-2 mt-2">
                     {weeklyService.features.map((feature, index) => (
-                      <div key={index} className="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-800 rounded">
-                        <span className="flex-1 text-sm">{feature}</span>
+                      <View key={index} className="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-800 rounded">
+                        <Text className="flex-1 text-sm">{feature}</Text>
                         <Button
-                          onClick={() => removeFeature('weekly', index)}
+                          onPress={() => removeFeature('weekly', index)}
                           variant="ghost"
                           size="sm"
                           className="text-red-500 hover:text-red-600"
                         >
                           <Trash2 className="size-4" />
                         </Button>
-                      </div>
+                      </View>
                     ))}
-                    <div className="flex gap-2">
+                    <View className="flex gap-2">
                       <Input
                         value={newWeeklyFeature}
                         onChange={(e) => setNewWeeklyFeature(e.target.value)}
                         placeholder={t.feature}
                         onKeyPress={(e) => e.key === 'Enter' && addFeature('weekly')}
                       />
-                      <Button onClick={() => addFeature('weekly')} variant="outline">
+                      <Button onPress={() => addFeature('weekly')} variant="outline">
                         <Plus className="size-4" />
                       </Button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                    </View>
+                  </View>
+                </View>
+              </View>
             )}
-          </div>
+          </View>
         </Card>
 
         {/* Monthly Service */}
         <Card className="p-6">
-          <div className="space-y-4">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center">
+          <View className="space-y-4">
+            <View className="flex items-center justify-between mb-4">
+              <View className="flex items-center gap-3">
+                <View className="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center">
                   <CalendarDays className="w-6 h-6 text-green-500" />
-                </div>
-                <div>
-                  <h2 className="text-lg">{t.monthlyContract}</h2>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{t.monthlyDesc}</p>
-                </div>
-              </div>
+                </View>
+                <View>
+                  <Text className="text-lg">{t.monthlyContract}</Text>
+                  <Text className="text-sm text-gray-600 dark:text-gray-400">{t.monthlyDesc}</Text>
+                </View>
+              </View>
               <Checkbox
                 id="monthly-enabled"
                 checked={monthlyService.enabled}
                 onCheckedChange={(checked: boolean) => setMonthlyService(prev => ({ ...prev, enabled: checked }))}
               />
-            </div>
+            </View>
 
             {monthlyService.enabled && (
-              <div className="space-y-4 border-t pt-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
+              <View className="space-y-4 border-t pt-4">
+                <View className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <View>
                     <Label>{t.pricePerMonth}</Label>
-                    <div className="relative mt-2">
+                    <View className="relative mt-2">
                       <Input
                         type="number"
                         value={monthlyService.price}
                         onChange={(e) => setMonthlyService(prev => ({ ...prev, price: Number(e.target.value) }))}
                         className="pr-16"
                       />
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-gray-500">
+                      <Text className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-gray-500">
                         {t.egp}
-                      </span>
-                    </div>
-                  </div>
+                      </Text>
+                    </View>
+                  </View>
 
-                  <div>
+                  <View>
                     <Label>{t.minimumMonthlyHours}</Label>
-                    <div className="relative mt-2">
+                    <View className="relative mt-2">
                       <Input
                         type="number"
                         value={monthlyService.minimumHours}
                         onChange={(e) => setMonthlyService(prev => ({ ...prev, minimumHours: Number(e.target.value) }))}
                         className="pr-16"
                       />
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-gray-500">
+                      <Text className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-gray-500">
                         {t.hours}
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                      </Text>
+                    </View>
+                  </View>
+                </View>
 
-                <div>
+                <View>
                   <Label>{t.description}</Label>
                   <Textarea
                     value={monthlyService.description}
@@ -533,42 +534,42 @@ export default function ServicesManagement({ language, onBack }: ServicesManagem
                     className="mt-2"
                     rows={3}
                   />
-                </div>
+                </View>
 
-                <div>
+                <View>
                   <Label>{t.features}</Label>
-                  <div className="space-y-2 mt-2">
+                  <View className="space-y-2 mt-2">
                     {monthlyService.features.map((feature, index) => (
-                      <div key={index} className="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-800 rounded">
-                        <span className="flex-1 text-sm">{feature}</span>
+                      <View key={index} className="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-800 rounded">
+                        <Text className="flex-1 text-sm">{feature}</Text>
                         <Button
-                          onClick={() => removeFeature('monthly', index)}
+                          onPress={() => removeFeature('monthly', index)}
                           variant="ghost"
                           size="sm"
                           className="text-red-500 hover:text-red-600"
                         >
                           <Trash2 className="size-4" />
                         </Button>
-                      </div>
+                      </View>
                     ))}
-                    <div className="flex gap-2">
+                    <View className="flex gap-2">
                       <Input
                         value={newMonthlyFeature}
                         onChange={(e) => setNewMonthlyFeature(e.target.value)}
                         placeholder={t.feature}
                         onKeyPress={(e) => e.key === 'Enter' && addFeature('monthly')}
                       />
-                      <Button onClick={() => addFeature('monthly')} variant="outline">
+                      <Button onPress={() => addFeature('monthly')} variant="outline">
                         <Plus className="size-4" />
                       </Button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                    </View>
+                  </View>
+                </View>
+              </View>
             )}
-          </div>
+          </View>
         </Card>
-      </div>
-    </div>
+      </View>
+    </View>
   );
 }

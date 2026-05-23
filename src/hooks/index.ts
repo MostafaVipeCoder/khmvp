@@ -1,6 +1,9 @@
 // Custom React Hooks for common functionality
+// React Native compatible version
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { Dimensions } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /**
  * useDebounce - Debounce a value
@@ -23,118 +26,67 @@ export function useDebounce<T>(value: T, delay: number = 500): T {
 }
 
 /**
- * useLocalStorage - Persist state in localStorage
- * Automatically syncs with localStorage
+ * useLocalStorage - Persist state in AsyncStorage (React Native compatible)
+ * Note: async, initial value is used until storage resolves
  */
 export function useLocalStorage<T>(
     key: string,
     initialValue: T
 ): [T, (value: T | ((val: T) => T)) => void] {
-    // State to store our value
-    const [storedValue, setStoredValue] = useState<T>(() => {
-        try {
-            const item = window.localStorage.getItem(key);
-            return item ? JSON.parse(item) : initialValue;
-        } catch (error) {
-            console.error(`Error loading localStorage key "${key}":`, error);
-            return initialValue;
-        }
-    });
+    const [storedValue, setStoredValue] = useState<T>(initialValue);
 
-    // Return a wrapped version of useState's setter function that
-    // persists the new value to localStorage.
-    const setValue = (value: T | ((val: T) => T)) => {
-        try {
-            // Allow value to be a function so we have same API as useState
+    useEffect(() => {
+        AsyncStorage.getItem(key)
+            .then((item) => {
+                if (item !== null) {
+                    setStoredValue(JSON.parse(item));
+                }
+            })
+            .catch((error) => {
+                console.error(`Error loading AsyncStorage key "${key}":`, error);
+            });
+    }, [key]);
+
+    const setValue = useCallback((value: T | ((val: T) => T)) => {
+        setStoredValue((prevStored) => {
             const valueToStore =
-                value instanceof Function ? value(storedValue) : value;
-
-            setStoredValue(valueToStore);
-            window.localStorage.setItem(key, JSON.stringify(valueToStore));
-        } catch (error) {
-            console.error(`Error setting localStorage key "${key}":`, error);
-        }
-    };
+                value instanceof Function ? value(prevStored) : value;
+            AsyncStorage.setItem(key, JSON.stringify(valueToStore)).catch((error) => {
+                console.error(`Error setting AsyncStorage key "${key}":`, error);
+            });
+            return valueToStore;
+        });
+    }, [key]);
 
     return [storedValue, setValue];
 }
 
 /**
- * useMediaQuery - Detect media query matches
- * Useful for responsive design
+ * useMediaQuery - Always returns true on mobile (React Native compatible stub)
+ * On RN every screen is "mobile", so media queries are irrelevant.
  */
-export function useMediaQuery(query: string): boolean {
-    const [matches, setMatches] = useState(false);
-
-    useEffect(() => {
-        const media = window.matchMedia(query);
-
-        if (media.matches !== matches) {
-            setMatches(media.matches);
-        }
-
-        const listener = () => setMatches(media.matches);
-        media.addEventListener('change', listener);
-
-        return () => media.removeEventListener('change', listener);
-    }, [matches, query]);
-
-    return matches;
+export function useMediaQuery(_query: string): boolean {
+    return true;
 }
 
 /**
- * useIntersectionObserver - Detect when element enters viewport
- * Useful for lazy loading images or infinite scroll
+ * useIntersectionObserver - Not available in React Native, always returns false
  */
 export function useIntersectionObserver(
-    elementRef: React.RefObject<Element>,
-    options?: IntersectionObserverInit
+    _elementRef: any,
+    _options?: any
 ): boolean {
-    const [isIntersecting, setIsIntersecting] = useState(false);
-
-    useEffect(() => {
-        const element = elementRef.current;
-        if (!element) return;
-
-        const observer = new IntersectionObserver(([entry]) => {
-            setIsIntersecting(entry.isIntersecting);
-        }, options);
-
-        observer.observe(element);
-
-        return () => {
-            observer.disconnect();
-        };
-    }, [elementRef, options]);
-
-    return isIntersecting;
+    return false;
 }
 
 /**
- * useOnClickOutside - Detect clicks outside an element
- * Useful for closing modals/dropdowns
+ * useOnClickOutside - Not applicable in React Native (touch model is different)
  */
-export function useOnClickOutside<T extends HTMLElement = HTMLElement>(
-    ref: React.RefObject<T>,
-    handler: (event: MouseEvent | TouchEvent) => void
+export function useOnClickOutside(
+    _ref: any,
+    _handler: (event: any) => void
 ) {
-    useEffect(() => {
-        const listener = (event: MouseEvent | TouchEvent) => {
-            const el = ref?.current;
-            if (!el || el.contains(event.target as Node)) {
-                return;
-            }
-            handler(event);
-        };
-
-        document.addEventListener('mousedown', listener);
-        document.addEventListener('touchstart', listener);
-
-        return () => {
-            document.removeEventListener('mousedown', listener);
-            document.removeEventListener('touchstart', listener);
-        };
-    }, [ref, handler]);
+    // No-op in React Native
 }
 
 /**
@@ -206,25 +158,20 @@ export function useAsync<T>(
 }
 
 /**
- * useWindowSize - Get window dimensions
- * Updates on resize
+ * useWindowSize - Get screen dimensions (React Native compatible)
+ * Uses Dimensions API instead of window.innerWidth/Height
  */
 export function useWindowSize() {
-    const [windowSize, setWindowSize] = useState({
-        width: window.innerWidth,
-        height: window.innerHeight,
+    const [windowSize, setWindowSize] = useState(() => {
+        const { width, height } = Dimensions.get('window');
+        return { width, height };
     });
 
     useEffect(() => {
-        const handleResize = () => {
-            setWindowSize({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            });
-        };
-
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
+        const subscription = Dimensions.addEventListener('change', ({ window }) => {
+            setWindowSize({ width: window.width, height: window.height });
+        });
+        return () => subscription?.remove();
     }, []);
 
     return windowSize;

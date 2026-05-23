@@ -1,3 +1,4 @@
+import { View, Text } from '../../tw';
 import { useState } from 'react';
 import { ArrowLeft, ArrowRight, CreditCard, Smartphone, DollarSign, Check, Lock, AlertCircle } from 'lucide-react';
 import { Button } from '../ui/button';
@@ -46,7 +47,7 @@ export default function PaymentPage({ bookingData, onBack, onPaymentSuccess }: P
     const v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
     const matches = v.match(/\d{4,16}/g);
     const match = (matches && matches[0]) || '';
-    const parts = [];
+    const parts: string[] = [];
 
     for (let i = 0, len = match.length; i < len; i += 4) {
       parts.push(match.substring(i, i + 4));
@@ -110,110 +111,110 @@ export default function PaymentPage({ bookingData, onBack, onPaymentSuccess }: P
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <View className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <div className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center gap-4">
+      <View className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <View className="max-w-7xl mx-auto px-4 py-4">
+          <View className="flex items-center gap-4">
             <Button
-              onClick={onBack}
+              onPress={onBack}
               variant="ghost"
               className="p-2"
             >
               {language === 'ar' ? <ArrowRight className="size-5" /> : <ArrowLeft className="size-5" />}
             </Button>
-            <div className="flex-1">
-              <h1 className="text-xl">{paymentT.payment}</h1>
-            </div>
-          </div>
-        </div>
-      </div>
+            <View className="flex-1">
+              <Text className="text-xl">{paymentT.payment}</Text>
+            </View>
+          </View>
+        </View>
+      </View>
 
-      <div className="max-w-4xl mx-auto p-4 space-y-6">
+      <View className="max-w-4xl mx-auto p-4 space-y-6">
         {/* Booking Summary */}
         <Card className="p-6">
-          <h2 className="text-lg mb-4">{paymentT.bookingSummary}</h2>
-          <div className="space-y-3">
-            <div className="flex justify-between">
-              <span className="text-gray-600 dark:text-gray-400">{paymentT.sitter}</span>
-              <span>{bookingData.sitterName}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-gray-600 dark:text-gray-400">{paymentT.service}</span>
-              <span>{bookingData.service}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-gray-600 dark:text-gray-400">{paymentT.date}</span>
-              <span>{bookingData.date}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-gray-600 dark:text-gray-400">{paymentT.duration}</span>
-              <span>{bookingData.duration} {paymentT.hours}</span>
-            </div>
-            <div className="border-t pt-3 mt-3">
-              <div className="flex justify-between mb-2">
-                <span className="text-gray-600 dark:text-gray-400">{paymentT.totalAmount}</span>
-                <span>{bookingData.amount} {paymentT.egp}</span>
-              </div>
-              <div className="flex justify-between mb-2">
-                <span className="text-gray-600 dark:text-gray-400">{paymentT.platformFee}</span>
-                <span>{platformFee.toFixed(2)} {paymentT.egp}</span>
-              </div>
-              <div className="flex justify-between text-lg border-t pt-2 mt-2">
-                <span>{paymentT.finalAmount}</span>
-                <span className="text-[#FB5E7A]">{finalAmount.toFixed(2)} {paymentT.egp}</span>
-              </div>
-            </div>
-          </div>
+          <Text className="text-lg mb-4">{paymentT.bookingSummary}</Text>
+          <View className="space-y-3">
+            <View className="flex justify-between">
+              <Text className="text-gray-600 dark:text-gray-400">{paymentT.sitter}</Text>
+              <Text>{bookingData.sitterName}</Text>
+            </View>
+            <View className="flex justify-between">
+              <Text className="text-gray-600 dark:text-gray-400">{paymentT.service}</Text>
+              <Text>{bookingData.service}</Text>
+            </View>
+            <View className="flex justify-between">
+              <Text className="text-gray-600 dark:text-gray-400">{paymentT.date}</Text>
+              <Text>{bookingData.date}</Text>
+            </View>
+            <View className="flex justify-between">
+              <Text className="text-gray-600 dark:text-gray-400">{paymentT.duration}</Text>
+              <Text>{bookingData.duration} {paymentT.hours}</Text>
+            </View>
+            <View className="border-t pt-3 mt-3">
+              <View className="flex justify-between mb-2">
+                <Text className="text-gray-600 dark:text-gray-400">{paymentT.totalAmount}</Text>
+                <Text>{bookingData.amount} {paymentT.egp}</Text>
+              </View>
+              <View className="flex justify-between mb-2">
+                <Text className="text-gray-600 dark:text-gray-400">{paymentT.platformFee}</Text>
+                <Text>{platformFee.toFixed(2)} {paymentT.egp}</Text>
+              </View>
+              <View className="flex justify-between text-lg border-t pt-2 mt-2">
+                <Text>{paymentT.finalAmount}</Text>
+                <Text className="text-[#FB5E7A]">{finalAmount.toFixed(2)} {paymentT.egp}</Text>
+              </View>
+            </View>
+          </View>
         </Card>
 
         {/* Secure Payment Badge */}
-        <div className="flex items-center justify-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+        <View className="flex items-center justify-center gap-2 text-sm text-gray-600 dark:text-gray-400">
           <Lock className="size-4" />
-          <span>{paymentT.securePayment}</span>
-        </div>
+          <Text>{paymentT.securePayment}</Text>
+        </View>
 
         {/* Payment Method Selection */}
         <Card className="p-6">
-          <h2 className="text-lg mb-4">{paymentT.selectPaymentMethod}</h2>
+          <Text className="text-lg mb-4">{paymentT.selectPaymentMethod}</Text>
           <RadioGroup value={paymentMethod} onValueChange={(value: any) => setPaymentMethod(value)}>
-            <div className="space-y-3">
+            <View className="space-y-3">
               {/* Credit Card */}
-              <div className="flex items-center space-x-2 rtl:space-x-reverse p-4 border rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800">
+              <View className="flex items-center space-x-2 rtl:space-x-reverse p-4 border rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800">
                 <RadioGroupItem value="card" id="payment-card" />
                 <Label htmlFor="payment-card" className="flex-1 cursor-pointer flex items-center gap-3">
                   <CreditCard className="size-5 text-blue-500" />
-                  <span>{paymentT.creditCard}</span>
+                  <Text>{paymentT.creditCard}</Text>
                 </Label>
-              </div>
+              </View>
 
               {/* InstaPay */}
-              <div className="flex items-center space-x-2 rtl:space-x-reverse p-4 border rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800">
+              <View className="flex items-center space-x-2 rtl:space-x-reverse p-4 border rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800">
                 <RadioGroupItem value="instapay" id="payment-instapay" />
                 <Label htmlFor="payment-instapay" className="flex-1 cursor-pointer flex items-center gap-3">
                   <Smartphone className="size-5 text-purple-500" />
-                  <span>{paymentT.instaPay}</span>
+                  <Text>{paymentT.instaPay}</Text>
                 </Label>
-              </div>
+              </View>
 
               {/* Vodafone Cash */}
-              <div className="flex items-center space-x-2 rtl:space-x-reverse p-4 border rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800">
+              <View className="flex items-center space-x-2 rtl:space-x-reverse p-4 border rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800">
                 <RadioGroupItem value="vodafone" id="payment-vodafone" />
                 <Label htmlFor="payment-vodafone" className="flex-1 cursor-pointer flex items-center gap-3">
                   <Smartphone className="size-5 text-red-500" />
-                  <span>{paymentT.vodafoneCash}</span>
+                  <Text>{paymentT.vodafoneCash}</Text>
                 </Label>
-              </div>
+              </View>
 
               {/* Fawry */}
-              <div className="flex items-center space-x-2 rtl:space-x-reverse p-4 border rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800">
+              <View className="flex items-center space-x-2 rtl:space-x-reverse p-4 border rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800">
                 <RadioGroupItem value="fawry" id="payment-fawry" />
                 <Label htmlFor="payment-fawry" className="flex-1 cursor-pointer flex items-center gap-3">
                   <DollarSign className="size-5 text-orange-500" />
-                  <span>{paymentT.fawry}</span>
+                  <Text>{paymentT.fawry}</Text>
                 </Label>
-              </div>
-            </div>
+              </View>
+            </View>
           </RadioGroup>
         </Card>
 
@@ -221,8 +222,8 @@ export default function PaymentPage({ bookingData, onBack, onPaymentSuccess }: P
         {!fawryCode && (
           <Card className="p-6">
             {paymentMethod === 'card' && !showVerification && (
-              <div className="space-y-4">
-                <div>
+              <View className="space-y-4">
+                <View>
                   <Label>{paymentT.cardNumber}</Label>
                   <Input
                     type="text"
@@ -232,8 +233,8 @@ export default function PaymentPage({ bookingData, onBack, onPaymentSuccess }: P
                     maxLength={19}
                     className="mt-2"
                   />
-                </div>
-                <div>
+                </View>
+                <View>
                   <Label>{paymentT.cardName}</Label>
                   <Input
                     type="text"
@@ -242,9 +243,9 @@ export default function PaymentPage({ bookingData, onBack, onPaymentSuccess }: P
                     onChange={(e) => setCardName(e.target.value)}
                     className="mt-2"
                   />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
+                </View>
+                <View className="grid grid-cols-2 gap-4">
+                  <View>
                     <Label>{paymentT.expiryDate}</Label>
                     <Input
                       type="text"
@@ -254,8 +255,8 @@ export default function PaymentPage({ bookingData, onBack, onPaymentSuccess }: P
                       maxLength={5}
                       className="mt-2"
                     />
-                  </div>
-                  <div>
+                  </View>
+                  <View>
                     <Label>{paymentT.cvv}</Label>
                     <Input
                       type="text"
@@ -265,20 +266,20 @@ export default function PaymentPage({ bookingData, onBack, onPaymentSuccess }: P
                       maxLength={3}
                       className="mt-2"
                     />
-                  </div>
-                </div>
-              </div>
+                  </View>
+                </View>
+              </View>
             )}
 
             {(paymentMethod === 'instapay' || paymentMethod === 'vodafone') && !showVerification && (
-              <div className="space-y-4">
+              <View className="space-y-4">
                 <Alert>
                   <AlertCircle className="h-4 w-4" />
                   <AlertDescription>
                     {paymentMethod === 'instapay' ? paymentT.instaPayInstructions : paymentT.vodafoneCashInstructions}
                   </AlertDescription>
                 </Alert>
-                <div>
+                <View>
                   <Label>{paymentT.phoneNumber}</Label>
                   <Input
                     type="tel"
@@ -287,27 +288,27 @@ export default function PaymentPage({ bookingData, onBack, onPaymentSuccess }: P
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     className="mt-2"
                   />
-                </div>
+                </View>
                 <Button
-                  onClick={sendVerificationCode}
+                  onPress={sendVerificationCode}
                   disabled={!phoneNumber || isProcessing}
                   variant="outline"
                   className="w-full"
                 >
                   {paymentT.verifyPhone}
                 </Button>
-              </div>
+              </View>
             )}
 
             {showVerification && (
-              <div className="space-y-4">
+              <View className="space-y-4">
                 <Alert className="bg-green-50 dark:bg-green-900/20 border-green-500">
                   <Check className="h-4 w-4 text-green-600" />
                   <AlertDescription className="text-green-800 dark:text-green-200">
                     {paymentT.verificationCodeSentMsg} {phoneNumber}
                   </AlertDescription>
                 </Alert>
-                <div>
+                <View>
                   <Label>{paymentT.verificationCode}</Label>
                   <Input
                     type="text"
@@ -317,22 +318,22 @@ export default function PaymentPage({ bookingData, onBack, onPaymentSuccess }: P
                     maxLength={6}
                     className="mt-2"
                   />
-                </div>
+                </View>
                 <Button
-                  onClick={handleVerification}
+                  onPress={handleVerification}
                   disabled={!verificationCode || isProcessing}
                   className="w-full bg-[#FB5E7A] hover:bg-[#e5536e]"
                 >
                   {isProcessing ? paymentT.processingPayment : paymentT.confirm}
                 </Button>
                 <Button
-                  onClick={sendVerificationCode}
+                  onPress={sendVerificationCode}
                   variant="ghost"
                   className="w-full"
                 >
                   {paymentT.resendCode}
                 </Button>
-              </div>
+              </View>
             )}
 
             {paymentMethod === 'fawry' && (
@@ -349,25 +350,25 @@ export default function PaymentPage({ bookingData, onBack, onPaymentSuccess }: P
         {/* Fawry Code Display */}
         {fawryCode && (
           <Card className="p-6 text-center">
-            <div className="space-y-4">
-              <div className="w-16 h-16 rounded-full bg-orange-500/10 flex items-center justify-center mx-auto">
+            <View className="space-y-4">
+              <View className="w-16 h-16 rounded-full bg-orange-500/10 flex items-center justify-center mx-auto">
                 <DollarSign className="w-8 h-8 text-orange-500" />
-              </div>
-              <h3 className="text-lg">{paymentT.fawryCode}</h3>
-              <div className="text-3xl font-mono tracking-wider bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
+              </View>
+              <Text className="text-lg">{paymentT.fawryCode}</Text>
+              <View className="text-3xl font-mono tracking-wider bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
                 {fawryCode}
-              </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              </View>
+              <Text className="text-sm text-gray-600 dark:text-gray-400">
                 {paymentT.fawryInstructions}
-              </p>
-            </div>
+              </Text>
+            </View>
           </Card>
         )}
 
         {/* Pay Button */}
         {!showVerification && !fawryCode && (
           <Button
-            onClick={handlePayment}
+            onPress={handlePayment}
             disabled={isProcessing}
             className="w-full bg-[#FB5E7A] hover:bg-[#e5536e]"
             size="lg"
@@ -375,7 +376,7 @@ export default function PaymentPage({ bookingData, onBack, onPaymentSuccess }: P
             {isProcessing ? paymentT.processingPayment : `${paymentT.payNow} - ${finalAmount.toFixed(2)} ${paymentT.egp}`}
           </Button>
         )}
-      </div>
-    </div>
+      </View>
+    </View>
   );
 }

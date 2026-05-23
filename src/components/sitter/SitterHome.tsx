@@ -1,3 +1,4 @@
+import { View, Text, Image } from '../../tw';
 import { TrendingUp, Calendar, Star, Clock, Bell, Loader2, Settings, ShieldCheck, Eye, Wallet } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Card } from '../ui/card';
@@ -281,54 +282,54 @@ export default function SitterHome({ language }: SitterHomeProps) {
   // Removed early return to use Dialog instead
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pb-20">
-      <div className="max-w-4xl mx-auto px-4 pt-0 pb-8">
+    <View className="min-h-screen bg-gray-50 dark:bg-gray-900 pb-20">
+      <View className="max-w-4xl mx-auto px-4 pt-0 pb-8">
         {/* Sticky Header */}
-        <div className="sticky top-0 z-50 bg-gray-50 dark:bg-gray-900 pt-6 pb-4 -mx-4 px-4 mb-4 border-b border-gray-100 dark:border-gray-800">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <img
+        <View className="sticky top-0 z-50 bg-gray-50 dark:bg-gray-900 pt-6 pb-4 -mx-4 px-4 mb-4 border-b border-gray-100 dark:border-gray-800">
+          <View className="flex items-center justify-between">
+            <View className="flex items-center gap-4">
+              <Image
                 src={user?.user_metadata?.avatar_url || 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400'}
                 alt={user?.user_metadata?.full_name}
                 className="w-12 h-12 rounded-full border-2 border-[#FFD1DA] object-cover"
               />
-              <div>
-                <h1 className="text-xl font-bold text-[#FB5E7A]">
+              <View>
+                <Text className="text-xl font-bold text-[#FB5E7A]">
                   {language === 'ar' ? 'مرحباً، ' : 'Welcome, '}
                   {profile?.full_name?.split(' ')[0] || 'Khala'}
-                </h1>
-                <p className="text-xs text-gray-500">{t.dashboard}</p>
-              </div>
-            </div>
+                </Text>
+                <Text className="text-xs text-gray-500">{t.dashboard}</Text>
+              </View>
+            </View>
             <Popover>
               <PopoverTrigger asChild>
                 <Button variant="outline" size="icon" className="rounded-full relative w-10 h-10">
                   <Bell className="w-5 h-5" />
                   {notifications.filter(n => !n.is_read).length > 0 && (
-                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#FB5E7A] text-white text-[10px] rounded-full flex items-center justify-center border-2 border-white">
+                    <Text className="absolute -top-1 -right-1 w-5 h-5 bg-[#FB5E7A] text-white text-[10px] rounded-full flex items-center justify-center border-2 border-white">
                       {notifications.filter(n => !n.is_read).length}
-                    </span>
+                    </Text>
                   )}
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-80 p-0" align={language === 'ar' ? 'start' : 'end'}>
-                <div className="p-4 border-b">
-                  <h3 className="font-semibold text-[#FB5E7A]">
+                <View className="p-4 border-b">
+                  <Text className="font-semibold text-[#FB5E7A]">
                     {language === 'ar' ? 'الإشعارات' : 'Notifications'}
-                  </h3>
-                </div>
-                <div className="max-h-96 overflow-y-auto">
+                  </Text>
+                </View>
+                <View className="max-h-96 overflow-y-auto">
                   {notifications.length === 0 ? (
-                    <div className="p-8 text-center text-gray-500">
+                    <View className="p-8 text-center text-gray-500">
                       <Bell className="w-12 h-12 mx-auto mb-2 text-gray-400" />
-                      <p className="text-sm">{language === 'ar' ? 'لا توجد إشعارات' : 'No notifications'}</p>
-                    </div>
+                      <Text className="text-sm">{language === 'ar' ? 'لا توجد إشعارات' : 'No notifications'}</Text>
+                    </View>
                   ) : (
                     notifications.slice(0, 5).map((notification) => (
-                      <div
+                      <View
                         key={notification.id}
                         className={`p-4 border-b hover:bg-gray-50 cursor-pointer ${!notification.is_read ? 'bg-[#FFD1DA]/10' : ''}`}
-                        onClick={async () => {
+                        onPress={async () => {
                           // Mark as read
                           if (!notification.is_read) {
                             await notificationService.markAsRead(notification.id);
@@ -356,122 +357,122 @@ export default function SitterHome({ language }: SitterHomeProps) {
                           }
                         }}
                       >
-                        <div className="flex items-start gap-3">
+                        <View className="flex items-start gap-3">
                           <Bell className="w-4 h-4 text-[#FB5E7A] mt-1" />
-                          <div className="flex-1 min-w-0">
-                            <p className="font-medium text-sm">
+                          <View className="flex-1 min-w-0">
+                            <Text className="font-medium text-sm">
                               {notification.type === 'new_booking' && language === 'ar'
                                 ? 'طلب حجز جديد'
                                 : notification.title}
-                            </p>
-                            <p className="text-xs text-gray-600 mt-1">
+                            </Text>
+                            <Text className="text-xs text-gray-600 mt-1">
                               {notification.type === 'new_booking' && language === 'ar'
                                 ? `لديك طلب جديد من أختك ${notification.data?.client_name || ''}`
                                 : notification.message}
-                            </p>
-                            <p className="text-xs text-gray-400 mt-1">
+                            </Text>
+                            <Text className="text-xs text-gray-400 mt-1">
                               {new Date(notification.created_at).toLocaleDateString(language === 'ar' ? 'ar-EG' : 'en-US')}
-                            </p>
-                          </div>
+                            </Text>
+                          </View>
                           {!notification.is_read && (
-                            <div className="w-2 h-2 bg-[#FB5E7A] rounded-full mt-2"></div>
+                            <View className="w-2 h-2 bg-[#FB5E7A] rounded-full mt-2"></View>
                           )}
-                        </div>
-                      </div>
+                        </View>
+                      </View>
                     ))
                   )}
-                </div>
+                </View>
               </PopoverContent>
             </Popover>
-          </div>
-        </div>
+          </View>
+        </View>
         {loading ? (
-          <div className="flex flex-col items-center justify-center py-20 text-gray-400">
+          <View className="flex flex-col items-center justify-center py-20 text-gray-400">
             <Loader2 className="w-12 h-12 animate-spin mb-4" />
-            <p>{language === 'ar' ? 'جاري التحميل...' : 'Loading...'}</p>
-          </div>
+            <Text>{language === 'ar' ? 'جاري التحميل...' : 'Loading...'}</Text>
+          </View>
         ) : hasError ? (
-          <div className="text-center py-20">
-            <h3 className="text-lg font-medium text-gray-900 mb-2">
+          <View className="text-center py-20">
+            <Text className="text-lg font-medium text-gray-900 mb-2">
               {language === 'ar' ? 'فشل تحميل البيانات' : 'Failed to load data'}
-            </h3>
-            <Button onClick={loadData} variant="outline" className="mt-4">
+            </Text>
+            <Button onPress={loadData} variant="outline" className="mt-4">
               {language === 'ar' ? 'إعادة المحاولة' : 'Retry'}
             </Button>
-          </div>
+          </View>
         ) : (
-          <div className="space-y-6">
+          <View className="space-y-6">
 
             {/* Quick Actions */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <View className="grid grid-cols-2 md:grid-cols-3 gap-4">
               <Button
                 variant="outline"
                 className="h-auto py-6 flex flex-col gap-2 border-dashed border-2 hover:border-[#FB5E7A] hover:bg-[#FB5E7A]/5"
-                onClick={() => setShowAvailabilityManagement(true)}
+                onPress={() => setShowAvailabilityManagement(true)}
               >
                 <Calendar className="w-6 h-6 text-[#FB5E7A]" />
-                <p className="text-sm font-bold">{t.manageSchedule}</p>
+                <Text className="text-sm font-bold">{t.manageSchedule}</Text>
               </Button>
               <Button
                 variant="outline"
                 className="h-auto py-6 flex flex-col gap-2 border-dashed border-2 hover:border-[#FB5E7A] hover:bg-[#FB5E7A]/5"
-                onClick={() => setShowServicesManagement(true)}
+                onPress={() => setShowServicesManagement(true)}
               >
                 <Settings className="w-6 h-6 text-[#FB5E7A]" />
-                <p className="text-sm font-bold">{t.manageServices}</p>
+                <Text className="text-sm font-bold">{t.manageServices}</Text>
               </Button>
               <Button
                 variant="outline"
                 className="h-auto py-6 flex flex-col gap-2 border-dashed border-2 hover:border-[#FB5E7A] hover:bg-[#FB5E7A]/5 md:col-span-1 col-span-2"
-                onClick={() => setShowSitterVerification(true)}
+                onPress={() => setShowSitterVerification(true)}
               >
                 <ShieldCheck className="w-6 h-6 text-[#FB5E7A]" />
-                <p className="text-sm font-bold">{t.verificationStatus}</p>
+                <Text className="text-sm font-bold">{t.verificationStatus}</Text>
               </Button>
-            </div>
+            </View>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <View className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <Card className="p-4 relative overflow-hidden group">
-                <div className="flex flex-col gap-2">
-                  <div className="flex justify-between items-start">
-                    <div className="p-2 w-fit rounded-lg bg-green-100 text-green-600"><TrendingUp className="w-5 h-5" /></div>
+                <View className="flex flex-col gap-2">
+                  <View className="flex justify-between items-start">
+                    <View className="p-2 w-fit rounded-lg bg-green-100 text-green-600"><TrendingUp className="w-5 h-5" /></View>
                     <Button
                       variant="ghost"
                       size="icon"
                       className="h-8 w-8 text-green-600 hover:text-green-700 hover:bg-green-100"
-                      onClick={() => setShowWithdrawalDialog(true)}
+                      onPress={() => setShowWithdrawalDialog(true)}
                       title={language === 'ar' ? 'سحب الأموال' : 'Withdraw Funds'}
                     >
                       <Wallet className="w-4 h-4" />
                     </Button>
-                  </div>
-                  <p className="text-sm text-gray-500">{t.totalEarnings}</p>
-                  <h3 className="text-xl font-bold text-[#FB5E7A]">{stats.totalEarnings} {t.egp}</h3>
-                </div>
+                  </View>
+                  <Text className="text-sm text-gray-500">{t.totalEarnings}</Text>
+                  <Text className="text-xl font-bold text-[#FB5E7A]">{stats.totalEarnings} {t.egp}</Text>
+                </View>
               </Card>
               <Card className="p-4">
-                <div className="flex flex-col gap-2">
-                  <div className="p-2 w-fit rounded-lg bg-blue-100 text-blue-600"><Calendar className="w-5 h-5" /></div>
-                  <p className="text-sm text-gray-500">{t.completedJobs}</p>
-                  <h3 className="text-xl font-bold text-[#FB5E7A]">{stats.completedJobs}</h3>
-                </div>
+                <View className="flex flex-col gap-2">
+                  <View className="p-2 w-fit rounded-lg bg-blue-100 text-blue-600"><Calendar className="w-5 h-5" /></View>
+                  <Text className="text-sm text-gray-500">{t.completedJobs}</Text>
+                  <Text className="text-xl font-bold text-[#FB5E7A]">{stats.completedJobs}</Text>
+                </View>
               </Card>
               <Card className="p-4">
-                <div className="flex flex-col gap-2">
-                  <div className="p-2 w-fit rounded-lg bg-purple-100 text-purple-600"><Clock className="w-5 h-5" /></div>
-                  <p className="text-sm text-gray-500">{t.totalHours}</p>
-                  <h3 className="text-xl font-bold text-[#FB5E7A]">{stats.totalHours}</h3>
-                </div>
+                <View className="flex flex-col gap-2">
+                  <View className="p-2 w-fit rounded-lg bg-purple-100 text-purple-600"><Clock className="w-5 h-5" /></View>
+                  <Text className="text-sm text-gray-500">{t.totalHours}</Text>
+                  <Text className="text-xl font-bold text-[#FB5E7A]">{stats.totalHours}</Text>
+                </View>
               </Card>
               <Card className="p-4">
-                <div className="flex flex-col gap-2">
-                  <div className="p-2 w-fit rounded-lg bg-yellow-100 text-yellow-600"><Star className="w-5 h-5" /></div>
-                  <p className="text-sm text-gray-500">{t.rating}</p>
-                  <h3 className="text-xl font-bold text-[#FB5E7A]">{stats.rating}</h3>
-                </div>
+                <View className="flex flex-col gap-2">
+                  <View className="p-2 w-fit rounded-lg bg-yellow-100 text-yellow-600"><Star className="w-5 h-5" /></View>
+                  <Text className="text-sm text-gray-500">{t.rating}</Text>
+                  <Text className="text-xl font-bold text-[#FB5E7A]">{stats.rating}</Text>
+                </View>
               </Card>
-            </div>
+            </View>
 
             {/* Withdrawal Dialog */}
             <Dialog open={showWithdrawalDialog} onOpenChange={setShowWithdrawalDialog}>
@@ -479,8 +480,8 @@ export default function SitterHome({ language }: SitterHomeProps) {
                 <DialogHeader>
                   <DialogTitle>{language === 'ar' ? 'طلب سحب رصيد' : 'Withdrawal Request'}</DialogTitle>
                 </DialogHeader>
-                <div className="space-y-4 py-4">
-                  <div className="space-y-2">
+                <View className="space-y-4 py-4">
+                  <View className="space-y-2">
                     <Label>{language === 'ar' ? 'المبلغ المطلوب (جنيه)' : 'Amount (EGP)'}</Label>
                     <Input
                       type="number"
@@ -488,68 +489,68 @@ export default function SitterHome({ language }: SitterHomeProps) {
                       onChange={(e) => setWithdrawalAmount(e.target.value)}
                       placeholder="0.00"
                     />
-                  </div>
-                  <div className="space-y-2">
+                  </View>
+                  <View className="space-y-2">
                     <Label>{language === 'ar' ? 'الرقم القومي (للتأكيد)' : 'National ID (Confirmation)'}</Label>
                     <Input
                       value={nationalIdConfirm}
                       onChange={(e) => setNationalIdConfirm(e.target.value)}
                       placeholder={language === 'ar' ? 'أدخل الرقم القومي' : 'Enter National ID'}
                     />
-                  </div>
-                  <div className="pt-2">
+                  </View>
+                  <View className="pt-2">
                     <Button
                       className="w-full bg-[#FB5E7A] hover:bg-[#e5536e]"
-                      onClick={handleWithdrawalSubmit}
+                      onPress={handleWithdrawalSubmit}
                     >
                       {language === 'ar' ? 'إرسال الطلب' : 'Submit Request'}
                     </Button>
-                  </div>
-                </div>
+                  </View>
+                </View>
               </DialogContent>
             </Dialog>
 
             {/* New Requests Section */}
-            <div>
-              <h3 className="mb-4 font-bold flex items-center gap-2">
+            <View>
+              <Text className="mb-4 font-bold flex items-center gap-2">
                 <Bell className="w-5 h-5 text-[#FB5E7A]" />
                 {t.newRequests}
-              </h3>
+              </Text>
               {pendingRequests.length === 0 ? (
                 <Card className="p-8 text-center text-gray-500">{t.noRequests}</Card>
               ) : (
-                <div className="space-y-4">
+                <View className="space-y-4">
                   {pendingRequests.map((request) => (
                     <Card key={request.id} className="p-4">
-                      <div className="flex gap-4">
-                        <img src={request.client?.avatar_url || ''} className="w-16 h-16 rounded-full object-cover" />
-                        <div className="flex-1">
-                          <div className="flex justify-between items-start mb-2">
-                            <div>
-                              <h4 className="font-bold">{request.client?.full_name}</h4>
+                      <View className="flex gap-4">
+                        <Image src={request.client?.avatar_url || ''} className="w-16 h-16 rounded-full object-cover" />
+                        <View className="flex-1">
+                          <View className="flex justify-between items-start mb-2">
+                            <View>
+                              <Text className="font-bold">{request.client?.full_name}</Text>
                               <Badge variant="outline">1 {t.children}</Badge>
-                            </div>
+                            </View>
                             <Badge className="bg-[#FB5E7A]/10 text-[#FB5E7A] border-none">
                               {request.booking_type === 'home' ? t.atHome : t.outside}
                             </Badge>
-                          </div>
-                          <div className="grid grid-cols-2 gap-y-1 text-sm text-gray-500 mb-4">
-                            <span className="flex items-center gap-1"><Calendar className="w-4 h-4" /> {request.date}</span>
-                            <span className="flex items-center gap-1"><Clock className="w-4 h-4" /> {request.start_time}</span>
-                          </div>
-                          <Button onClick={() => setSelectedRequest(request)} className="w-full bg-[#FB5E7A]">
+                          </View>
+                          <View className="grid grid-cols-2 gap-y-1 text-sm text-gray-500 mb-4">
+                            <Text className="flex items-center gap-1"><Calendar className="w-4 h-4" /> {request.date}</Text>
+                            <Text className="flex items-center gap-1"><Clock className="w-4 h-4" /> {request.start_time}</Text>
+                          </View>
+                          <Button onPress={() => setSelectedRequest(request)} className="w-full bg-[#FB5E7A]">
                             <Eye className="w-4 h-4 mr-2" /> {t.viewDetails}
                           </Button>
-                        </div>
-                      </div>
+                        </View>
+                      </View>
                     </Card>
                   ))}
-                </div>
+                </View>
               )}
-            </div>
-          </div>
+            </View>
+          </View>
         )}
-      </div>
+      </View>
 
       {/* Booking Details Dialog */}
       {selectedRequest && (
@@ -571,6 +572,6 @@ export default function SitterHome({ language }: SitterHomeProps) {
           </DialogContent>
         </Dialog>
       )}
-    </div>
+    </View>
   );
 }

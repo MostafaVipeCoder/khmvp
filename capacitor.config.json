@@ -1,9 +1,0 @@
-{
-  "appId": "com.khala.mvp",
-  "appName": "Khala MVP",
-  "webDir": "build",
-  "bundledWebRuntime": false,
-  "server": {
-    "androidScheme": "https"
-  }
-}

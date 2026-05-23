@@ -1,3 +1,4 @@
+import { View, Text, Pressable } from '../tw';
 import { useState, lazy, Suspense } from 'react';
 import { Home, User, Clock, FileText } from 'lucide-react';
 import ClientHome from './client/ClientHome';
@@ -31,57 +32,57 @@ export default function ClientApp({ language: propLanguage, onLogout, onLanguage
   if (propLanguage && false) console.log(propLanguage); // Avoid unused warning
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pb-20">
+    <View className="min-h-screen bg-gray-50 dark:bg-gray-900 pb-20">
       {/* Main Content */}
-      <div className="pt-4">
-        <Suspense fallback={<div>Loading...</div>}>
+      <View className="pt-4">
+        <Suspense fallback={<View>Loading...</View>}>
           {activeTab === 'home' && <ClientHome onNavigate={(tab: ClientTab) => setActiveTab(tab)} />}
           {activeTab === 'requests' && <ClientBookings />}
           {activeTab === 'schedule' && <ClientActiveBookings onNavigate={(tab: 'home' | 'requests' | 'schedule' | 'profile') => setActiveTab(tab)} />}
           {activeTab === 'profile' && <ClientProfile language={language} onLogout={onLogout} onLanguageChange={onLanguageChange} theme={theme} onThemeChange={onThemeChange} />}
         </Suspense>
-      </div>
+      </View>
 
       {/* Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 px-4 py-3 z-50">
-        <div className="max-w-lg mx-auto flex justify-around items-center">
-          <button
-            onClick={() => setActiveTab('home')}
+      <View className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 px-4 py-3 z-50">
+        <View className="max-w-lg mx-auto flex justify-around items-center">
+          <Pressable
+            onPress={() => setActiveTab('home')}
             className={`flex flex-col items-center gap-1 ${activeTab === 'home' ? 'text-[#FB5E7A]' : 'text-gray-500'
               }`}
           >
             <Home className="w-6 h-6" />
-            <span className="text-xs">{clientT.home}</span>
-          </button>
+            <Text className="text-xs">{clientT.home}</Text>
+          </Pressable>
 
-          <button
-            onClick={() => setActiveTab('requests')}
+          <Pressable
+            onPress={() => setActiveTab('requests')}
             className={`flex flex-col items-center gap-1 ${activeTab === 'requests' ? 'text-[#FB5E7A]' : 'text-gray-500'
               }`}
           >
             <FileText className="w-6 h-6" />
-            <span className="text-xs">{clientT.requests}</span>
-          </button>
+            <Text className="text-xs">{clientT.requests}</Text>
+          </Pressable>
 
-          <button
-            onClick={() => setActiveTab('schedule')}
+          <Pressable
+            onPress={() => setActiveTab('schedule')}
             className={`flex flex-col items-center gap-1 ${activeTab === 'schedule' ? 'text-[#FB5E7A]' : 'text-gray-500'
               }`}
           >
             <Clock className="w-6 h-6" />
-            <span className="text-xs">{clientT.schedule}</span>
-          </button>
+            <Text className="text-xs">{clientT.schedule}</Text>
+          </Pressable>
 
-          <button
-            onClick={() => setActiveTab('profile')}
+          <Pressable
+            onPress={() => setActiveTab('profile')}
             className={`flex flex-col items-center gap-1 ${activeTab === 'profile' ? 'text-[#FB5E7A]' : 'text-gray-500'
               }`}
           >
             <User className="w-6 h-6" />
-            <span className="text-xs">{clientT.profile}</span>
-          </button>
-        </div>
-      </nav>
-    </div>
+            <Text className="text-xs">{clientT.profile}</Text>
+          </Pressable>
+        </View>
+      </View>
+    </View>
   );
 }

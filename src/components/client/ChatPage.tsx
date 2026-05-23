@@ -1,5 +1,6 @@
+import { View, Text, ScrollView } from '../../tw';
 import { useState, useEffect, useRef } from 'react';
-import { ArrowLeft, ArrowRight, Send, MoreVertical, Image as ImageIcon, Mic } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Send, MoreVertical, Image as ImageIcon, Mic } from 'lucide-react-native';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
@@ -29,10 +30,11 @@ export default function ChatPage({
 
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [newMessage, setNewMessage] = useState('');
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  // Use ScrollView ref instead of DOM scrollIntoView
+  const scrollViewRef = useRef<any>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    scrollViewRef.current?.scrollToEnd({ animated: true });
   };
 
   useEffect(() => {
@@ -94,10 +96,10 @@ export default function ChatPage({
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-80px)] bg-gray-50 dark:bg-gray-900">
+    <View className="flex-1 flex-col bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <div className="bg-white dark:bg-gray-800 p-4 shadow-sm flex items-center gap-3 sticky top-0 z-10">
-        <Button variant="ghost" size="icon" onClick={onBack}>
+      <View className="bg-white dark:bg-gray-800 p-4 shadow-sm flex-row items-center gap-3">
+        <Button variant="ghost" size="icon" onPress={onBack}>
           {language === 'ar' ? <ArrowRight className="w-5 h-5" /> : <ArrowLeft className="w-5 h-5" />}
         </Button>
 
@@ -106,46 +108,51 @@ export default function ChatPage({
           <AvatarFallback>{recipientName[0]}</AvatarFallback>
         </Avatar>
 
-        <div className="flex-1">
-          <h3 className="font-semibold text-sm">{recipientName}</h3>
-          <span className="text-xs text-green-500 flex items-center gap-1">
-            <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-            {chatT.online}
-          </span>
-        </div>
+        <View className="flex-1">
+          <Text className="font-semibold text-sm">{recipientName}</Text>
+          <View className="flex-row items-center gap-1">
+            <View className="w-2 h-2 bg-green-500 rounded-full" />
+            <Text className="text-xs text-green-500">{chatT.online}</Text>
+          </View>
+        </View>
 
         <Button variant="ghost" size="icon">
           <MoreVertical className="w-5 h-5 text-gray-500" />
         </Button>
-      </div>
+      </View>
 
-      {/* Messages Area */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      {/* Messages Area — uses ScrollView with ref for scrollToEnd */}
+      <ScrollView
+        ref={scrollViewRef}
+        className="flex-1 p-4"
+        contentContainerClassName="gap-4"
+        onContentSizeChange={scrollToBottom}
+      >
         {messages.map((msg) => (
-          <div
+          <View
             key={msg.id}
-            className={`flex ${msg.sender_id === user?.id ? 'justify-end' : 'justify-start'}`}
+            className={`flex-row ${msg.sender_id === user?.id ? 'justify-end' : 'justify-start'}`}
           >
-            <div
+            <View
               className={`max-w-[75%] p-3 rounded-2xl ${msg.sender_id === user?.id
-                ? 'bg-[#FB5E7A] text-white rounded-br-none'
-                : 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-bl-none shadow-sm'
+                ? 'bg-[#FB5E7A] rounded-br-none'
+                : 'bg-white dark:bg-gray-800 rounded-bl-none shadow-sm'
                 }`}
             >
-              <p className="text-sm">{msg.content}</p>
-              <span className={`text-[10px] mt-1 block ${msg.sender_id === user?.id ? 'text-white/80' : 'text-gray-400'
-                }`}>
+              <Text className={`text-sm ${msg.sender_id === user?.id ? 'text-white' : 'text-gray-800 dark:text-gray-200'}`}>
+                {msg.content}
+              </Text>
+              <Text className={`text-[10px] mt-1 ${msg.sender_id === user?.id ? 'text-white/80' : 'text-gray-400'}`}>
                 {formatTime(msg.created_at)}
-              </span>
-            </div>
-          </div>
+              </Text>
+            </View>
+          </View>
         ))}
-        <div ref={messagesEndRef} />
-      </div>
+      </ScrollView>
 
       {/* Input Area */}
-      <div className="p-4 bg-white dark:bg-gray-800 border-t">
-        <div className="flex items-center gap-2">
+      <View className="p-4 bg-white dark:bg-gray-800 border-t">
+        <View className="flex-row items-center gap-2">
           <Button variant="ghost" size="icon" className="text-gray-400">
             <ImageIcon className="w-5 h-5" />
           </Button>
@@ -155,20 +162,21 @@ export default function ChatPage({
 
           <Input
             value={newMessage}
-            onChange={(e) => setNewMessage(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+            onChangeText={setNewMessage}
+            onSubmitEditing={handleSend}
+            returnKeyType="send"
             placeholder={chatT.typeMessage}
             className="flex-1 bg-gray-100 dark:bg-gray-700 border-none rounded-full"
           />
 
           <Button
-            onClick={handleSend}
-            className="bg-[#FB5E7A] hover:bg-[#e5536e] rounded-full w-10 h-10 p-0 flex items-center justify-center"
+            onPress={handleSend}
+            className="bg-[#FB5E7A] rounded-full w-10 h-10 p-0 items-center justify-center"
           >
             <Send className="w-4 h-4 text-white" />
           </Button>
-        </div>
-      </div>
-    </div>
+        </View>
+      </View>
+    </View>
   );
 }

@@ -43,15 +43,15 @@ interface AuthState {
     // -- App Configuration Actions --
 
     /** Sets the active user type context */
-    setUserType: (type: UserType) => void;
+    setUserType: (type: UserType) => void | Promise<void>;
     /** Sets the application language */
-    setLanguage: (lang: Language) => void;
+    setLanguage: (lang: Language) => void | Promise<void>;
     /** Sets the application theme */
-    setTheme: (theme: Theme) => void;
+    setTheme: (theme: Theme) => void | Promise<void>;
     /** Toggles between Arabic and English */
-    toggleLanguage: () => void;
+    toggleLanguage: () => void | Promise<void>;
     /** Toggles between Light and Dark mode */
-    toggleTheme: () => void;
+    toggleTheme: () => void | Promise<void>;
 
     // -- Authentication Actions --
 
@@ -119,31 +119,31 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
     // -- Implementation --
 
-    setUserType: (type) => {
+    setUserType: async (type) => {
         set({ userType: type });
-        secureStorage.setUserType(type);
+        await secureStorage.setUserType(type);
     },
 
-    setLanguage: (lang) => {
+    setLanguage: async (lang) => {
         set({ language: lang });
-        preferencesStorage.setLanguage(lang);
+        await preferencesStorage.setLanguage(lang);
     },
 
-    setTheme: (theme) => {
+    setTheme: async (theme) => {
         set({ theme });
-        preferencesStorage.setTheme(theme);
-        // Apply theme to document directly for immediate effect
-        document.documentElement.classList.toggle('dark', theme === 'dark');
+        await preferencesStorage.setTheme(theme);
+        // Apply theme to document directly for immediate effect (web only)
+        // React Native handles theme via NativeWind / Tailwind context automatically
     },
 
-    toggleLanguage: () => {
+    toggleLanguage: async () => {
         const newLang = get().language === 'ar' ? 'en' : 'ar';
-        get().setLanguage(newLang);
+        await get().setLanguage(newLang);
     },
 
-    toggleTheme: () => {
+    toggleTheme: async () => {
         const newTheme = get().theme === 'light' ? 'dark' : 'light';
-        get().setTheme(newTheme);
+        await get().setTheme(newTheme);
     },
 
     /**
@@ -303,7 +303,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
     logout: async () => {
         await supabase.auth.signOut();
-        secureStorage.clearAll();
+        await secureStorage.clearAll();
         set({
             user: null,
             userType: null,
@@ -312,20 +312,20 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     },
 
     initialize: async () => {
-        const savedLanguage = preferencesStorage.getLanguage();
-        const savedTheme = preferencesStorage.getTheme();
+        const savedLanguage = await preferencesStorage.getLanguage();
+        const savedTheme = await preferencesStorage.getTheme();
 
         set({
             language: savedLanguage,
             theme: savedTheme,
         });
 
-        document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+        // React Native handles theme via NativeWind / Tailwind context automatically
 
         const initPromise = (async () => {
             try {
                 const { data: { session } } = await supabase.auth.getSession();
-                const savedUserType = secureStorage.getUserType();
+                const savedUserType = await secureStorage.getUserType();
                 if (savedUserType && !session?.user) {
                     set({ userType: savedUserType });
                 }
@@ -340,11 +340,11 @@ export const useAuthStore = create<AuthState>((set, get) => ({
                             isAuthenticated: true,
                             userType: (profile.role as UserType) || savedUserType,
                         });
-                        if (profile.role) secureStorage.setUserType(profile.role as UserType);
+                        if (profile.role) await secureStorage.setUserType(profile.role as UserType);
                     } else {
                         monitoring.logInfo('Profile not found during initialization, signing out...');
                         await supabase.auth.signOut();
-                        secureStorage.clearAll();
+                        await secureStorage.clearAll();
                         set({ user: null, isAuthenticated: false, userType: null });
                     }
                 }

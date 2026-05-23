@@ -1,0 +1,948 @@
+src/App.tsx(78,11): error TS2322: Type '{ position: string; dir: string; richColors: true; closeButton: true; }' is not assignable to type 'IntrinsicAttributes'.
+  Property 'position' does not exist on type 'IntrinsicAttributes'.
+src/components/admin/WithdrawalManagement.tsx(93,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/admin/WithdrawalManagement.tsx(107,33): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/admin/WithdrawalManagement.tsx(117,47): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/admin/WithdrawalManagement.tsx(123,56): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/admin/WithdrawalManagement.tsx(127,59): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/admin/WithdrawalManagement.tsx(148,58): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/admin/WithdrawalManagement.tsx(150,56): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/admin/WithdrawalManagement.tsx(161,48): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/AuthPage.tsx(72,31): error TS6133: 'e' is declared but its value is never read.
+src/components/AuthPage.tsx(162,29): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/AuthPage.tsx(170,17): error TS2322: Type '{ children: Element[]; onSubmit: (e: any) => Promise<void>; className: string; }' is not assignable to type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+  Property 'onSubmit' does not exist on type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+src/components/AuthPage.tsx(171,66): error TS2322: Type '{ children: Element[]; className: string; dir: string; }' is not assignable to type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+  Property 'dir' does not exist on type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+src/components/AuthPage.tsx(187,15): error TS2322: Type '{ children: string | Element; type: string; disabled: boolean; className: string; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+  Property 'type' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+src/components/AuthPage.tsx(191,35): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/AuthPage.tsx(196,17): error TS2322: Type '{ children: string; type: string; variant: "link"; className: string; onPress: () => Promise<void>; disabled: boolean; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+  Property 'type' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+src/components/AuthPage.tsx(207,15): error TS2322: Type '{ children: string; type: string; variant: "ghost"; className: string; onPress: () => void; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+  Property 'type' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+src/components/AuthPage.tsx(229,46): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/AuthPage.tsx(229,87): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/AuthPage.tsx(240,17): error TS2322: Type '{ children: Element[]; onSubmit: (e: any) => Promise<void>; className: string; }' is not assignable to type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+  Property 'onSubmit' does not exist on type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+src/components/AuthPage.tsx(242,22): error TS2322: Type '{ children: string; htmlFor: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/AuthPage.tsx(248,17): error TS2322: Type '{ id: string; type: string; value: string; onChange: (e: any) => void; required: true; className: string; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'required' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/AuthPage.tsx(254,15): error TS2322: Type '{ children: string | Element; type: string; disabled: boolean; className: string; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+  Property 'type' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+src/components/AuthPage.tsx(258,35): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/AuthPage.tsx(262,15): error TS2322: Type '{ children: string; type: string; variant: "link"; className: string; onPress: () => void; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+  Property 'type' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+src/components/AuthPage.tsx(284,46): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/AuthPage.tsx(284,87): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/AuthPage.tsx(296,17): error TS2322: Type '{ children: Element; type: string; variant: "default" | "outline"; className: string; onPress: () => void | Promise<void>; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+  Property 'type' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+src/components/AuthPage.tsx(307,17): error TS2322: Type '{ children: Element; type: string; variant: "default" | "outline"; className: string; onPress: () => void | Promise<void>; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+  Property 'type' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+src/components/AuthPage.tsx(325,15): error TS2322: Type '{ children: (false | Element)[]; onSubmit: (e: any) => Promise<void>; className: string; }' is not assignable to type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+  Property 'onSubmit' does not exist on type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+src/components/AuthPage.tsx(328,22): error TS2322: Type '{ children: string; htmlFor: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/AuthPage.tsx(334,17): error TS2322: Type '{ id: string; type: string; value: string; onChange: (e: any) => void; required: true; className: string; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'required' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/AuthPage.tsx(341,20): error TS2322: Type '{ children: string; htmlFor: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/AuthPage.tsx(347,15): error TS2322: Type '{ id: string; type: string; value: string; onChange: (e: any) => void; required: true; className: string; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'required' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/AuthPage.tsx(355,24): error TS2322: Type '{ children: string; htmlFor: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/AuthPage.tsx(361,19): error TS2322: Type '{ id: string; type: string; value: string; onChange: (e: any) => void; required: true; className: string; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'required' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/AuthPage.tsx(369,28): error TS2322: Type '{ children: string; htmlFor: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/AuthPage.tsx(375,23): error TS2322: Type '{ id: string; type: string; value: string; onChange: (e: any) => void; required: true; className: string; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'required' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/AuthPage.tsx(381,28): error TS2322: Type '{ children: string; htmlFor: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/AuthPage.tsx(387,23): error TS2322: Type '{ id: string; type: string; value: string; onChange: (e: any) => void; required: true; className: string; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'required' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/AuthPage.tsx(393,28): error TS2322: Type '{ children: string; htmlFor: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/AuthPage.tsx(399,23): error TS2322: Type '{ id: string; type: string; value: string; onChange: (e: any) => void; required: true; className: string; placeholder: string; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'required' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/AuthPage.tsx(410,20): error TS2322: Type '{ children: string; htmlFor: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/AuthPage.tsx(416,15): error TS2322: Type '{ id: string; type: string; value: string; onChange: (e: any) => void; required: true; className: string; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'required' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/AuthPage.tsx(423,22): error TS2322: Type '{ children: string; htmlFor: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/AuthPage.tsx(429,17): error TS2322: Type '{ id: string; type: string; value: string; onChange: (e: any) => void; required: true; className: string; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'required' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/AuthPage.tsx(437,15): error TS2322: Type '{ children: string; type: string; variant: "link"; className: string; onPress: () => void; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+  Property 'type' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+src/components/AuthPage.tsx(447,13): error TS2322: Type '{ children: string | Element; type: string; disabled: boolean; className: string; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+  Property 'type' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+src/components/AuthPage.tsx(453,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ChatPage.tsx(1,22): error TS6133: 'Image' is declared but its value is never read.
+src/components/client/ChatPage.tsx(102,44): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ChatPage.tsx(102,80): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ChatPage.tsx(119,25): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ChatPage.tsx(144,15): error TS2322: Type '{ ref: RefObject<any>; }' is not assignable to type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+  Property 'ref' does not exist on type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+src/components/client/ChatPage.tsx(151,24): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ChatPage.tsx(154,18): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ChatPage.tsx(160,34): error TS2339: Property 'key' does not exist on type 'TextInputKeyPressEvent'.
+src/components/client/ChatPage.tsx(169,19): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientActiveBookings.tsx(273,20): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientActiveBookings.tsx(279,23): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientActiveBookings.tsx(302,19): error TS2322: Type '{ src: string; alt: string; className: string; }' is not assignable to type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+  Property 'src' does not exist on type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+src/components/client/ClientActiveBookings.tsx(316,33): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientActiveBookings.tsx(320,30): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientActiveBookings.tsx(324,31): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientActiveBookings.tsx(349,40): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientActiveBookings.tsx(361,35): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientActiveBookings.tsx(407,28): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientBookings.tsx(274,11): error TS2322: Type '{ src: string; alt: string; className: string; }' is not assignable to type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+  Property 'src' does not exist on type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+src/components/client/ClientBookings.tsx(288,25): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientBookings.tsx(292,22): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientBookings.tsx(296,23): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientBookings.tsx(321,25): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientBookings.tsx(335,31): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientBookings.tsx(350,36): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientBookings.tsx(360,29): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientBookings.tsx(376,34): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientBookings.tsx(391,22): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientBookings.tsx(478,23): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientBookings.tsx(489,22): error TS2322: Type '{ children: string; htmlFor: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/client/ClientBookings.tsx(494,17): error TS2322: Type '{ id: string; value: string; onChange: (e: any) => void; rows: number; placeholder: string; }' is not assignable to type 'IntrinsicAttributes & TextareaProps & RefAttributes<any>'.
+  Property 'rows' does not exist on type 'IntrinsicAttributes & TextareaProps & RefAttributes<any>'.
+src/components/client/ClientBookings.tsx(506,44): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientBookings.tsx(506,74): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientBookings.tsx(566,28): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientHome.tsx(164,23): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientHome.tsx(192,27): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientHome.tsx(200,23): error TS2322: Type '{ children: Element; key: string; className: string; onPress: () => Promise<void>; }' is not assignable to type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+  Property 'onPress' does not exist on type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+src/components/client/ClientHome.tsx(235,104): error TS2322: Type '{ left: "auto" | "12px"; right: "auto" | "12px"; }' is not assignable to type 'StyleProp<ViewStyle>'.
+  Types of property 'left' are incompatible.
+    Type '"auto" | "12px"' is not assignable to type 'DimensionValue | undefined'.
+      Type '"12px"' is not assignable to type 'DimensionValue | undefined'.
+src/components/client/ClientHome.tsx(242,13): error TS2322: Type '{ paddingLeft: "16px" | "36px"; paddingRight: "16px" | "36px"; }' is not assignable to type 'StyleProp<TextStyle>'.
+  Types of property 'paddingLeft' are incompatible.
+    Type '"16px" | "36px"' is not assignable to type 'DimensionValue | undefined'.
+      Type '"16px"' is not assignable to type 'DimensionValue | undefined'.
+src/components/client/ClientHome.tsx(302,23): error TS2322: Type '{ src: string; alt: string; loading: "lazy"; className: string; }' is not assignable to type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+  Property 'src' does not exist on type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+src/components/client/ClientHome.tsx(321,35): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientHome.tsx(325,33): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientHome.tsx(332,34): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientHome.tsx(337,34): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientNotifications.tsx(162,19): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientNotifications.tsx(171,17): error TS2322: Type '{ children: Element; key: string; onPress: () => Promise<void>; className: string; }' is not assignable to type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+  Property 'onPress' does not exist on type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+src/components/client/ClientNotifications.tsx(177,36): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientProfile.tsx(366,15): error TS2322: Type '{ children: (false | Element)[]; className: string; onPress: () => void | undefined; }' is not assignable to type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+  Property 'onPress' does not exist on type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+src/components/client/ClientProfile.tsx(369,24): error TS2322: Type '{ src: string; alt: string; className: string; }' is not assignable to type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+  Property 'src' does not exist on type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+src/components/client/ClientProfile.tsx(371,23): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientProfile.tsx(375,23): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientProfile.tsx(392,24): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientProfile.tsx(401,27): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientProfile.tsx(418,23): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientProfile.tsx(450,47): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientProfile.tsx(450,91): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientProfile.tsx(466,21): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientProfile.tsx(474,20): error TS2322: Type '{ children: string; htmlFor: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/client/ClientProfile.tsx(479,15): error TS2322: Type '{ id: string; value: string; onChange: (e: any) => void; disabled: boolean; className: string; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'disabled' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/client/ClientProfile.tsx(490,20): error TS2322: Type '{ children: string; htmlFor: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/client/ClientProfile.tsx(492,21): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientProfile.tsx(498,17): error TS2322: Type '{ id: string; type: string; value: string; onChange: (e: any) => void; disabled: boolean; className: string; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'disabled' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/client/ClientProfile.tsx(510,20): error TS2322: Type '{ children: string; htmlFor: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/client/ClientProfile.tsx(512,22): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientProfile.tsx(518,17): error TS2322: Type '{ id: string; type: string; value: string; onChange: (e: any) => void; disabled: boolean; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'disabled' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/client/ClientProfile.tsx(524,20): error TS2322: Type '{ children: string; htmlFor: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/client/ClientProfile.tsx(526,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientProfile.tsx(531,17): error TS2322: Type '{ id: string; value: string; onChange: (e: any) => void; disabled: boolean; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'disabled' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/client/ClientProfile.tsx(537,20): error TS2322: Type '{ children: string; htmlFor: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/client/ClientProfile.tsx(539,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientProfile.tsx(544,17): error TS2322: Type '{ id: string; value: string; onChange: (e: any) => void; disabled: boolean; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'disabled' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/client/ClientProfile.tsx(550,20): error TS2322: Type '{ children: string; htmlFor: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/client/ClientProfile.tsx(552,23): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientProfile.tsx(557,17): error TS2322: Type '{ id: string; value: string; onChange: (e: any) => void; disabled: boolean; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'disabled' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/client/ClientProfile.tsx(592,19): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientProfile.tsx(600,21): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientProfile.tsx(616,25): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientProfile.tsx(633,19): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientProfile.tsx(641,23): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientProfile.tsx(652,25): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientProfile.tsx(663,24): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientProfile.tsx(685,40): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientProfile.tsx(685,85): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientProfile.tsx(709,21): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientProfile.tsx(719,17): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientProfile.tsx(731,22): error TS2322: Type '{ children: string; htmlFor: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/client/ClientProfile.tsx(739,22): error TS2322: Type '{ children: string; htmlFor: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/client/ClientProfile.tsx(745,17): error TS2322: Type 'number' is not assignable to type 'string'.
+src/components/client/ClientProfile.tsx(750,22): error TS2322: Type '{ children: string; htmlFor: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/client/ClientProfile.tsx(775,22): error TS2322: Type '{ children: string; htmlFor: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/client/ClientProfile.tsx(784,22): error TS2322: Type '{ children: string; htmlFor: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/client/ClientVerification.tsx(152,48): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientVerification.tsx(152,83): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientVerification.tsx(167,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientVerification.tsx(176,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientVerification.tsx(185,20): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientVerification.tsx(194,16): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientVerification.tsx(209,21): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientVerification.tsx(214,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientVerification.tsx(218,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientVerification.tsx(222,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientVerification.tsx(235,22): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientVerification.tsx(239,22): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientVerification.tsx(243,22): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientVerification.tsx(247,22): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientVerification.tsx(253,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientVerification.tsx(265,27): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientVerification.tsx(271,68): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientVerification.tsx(279,31): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientVerification.tsx(284,28): error TS2322: Type '{ children: Element; htmlFor: string; className: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/client/ClientVerification.tsx(285,59): error TS2322: Type '{ children: Element; variant: "outline"; size: "sm"; asChild: true; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+  Property 'asChild' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+src/components/client/ClientVerification.tsx(292,23): error TS2322: Type '{ id: string; type: string; accept: string; onChange: (e: ChangeEvent<any, Element>) => void; className: string; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'accept' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/client/ClientVerification.tsx(299,29): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientVerification.tsx(300,28): error TS2322: Type '{ children: Element; htmlFor: string; className: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/client/ClientVerification.tsx(301,49): error TS2322: Type '{ children: Element; variant: "outline"; asChild: true; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+  Property 'asChild' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+src/components/client/ClientVerification.tsx(308,23): error TS2322: Type '{ id: string; type: string; accept: string; onChange: (e: ChangeEvent<any, Element>) => void; className: string; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'accept' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/client/ClientVerification.tsx(320,31): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientVerification.tsx(325,28): error TS2322: Type '{ children: Element; htmlFor: string; className: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/client/ClientVerification.tsx(326,59): error TS2322: Type '{ children: Element; variant: "outline"; size: "sm"; asChild: true; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+  Property 'asChild' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+src/components/client/ClientVerification.tsx(333,23): error TS2322: Type '{ id: string; type: string; accept: string; onChange: (e: ChangeEvent<any, Element>) => void; className: string; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'accept' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/client/ClientVerification.tsx(340,29): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/ClientVerification.tsx(341,28): error TS2322: Type '{ children: Element; htmlFor: string; className: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/client/ClientVerification.tsx(342,49): error TS2322: Type '{ children: Element; variant: "outline"; asChild: true; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+  Property 'asChild' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+src/components/client/ClientVerification.tsx(349,23): error TS2322: Type '{ id: string; type: string; accept: string; onChange: (e: ChangeEvent<any, Element>) => void; className: string; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'accept' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/client/PaymentPage.tsx(124,48): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/PaymentPage.tsx(124,83): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/PaymentPage.tsx(173,17): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/PaymentPage.tsx(185,24): error TS2322: Type '{ children: Element[]; htmlFor: string; className: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/client/PaymentPage.tsx(186,31): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/PaymentPage.tsx(194,24): error TS2322: Type '{ children: Element[]; htmlFor: string; className: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/client/PaymentPage.tsx(195,31): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/PaymentPage.tsx(203,24): error TS2322: Type '{ children: Element[]; htmlFor: string; className: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/client/PaymentPage.tsx(204,31): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/PaymentPage.tsx(212,24): error TS2322: Type '{ children: Element[]; htmlFor: string; className: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/client/PaymentPage.tsx(213,31): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/PaymentPage.tsx(277,32): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/PaymentPage.tsx(306,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/PaymentPage.tsx(341,30): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/PaymentPage.tsx(355,29): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/SitterProfile.tsx(356,46): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/SitterProfile.tsx(356,82): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/SitterProfile.tsx(365,20): error TS2322: Type '{ src: string; alt: string; loading: "lazy"; className: string; }' is not assignable to type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+  Property 'src' does not exist on type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+src/components/client/SitterProfile.tsx(372,27): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/SitterProfile.tsx(377,25): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/SitterProfile.tsx(383,23): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/SitterProfile.tsx(412,30): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/SitterProfile.tsx(425,25): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/SitterProfile.tsx(478,34): error TS2322: Type '{ children: (string | Element)[]; htmlFor: string; className: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/client/SitterProfile.tsx(479,39): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/SitterProfile.tsx(487,34): error TS2322: Type '{ children: (string | Element)[]; htmlFor: string; className: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/client/SitterProfile.tsx(488,40): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/SitterProfile.tsx(533,31): error TS2322: Type '{ children: string; key: string; type: string; onPress: () => void; className: string; }' is not assignable to type 'IntrinsicAttributes & PressableProps & RefAttributes<View> & { className?: string | undefined; }'.
+  Property 'type' does not exist on type 'IntrinsicAttributes & PressableProps & RefAttributes<View> & { className?: string | undefined; }'.
+src/components/client/SitterProfile.tsx(559,36): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/SitterProfile.tsx(578,32): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/SitterProfile.tsx(589,31): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/SitterProfile.tsx(601,29): error TS2322: Type '{ id: any; checked: boolean; onCheckedChange: (checked: boolean) => void; }' is not assignable to type 'IntrinsicAttributes & CheckboxProps'.
+  Property 'id' does not exist on type 'IntrinsicAttributes & CheckboxProps'.
+src/components/client/SitterProfile.tsx(608,34): error TS2322: Type '{ children: any[]; htmlFor: any; className: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/client/SitterProfile.tsx(618,33): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/SitterProfile.tsx(658,37): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/SitterProfile.tsx(677,31): error TS2322: Type '{ id: string; checked: boolean; onCheckedChange: (c: boolean) => void; }' is not assignable to type 'IntrinsicAttributes & CheckboxProps'.
+  Property 'id' does not exist on type 'IntrinsicAttributes & CheckboxProps'.
+src/components/client/SitterProfile.tsx(681,36): error TS2322: Type '{ children: string; htmlFor: string; className: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/client/SitterProfile.tsx(696,23): error TS2322: Type '{ value: string; onChange: (e: any) => void; placeholder: string; rows: number; className: string; }' is not assignable to type 'IntrinsicAttributes & TextareaProps & RefAttributes<any>'.
+  Property 'rows' does not exist on type 'IntrinsicAttributes & TextareaProps & RefAttributes<any>'.
+src/components/client/SitterProfile.tsx(708,36): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/TrackingPage.tsx(111,46): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/TrackingPage.tsx(111,81): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/TrackingPage.tsx(124,17): error TS2322: Type '{ src: string; alt: string; className: string; }' is not assignable to type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+  Property 'src' does not exist on type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+src/components/client/TrackingPage.tsx(129,25): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/TrackingPage.tsx(146,25): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/TrackingPage.tsx(192,51): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/TrackingPage.tsx(192,83): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/TrackingPage.tsx(211,17): error TS2322: Type '{ top: "calc(50% - 12px)"; }' is not assignable to type 'StyleProp<ViewStyle>'.
+  Types of property 'top' are incompatible.
+    Type '"calc(50% - 12px)"' is not assignable to type 'DimensionValue | undefined'.
+src/components/client/TrackingPage.tsx(228,24): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/TrackingPage.tsx(230,28): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/TrackingPage.tsx(232,23): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/client/TrackingPage.tsx(242,20): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ClientApp.tsx(54,19): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ClientApp.tsx(63,23): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ClientApp.tsx(72,20): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ClientApp.tsx(81,19): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ErrorBoundary.tsx(65,52): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ErrorBoundary.tsx(104,48): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/figma/ImageWithFallback.tsx(1,29): error TS2307: Cannot find module '../tw' or its corresponding type declarations.
+src/components/sitter/AvailabilityManagement.tsx(316,50): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/AvailabilityManagement.tsx(316,85): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/AvailabilityManagement.tsx(327,21): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/AvailabilityManagement.tsx(382,23): error TS2322: Type '{ id: string; checked: boolean; onCheckedChange: (checked: CheckedState) => void; }' is not assignable to type 'IntrinsicAttributes & CheckboxProps'.
+  Property 'id' does not exist on type 'IntrinsicAttributes & CheckboxProps'.
+src/components/sitter/AvailabilityManagement.tsx(386,28): error TS2322: Type '{ children: string; htmlFor: string; className: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/sitter/AvailabilityManagement.tsx(396,24): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/AvailabilityManagement.tsx(424,34): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/AvailabilityManagement.tsx(471,32): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/AvailabilityManagement.tsx(503,37): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/AvailabilityManagement.tsx(514,29): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/AvailabilityManagement.tsx(524,32): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/AvailabilityManagement.tsx(560,36): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/BookingRequests.tsx(230,48): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/BookingRequests.tsx(230,83): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/BookingRequests.tsx(246,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/BookingRequests.tsx(263,32): error TS2322: Type '{ src: string; alt: string | undefined; }' is not assignable to type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+  Property 'src' does not exist on type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+src/components/sitter/BookingRequests.tsx(275,33): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/BookingRequests.tsx(279,30): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/BookingRequests.tsx(283,29): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/BookingRequests.tsx(292,29): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/BookingRequests.tsx(311,30): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/BookingRequests.tsx(323,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/BookingRequests.tsx(343,32): error TS2322: Type '{ src: string; alt: string | undefined; }' is not assignable to type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+  Property 'src' does not exist on type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+src/components/sitter/BookingRequests.tsx(366,22): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/BookingRequests.tsx(373,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/RequestDetails.tsx(118,44): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/RequestDetails.tsx(118,80): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/RequestDetails.tsx(127,20): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/RequestDetails.tsx(138,25): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/RequestDetails.tsx(153,19): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/RequestDetails.tsx(158,15): error TS2322: Type '{ src: string; alt: string; className: string; }' is not assignable to type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+  Property 'src' does not exist on type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+src/components/sitter/RequestDetails.tsx(165,25): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/RequestDetails.tsx(175,23): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/RequestDetails.tsx(241,20): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/RequestDetails.tsx(248,24): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/ServicesManagement.tsx(261,48): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/ServicesManagement.tsx(261,83): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/ServicesManagement.tsx(271,35): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/ServicesManagement.tsx(271,78): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/ServicesManagement.tsx(285,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/ServicesManagement.tsx(293,17): error TS2322: Type '{ id: string; checked: boolean; onCheckedChange: (checked: boolean) => void; }' is not assignable to type 'IntrinsicAttributes & CheckboxProps'.
+  Property 'id' does not exist on type 'IntrinsicAttributes & CheckboxProps'.
+src/components/sitter/ServicesManagement.tsx(307,25): error TS2322: Type 'number' is not assignable to type 'string'.
+src/components/sitter/ServicesManagement.tsx(322,25): error TS2322: Type 'number' is not assignable to type 'string'.
+src/components/sitter/ServicesManagement.tsx(339,21): error TS2322: Type '{ value: string; onChange: (e: any) => void; className: string; rows: number; }' is not assignable to type 'IntrinsicAttributes & TextareaProps & RefAttributes<any>'.
+  Property 'rows' does not exist on type 'IntrinsicAttributes & TextareaProps & RefAttributes<any>'.
+src/components/sitter/ServicesManagement.tsx(355,35): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/ServicesManagement.tsx(364,46): error TS2339: Property 'key' does not exist on type 'TextInputKeyPressEvent'.
+src/components/sitter/ServicesManagement.tsx(367,31): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/ServicesManagement.tsx(383,29): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/ServicesManagement.tsx(391,17): error TS2322: Type '{ id: string; checked: boolean; onCheckedChange: (checked: boolean) => void; }' is not assignable to type 'IntrinsicAttributes & CheckboxProps'.
+  Property 'id' does not exist on type 'IntrinsicAttributes & CheckboxProps'.
+src/components/sitter/ServicesManagement.tsx(405,25): error TS2322: Type 'number' is not assignable to type 'string'.
+src/components/sitter/ServicesManagement.tsx(420,25): error TS2322: Type 'number' is not assignable to type 'string'.
+src/components/sitter/ServicesManagement.tsx(437,21): error TS2322: Type '{ value: string; onChange: (e: any) => void; className: string; rows: number; }' is not assignable to type 'IntrinsicAttributes & TextareaProps & RefAttributes<any>'.
+  Property 'rows' does not exist on type 'IntrinsicAttributes & TextareaProps & RefAttributes<any>'.
+src/components/sitter/ServicesManagement.tsx(453,35): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/ServicesManagement.tsx(462,46): error TS2339: Property 'key' does not exist on type 'TextInputKeyPressEvent'.
+src/components/sitter/ServicesManagement.tsx(465,31): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/ServicesManagement.tsx(481,33): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/ServicesManagement.tsx(489,17): error TS2322: Type '{ id: string; checked: boolean; onCheckedChange: (checked: boolean) => void; }' is not assignable to type 'IntrinsicAttributes & CheckboxProps'.
+  Property 'id' does not exist on type 'IntrinsicAttributes & CheckboxProps'.
+src/components/sitter/ServicesManagement.tsx(503,25): error TS2322: Type 'number' is not assignable to type 'string'.
+src/components/sitter/ServicesManagement.tsx(518,25): error TS2322: Type 'number' is not assignable to type 'string'.
+src/components/sitter/ServicesManagement.tsx(535,21): error TS2322: Type '{ value: string; onChange: (e: any) => void; className: string; rows: number; }' is not assignable to type 'IntrinsicAttributes & TextareaProps & RefAttributes<any>'.
+  Property 'rows' does not exist on type 'IntrinsicAttributes & TextareaProps & RefAttributes<any>'.
+src/components/sitter/ServicesManagement.tsx(551,35): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/ServicesManagement.tsx(560,46): error TS2339: Property 'key' does not exist on type 'TextInputKeyPressEvent'.
+src/components/sitter/ServicesManagement.tsx(563,31): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterBookings.tsx(279,11): error TS2322: Type '{ src: string; alt: string; className: string; }' is not assignable to type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+  Property 'src' does not exist on type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+src/components/sitter/SitterBookings.tsx(306,29): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterBookings.tsx(310,22): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterBookings.tsx(314,22): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterBookings.tsx(318,23): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterBookings.tsx(341,29): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterBookings.tsx(351,34): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterBookings.tsx(359,22): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterBookings.tsx(375,18): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterBookings.tsx(394,27): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterBookings.tsx(407,25): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterBookings.tsx(570,23): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterBookings.tsx(585,17): error TS2322: Type '{ value: string; onChange: (e: any) => void; placeholder: string; rows: number; }' is not assignable to type 'IntrinsicAttributes & TextareaProps & RefAttributes<any>'.
+  Property 'rows' does not exist on type 'IntrinsicAttributes & TextareaProps & RefAttributes<any>'.
+src/components/sitter/SitterBookings.tsx(595,46): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterBookings.tsx(595,76): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterChatPage.tsx(1,22): error TS6133: 'Image' is declared but its value is never read.
+src/components/sitter/SitterChatPage.tsx(115,54): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterChatPage.tsx(115,90): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterChatPage.tsx(132,35): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterChatPage.tsx(157,23): error TS2322: Type '{ ref: RefObject<any>; }' is not assignable to type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+  Property 'ref' does not exist on type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+src/components/sitter/SitterChatPage.tsx(164,36): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterChatPage.tsx(167,30): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterChatPage.tsx(173,46): error TS2339: Property 'key' does not exist on type 'TextInputKeyPressEvent'.
+src/components/sitter/SitterChatPage.tsx(182,31): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterEarnings.tsx(163,39): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterEarnings.tsx(163,81): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterEarnings.tsx(177,25): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterEarnings.tsx(202,27): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterEarnings.tsx(214,27): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterEarnings.tsx(225,23): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterEarnings.tsx(232,22): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterEarnings.tsx(251,35): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterEarnings.tsx(253,35): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterEarnings.tsx(259,33): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterHeader.tsx(120,41): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterHeader.tsx(132,35): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterHeader.tsx(156,45): error TS2322: Type '{ children: Element[]; key: string; className: string; onPress: () => Promise<void>; }' is not assignable to type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+  Property 'onPress' does not exist on type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+src/components/sitter/SitterHome.tsx(292,17): error TS2322: Type '{ src: any; alt: string | undefined; className: string; }' is not assignable to type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+  Property 'src' does not exist on type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+src/components/sitter/SitterHome.tsx(307,25): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterHome.tsx(324,29): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterHome.tsx(332,25): error TS2322: Type '{ children: Element; key: string; className: string; onPress: () => Promise<void>; }' is not assignable to type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+  Property 'onPress' does not exist on type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+src/components/sitter/SitterHome.tsx(361,33): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterHome.tsx(391,22): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterHome.tsx(413,27): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterHome.tsx(421,27): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterHome.tsx(429,30): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterHome.tsx(439,100): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterHome.tsx(445,23): error TS2322: Type '{ children: Element; variant: "ghost"; size: "icon"; className: string; onPress: () => void; title: string; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+  Property 'title' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+src/components/sitter/SitterHome.tsx(447,31): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterHome.tsx(456,94): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterHome.tsx(463,95): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterHome.tsx(470,94): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterHome.tsx(516,23): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterHome.tsx(526,32): error TS2322: Type '{ src: string; className: string; }' is not assignable to type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+  Property 'src' does not exist on type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+src/components/sitter/SitterHome.tsx(538,81): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterHome.tsx(539,78): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterHome.tsx(542,34): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterNotifications.tsx(164,19): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterNotifications.tsx(173,17): error TS2322: Type '{ children: Element; key: string; onPress: () => Promise<void>; className: string; }' is not assignable to type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+  Property 'onPress' does not exist on type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+src/components/sitter/SitterNotifications.tsx(179,36): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterProfile.tsx(401,18): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterProfile.tsx(412,48): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterProfile.tsx(412,86): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterProfile.tsx(425,17): error TS2322: Type '{ children: (false | Element)[]; className: string; onPress: () => void | undefined; }' is not assignable to type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+  Property 'onPress' does not exist on type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+src/components/sitter/SitterProfile.tsx(428,19): error TS2322: Type '{ src: string; alt: string; className: string; }' is not assignable to type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+  Property 'src' does not exist on type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+src/components/sitter/SitterProfile.tsx(433,27): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterProfile.tsx(437,30): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterProfile.tsx(447,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterProfile.tsx(456,27): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterProfile.tsx(465,23): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterProfile.tsx(481,20): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterProfile.tsx(490,48): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterProfile.tsx(490,109): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterProfile.tsx(490,145): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterProfile.tsx(503,23): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterProfile.tsx(514,17): error TS2322: Type '{ value: string; onChange: (e: any) => void; disabled: boolean; className: string; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'disabled' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/sitter/SitterProfile.tsx(528,17): error TS2322: Type '{ value: string; onChange: (e: any) => void; disabled: boolean; className: string; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'disabled' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/sitter/SitterProfile.tsx(539,112): error TS2322: Type '{ value: string; onChange: (e: any) => void; disabled: boolean; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'disabled' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/sitter/SitterProfile.tsx(543,118): error TS2322: Type '{ value: string; onChange: (e: any) => void; disabled: boolean; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'disabled' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/sitter/SitterProfile.tsx(547,111): error TS2322: Type '{ value: string; onChange: (e: any) => void; disabled: boolean; rows: number; }' is not assignable to type 'IntrinsicAttributes & TextareaProps & RefAttributes<any>'.
+  Property 'disabled' does not exist on type 'IntrinsicAttributes & TextareaProps & RefAttributes<any>'.
+src/components/sitter/SitterProfile.tsx(551,36): error TS2322: Type 'number' is not assignable to type 'string'.
+src/components/sitter/SitterProfile.tsx(578,17): error TS2322: Type '{ children: Element[]; key: string; onPress: () => void; className: string; }' is not assignable to type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+  Property 'onPress' does not exist on type 'IntrinsicAttributes & ViewProps & { className?: string | undefined; }'.
+src/components/sitter/SitterProfile.tsx(595,21): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterProfile.tsx(604,27): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterProfile.tsx(616,21): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterProfile.tsx(625,27): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterProfile.tsx(636,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterProfile.tsx(644,42): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterProfile.tsx(644,72): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterProfile.tsx(651,21): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterSessionPage.tsx(210,56): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterSessionPage.tsx(210,94): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterSessionPage.tsx(220,33): error TS2322: Type '{ src: string; alt: string; className: string; }' is not assignable to type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+  Property 'src' does not exist on type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+src/components/sitter/SitterSessionPage.tsx(227,45): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterSessionPage.tsx(238,44): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterSessionPage.tsx(250,46): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterSessionPage.tsx(254,37): error TS2322: Type '{ src: string; alt: string; className: string; }' is not assignable to type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+  Property 'src' does not exist on type 'IntrinsicAttributes & Omit<AnimatedProps<Readonly<ImageProps>>, "ref"> & { ref?: AnimatedComponentRef<typeof Image> | undefined; } & { ...; }'.
+src/components/sitter/SitterSessionPage.tsx(266,45): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterSessionPage.tsx(277,47): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterSessionPage.tsx(284,54): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterSessionPage.tsx(301,51): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterVerification.tsx(249,21): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterVerification.tsx(254,18): error TS2322: Type '{ children: Element; htmlFor: string; className: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/sitter/SitterVerification.tsx(255,49): error TS2322: Type '{ children: Element; variant: "outline"; size: "sm"; asChild: true; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+  Property 'asChild' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+src/components/sitter/SitterVerification.tsx(265,18): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterVerification.tsx(269,18): error TS2322: Type '{ children: Element; htmlFor: string; className: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/sitter/SitterVerification.tsx(270,49): error TS2322: Type '{ children: Element; variant: "outline"; size: "sm"; asChild: true; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+  Property 'asChild' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+src/components/sitter/SitterVerification.tsx(280,19): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterVerification.tsx(281,18): error TS2322: Type '{ children: Element; htmlFor: string; className: string; }' is not assignable to type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+  Property 'htmlFor' does not exist on type 'IntrinsicAttributes & TextProps & { className?: string | undefined; }'.
+src/components/sitter/SitterVerification.tsx(282,49): error TS2322: Type '{ children: Element; variant: "outline"; size: "sm"; asChild: true; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+  Property 'asChild' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+src/components/sitter/SitterVerification.tsx(306,48): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterVerification.tsx(306,83): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterVerification.tsx(321,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterVerification.tsx(330,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterVerification.tsx(339,20): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterVerification.tsx(348,16): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterVerification.tsx(363,21): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterVerification.tsx(368,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterVerification.tsx(372,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterVerification.tsx(376,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterVerification.tsx(380,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterVerification.tsx(388,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterVerification.tsx(400,27): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterVerification.tsx(406,74): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterVerification.tsx(414,17): error TS2322: Type '{ id: string; type: string; accept: string; onChange: (e: ChangeEvent<any, Element>) => void; className: string; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'accept' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/sitter/SitterVerification.tsx(427,27): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterVerification.tsx(433,135): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/sitter/SitterVerification.tsx(443,19): error TS2322: Type '{ id: string; type: string; accept: string; onChange: (e: ChangeEvent<any, Element>) => void; className: string; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'accept' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/sitter/SitterVerification.tsx(455,19): error TS2322: Type '{ id: string; type: string; accept: string; onChange: (e: ChangeEvent<any, Element>) => void; className: string; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+  Property 'accept' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<any>'.
+src/components/sitter/SitterVerification.tsx(474,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/SitterApp.tsx(72,19): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/SitterApp.tsx(81,23): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/SitterApp.tsx(90,25): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/SitterApp.tsx(100,23): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/SitterApp.tsx(110,19): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/SplashScreen.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/components/ui/accordion.tsx(44,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/alert-dialog.tsx(52,6): error TS6133: 'props' is declared but its value is never read.
+src/components/ui/alert-dialog.tsx(62,13): error TS18046: 'children.props' is of type 'unknown'.
+src/components/ui/alert-dialog.tsx(63,11): error TS18046: 'children.props' is of type 'unknown'.
+src/components/ui/alert-dialog.tsx(76,45): error TS6133: 'props' is declared but its value is never read.
+src/components/ui/breadcrumb.tsx(95,23): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/calendar.tsx(64,24): error TS2322: Type '{ style?: CSSProperties | undefined; children?: ReactNode; className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/calendar.tsx(67,25): error TS2322: Type '{ style?: CSSProperties | undefined; children?: ReactNode; className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/carousel.tsx(195,7): error TS2322: Type '{ children: Element[]; textClassName?: string | undefined; style?: StyleProp<ViewStyle> | ((state: PressableStateCallbackType) => StyleProp<...>); ... 110 more ...; onClick: () => void; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+  Property 'onClick' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+src/components/ui/carousel.tsx(225,7): error TS2322: Type '{ children: Element[]; textClassName?: string | undefined; style?: StyleProp<ViewStyle> | ((state: PressableStateCallbackType) => StyleProp<...>); ... 110 more ...; onClick: () => void; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+  Property 'onClick' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+src/components/ui/checkbox.tsx(57,16): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/command.tsx(65,19): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/context-menu.tsx(75,25): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/context-menu.tsx(155,22): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/context-menu.tsx(179,23): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/dialog.tsx(52,6): error TS6133: 'props' is declared but its value is never read.
+src/components/ui/dialog.tsx(62,13): error TS18046: 'children.props' is of type 'unknown'.
+src/components/ui/dialog.tsx(63,11): error TS18046: 'children.props' is of type 'unknown'.
+src/components/ui/dialog.tsx(81,13): error TS18046: 'children.props' is of type 'unknown'.
+src/components/ui/dialog.tsx(82,11): error TS18046: 'children.props' is of type 'unknown'.
+src/components/ui/dialog.tsx(91,40): error TS6133: 'props' is declared but its value is never read.
+src/components/ui/dialog.tsx(124,16): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/dropdown-menu.tsx(103,22): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/dropdown-menu.tsx(138,23): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/dropdown-menu.tsx(220,25): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/ErrorBoundary.tsx(40,40): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/ErrorBoundary.tsx(49,29): error TS2322: Type '{ children: string; variant: "outline"; onClick: () => void; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+  Property 'onClick' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+src/components/ui/ErrorBoundary.tsx(54,29): error TS2322: Type '{ children: string; onClick: () => void; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+  Property 'onClick' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+src/components/ui/form.tsx(97,6): error TS2322: Type '{ style?: CSSProperties | undefined; children?: ReactNode; id?: string | undefined; onBlur?: FocusEventHandler<HTMLLabelElement> | undefined; ... 280 more ...; className: string; }' is not assignable to type 'TextProps'.
+  Types of property 'style' are incompatible.
+    Type 'CSSProperties | undefined' is not assignable to type 'StyleProp<TextStyle>'.
+      Type 'CSSProperties' is not assignable to type 'StyleProp<TextStyle>'.
+        Type 'Properties<string | number, string & {}>' is not assignable to type 'TextStyle'.
+          Types of property 'fontSize' are incompatible.
+            Type 'FontSize<string | number> | undefined' is not assignable to type 'number | undefined'.
+              Type 'string' is not assignable to type 'number'.
+src/components/ui/input.tsx(26,9): error TS2322: Type '{ children?: ReactNode; hitSlop?: number | Insets | null | undefined; id?: string | undefined; needsOffscreenAlphaCompositing?: boolean | undefined; onLayout?: ((event: LayoutChangeEvent) => void) | undefined; ... 153 more ...; style: StyleProp<...>; }' is not assignable to type 'IntrinsicAttributes & TextInputProps & { className?: string | undefined; }'.
+  Property 'ref' does not exist on type 'IntrinsicAttributes & TextInputProps & { className?: string | undefined; }'.
+src/components/ui/menubar.tsx(132,22): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/menubar.tsx(156,23): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/menubar.tsx(238,25): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/navigation-menu.tsx(78,9): error TS2322: Type '{ className: string; "aria-hidden": string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/pagination.tsx(113,27): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/radio-group.tsx(39,21): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/resizable.tsx(49,29): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/select.tsx(51,26): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/select.tsx(121,22): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/select.tsx(155,22): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/select.tsx(173,24): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/sheet.tsx(76,18): error TS2322: Type '{ className: string; }' is not assignable to type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & LucideProps & RefAttributes<SVGSVGElement>'.
+src/components/ui/sidebar.tsx(258,3): error TS2339: Property 'onClick' does not exist on type 'ButtonProps & RefAttributes<any>'.
+src/components/ui/sidebar.tsx(270,7): error TS2322: Type '{ children: Element[]; textClassName?: string | undefined; style?: StyleProp<ViewStyle> | ((state: PressableStateCallbackType) => StyleProp<...>); ... 111 more ...; onClick: (event: any) => void; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+  Property 'onClick' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<any>'.
+src/components/ui/sidebar.tsx(270,17): error TS7006: Parameter 'event' implicitly has an 'any' type.
+src/components/ui/sonner.tsx(2,1): error TS6133: 'React' is declared but its value is never read.
+src/components/ui/sonner.tsx(12,35): error TS6133: 'options' is declared but its value is never read.
+src/components/ui/sonner.tsx(18,30): error TS6133: 'options' is declared but its value is never read.
+src/components/ui/sonner.tsx(22,28): error TS6133: 'options' is declared but its value is never read.
+src/components/ui/sonner.tsx(26,27): error TS6133: 'options' is declared but its value is never read.
+src/components/ui/sonner.tsx(30,30): error TS6133: 'options' is declared but its value is never read.
+src/components/ui/sonner.tsx(34,13): error TS6133: 'message' is declared but its value is never read.
+src/components/ui/sonner.tsx(34,30): error TS6133: 'options' is declared but its value is never read.
+src/components/ui/sonner.tsx(37,13): error TS6133: 'id' is declared but its value is never read.
+src/components/ui/textarea.tsx(22,9): error TS2322: Type '{ children?: ReactNode; hitSlop?: number | Insets | null | undefined; id?: string | undefined; needsOffscreenAlphaCompositing?: boolean | undefined; onLayout?: ((event: LayoutChangeEvent) => void) | undefined; ... 153 more ...; style: StyleProp<...>; }' is not assignable to type 'IntrinsicAttributes & TextInputProps & { className?: string | undefined; }'.
+  Property 'ref' does not exist on type 'IntrinsicAttributes & TextInputProps & { className?: string | undefined; }'.
+src/tw/image.tsx(33,10): error TS2589: Type instantiation is excessively deep and possibly infinite.
+src/tw/image.tsx(33,10): error TS2590: Expression produces a union type that is too complex to represent.
+src/tw/index.tsx(23,10): error TS2590: Expression produces a union type that is too complex to represent.
+src/tw/index.tsx(62,10): error TS2590: Expression produces a union type that is too complex to represent.
+src/tw/index.tsx(93,10): error TS2589: Type instantiation is excessively deep and possibly infinite.
+src/tw/index.tsx(104,11): error TS2339: Property 'underlayColor' does not exist on type 'ViewStyle'.

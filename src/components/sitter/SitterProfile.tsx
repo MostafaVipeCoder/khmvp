@@ -1,3 +1,4 @@
+import { View, Text, Pressable, Image } from '../../tw';
 import { Star, Loader2, Moon, Sun, Languages, LogOut, Trash2, Plus, Edit, Shield, Check, Upload, ChevronLeft, ChevronRight, Eye } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Card } from '../ui/card';
@@ -283,7 +284,7 @@ export default function SitterProfile({ language, onLogout, onLanguageChange, th
     }
   };
 
-  const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAvatarUpload = async (e: React.ChangeEvent<any>) => {
     const file = e.target.files?.[0];
     if (!file || !user?.id) return;
 
@@ -396,116 +397,116 @@ export default function SitterProfile({ language, onLogout, onLanguageChange, th
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
+      <View className="flex items-center justify-center min-h-[400px]">
         <Loader2 className="w-8 h-8 animate-spin text-[#FB5E7A]" />
-      </div>
+      </View>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pb-20">
+    <View className="min-h-screen bg-gray-50 dark:bg-gray-900 pb-20">
       {/* Sticky Header */}
-      <div className="sticky top-0 z-50 bg-gray-50 dark:bg-gray-900 pt-6 pb-4 -mx-4 px-8 mb-4 border-b border-gray-100 dark:border-gray-800">
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" onClick={onBack} className="rounded-full">
+      <View className="sticky top-0 z-50 bg-gray-50 dark:bg-gray-900 pt-6 pb-4 -mx-4 px-8 mb-4 border-b border-gray-100 dark:border-gray-800">
+        <View className="flex items-center gap-4">
+          <Button variant="ghost" size="icon" onPress={onBack} className="rounded-full">
             {language === 'ar' ? <ChevronRight className="w-6 h-6" /> : <ChevronLeft className="w-6 h-6" />}
           </Button>
-          <h1 className="text-[#FB5E7A] text-2xl font-bold">{t.profile}</h1>
-        </div>
-      </div>
+          <Text className="text-[#FB5E7A] text-2xl font-bold">{t.profile}</Text>
+        </View>
+      </View>
 
-      <div className="max-w-4xl mx-auto px-4 py-6">
+      <View className="max-w-4xl mx-auto px-4 py-6">
         {/* Profile Header */}
         <Card className="p-6 mb-6">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="relative group">
-              <div
+          <View className="flex items-center gap-4 mb-4">
+            <View className="relative group">
+              <View
                 className={`w-20 h-20 rounded-full bg-[#FFD1DA] flex items-center justify-center overflow-hidden border-2 border-transparent group-hover:border-[#FB5E7A] transition-all cursor-pointer ${isUploadingAvatar ? 'opacity-50' : ''}`}
-                onClick={() => document.getElementById('avatar-input')?.click()}
+                onPress={() => document.getElementById('avatar-input')?.click()}
               >
-                <img
+                <Image
                   src={profile.avatarUrl}
                   alt={profile.name}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity">
+                <View className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity">
                   <Upload className="w-6 h-6 text-white" />
-                </div>
+                </View>
                 {isUploadingAvatar && (
-                  <div className="absolute inset-0 flex items-center justify-center">
+                  <View className="absolute inset-0 flex items-center justify-center">
                     <Loader2 className="w-6 h-6 animate-spin text-[#FB5E7A]" />
-                  </div>
+                  </View>
                 )}
-              </div>
+              </View>
               <input id="avatar-input" type="file" accept="image/*" className="hidden" onChange={handleAvatarUpload} disabled={isUploadingAvatar} />
-              <p className="text-[10px] text-gray-500 text-center mt-2 w-24 mx-auto">
+              <Text className="text-[10px] text-gray-500 text-center mt-2 w-24 mx-auto">
                 {language === 'ar' ? 'JPG, PNG - بحد أقصى 5 ميجا' : 'JPG, PNG - Max 5MB'}
-              </p>
+              </Text>
               {profile.isVerified && (
-                <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center ring-2 ring-white dark:ring-gray-800">
+                <View className="absolute -bottom-1 -right-1 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center ring-2 ring-white dark:ring-gray-800">
                   <Check className="w-4 h-4 text-white" />
-                </div>
+                </View>
               )}
-            </div>
-            <div className="flex-1">
-              <h2 className="text-[#FB5E7A] mb-1">{profile.name}</h2>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{t.memberSince} {profile.memberSince}</p>
+            </View>
+            <View className="flex-1">
+              <Text className="text-[#FB5E7A] mb-1">{profile.name}</Text>
+              <Text className="text-sm text-gray-600 dark:text-gray-400 mb-2">{t.memberSince} {profile.memberSince}</Text>
               {profile.isVerified && (
                 <Badge className="bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300">
                   <Shield className="w-3 h-3 mr-1" />
                   {t.verified}
                 </Badge>
               )}
-            </div>
-          </div>
-          <div className="grid grid-cols-2 gap-4 pt-4 border-t">
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-1 text-[#FB5E7A] mb-1">
+            </View>
+          </View>
+          <View className="grid grid-cols-2 gap-4 pt-4 border-t">
+            <View className="text-center">
+              <View className="flex items-center justify-center gap-1 text-[#FB5E7A] mb-1">
                 <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                <span>{profile.rating}</span>
-              </div>
-              <p className="text-xs text-gray-600 dark:text-gray-400">{profile.reviews} {t.reviews}</p>
-            </div>
-            <div className="text-center">
-              <div className="text-[#FB5E7A] mb-1">{profile.completedJobs}</div>
-              <p className="text-xs text-gray-600 dark:text-gray-400">{t.completedJobs}</p>
-            </div>
-          </div>
+                <Text>{profile.rating}</Text>
+              </View>
+              <Text className="text-xs text-gray-600 dark:text-gray-400">{profile.reviews} {t.reviews}</Text>
+            </View>
+            <View className="text-center">
+              <View className="text-[#FB5E7A] mb-1">{profile.completedJobs}</View>
+              <Text className="text-xs text-gray-600 dark:text-gray-400">{t.completedJobs}</Text>
+            </View>
+          </View>
         </Card>
 
         {/* Visibility Toggle */}
         <Card className="p-6 mb-6 border-2 transition-all duration-300 bg-white dark:bg-gray-800">
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center gap-3">
+          <View className="flex items-center justify-between mb-2">
+            <View className="flex items-center gap-3">
               <Eye className="w-5 h-5 text-[#FB5E7A]" />
-              <h3 className="font-bold">{t.visibilitySettings}</h3>
-            </div>
+              <Text className="font-bold">{t.visibilitySettings}</Text>
+            </View>
             <Button
               variant={isActive ? "default" : "outline"}
               className={isActive ? "bg-green-600 hover:bg-green-700" : "border-red-500 text-red-500 cursor-pointer"}
-              onClick={handleToggleVisibility}
+              onPress={handleToggleVisibility}
               disabled={isUpdatingVisibility}
             >
               {isUpdatingVisibility ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : isActive ? <Check className="w-4 h-4 mr-2" /> : <Moon className="w-4 h-4 mr-2" />}
               {isActive ? t.activeStatus : t.inactiveStatus}
             </Button>
-          </div>
-          <p className="text-sm text-gray-500">{t.visibilityDesc}</p>
+          </View>
+          <Text className="text-sm text-gray-500">{t.visibilityDesc}</Text>
         </Card>
 
         {/* Personal Information */}
         <Card className="p-6 mb-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3>{t.personalInfo}</h3>
+          <View className="flex items-center justify-between mb-4">
+            <Text>{t.personalInfo}</Text>
             {!isEditingProfile && (
-              <Button variant="ghost" size="sm" onClick={() => setIsEditingProfile(true)} className="text-[#FB5E7A]">
+              <Button variant="ghost" size="sm" onPress={() => setIsEditingProfile(true)} className="text-[#FB5E7A]">
                 <Edit className="w-4 h-4 mr-2" />
                 {t.edit}
               </Button>
             )}
-          </div>
-          <div className="space-y-4">
-            <div className="space-y-2">
+          </View>
+          <View className="space-y-4">
+            <View className="space-y-2">
               <Label>{t.fullName}</Label>
               <Input
                 value={profile.name}
@@ -514,12 +515,12 @@ export default function SitterProfile({ language, onLogout, onLanguageChange, th
                 className="bg-gray-50 cursor-not-allowed"
               />
               {isEditingProfile && (
-                <p className="text-[10px] text-gray-500 mt-1">
+                <Text className="text-[10px] text-gray-500 mt-1">
                   {language === 'ar' ? '* لا يمكن تغيير الاسم' : '* Name cannot be changed'}
-                </p>
+                </Text>
               )}
-            </div>
-            <div className="space-y-2">
+            </View>
+            <View className="space-y-2">
               <Label>{t.email}</Label>
               <Input
                 value={profile.email}
@@ -528,139 +529,139 @@ export default function SitterProfile({ language, onLogout, onLanguageChange, th
                 className="bg-gray-50 cursor-not-allowed"
               />
               {isEditingProfile && (
-                <p className="text-[10px] text-gray-500 mt-1">
+                <Text className="text-[10px] text-gray-500 mt-1">
                   {language === 'ar' ? '* لا يمكن تغيير البريد الإلكتروني' : '* Email cannot be changed'}
-                </p>
+                </Text>
               )}
-            </div>
-            <div className="space-y-2">
+            </View>
+            <View className="space-y-2">
               <Label>{t.phone}</Label>
               <Input value={profile.phone} onChange={(e) => setProfile({ ...profile, phone: e.target.value })} disabled={!isEditingProfile} />
-            </div>
-            <div className="space-y-2">
+            </View>
+            <View className="space-y-2">
               <Label>{t.location}</Label>
               <Input value={profile.location} onChange={(e) => setProfile({ ...profile, location: e.target.value })} disabled={!isEditingProfile} />
-            </div>
-            <div className="space-y-2">
+            </View>
+            <View className="space-y-2">
               <Label>{t.bio}</Label>
               <Textarea value={profile.bio} onChange={(e) => setProfile({ ...profile, bio: e.target.value })} disabled={!isEditingProfile} rows={4} />
-            </div>
-            <div className="space-y-2">
+            </View>
+            <View className="space-y-2">
               <Label>{t.experience}</Label>
               <Input type="number" value={profile.experience} onChange={(e) => setProfile({ ...profile, experience: parseInt(e.target.value) || 0 })} disabled={!isEditingProfile} />
-            </div>
+            </View>
             {isEditingProfile && (
-              <div className="flex gap-2">
-                <Button onClick={handleSaveProfile} className="flex-1 bg-[#FB5E7A]">
+              <View className="flex gap-2">
+                <Button onPress={handleSaveProfile} className="flex-1 bg-[#FB5E7A]">
                   {t.save}
                 </Button>
-                <Button variant="outline" onClick={() => setIsEditingProfile(false)} className="flex-1">
+                <Button variant="outline" onPress={() => setIsEditingProfile(false)} className="flex-1">
                   {t.cancel}
                 </Button>
-              </div>
+              </View>
             )}
-          </div>
+          </View>
         </Card>
 
         {/* Availability Settings */}
         <Card className="p-6 mb-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3>{t.availabilitySettings}</h3>
-            <Button onClick={handleSaveProfile} size="sm" className="bg-[#FB5E7A]">
+          <View className="flex items-center justify-between mb-4">
+            <Text>{t.availabilitySettings}</Text>
+            <Button onPress={handleSaveProfile} size="sm" className="bg-[#FB5E7A]">
               {t.save}
             </Button>
-          </div>
-          <div className="space-y-3">
+          </View>
+          <View className="space-y-3">
             {['home', 'outside', 'both'].map((type) => (
-              <div
+              <View
                 key={type}
-                onClick={() => setAvailabilityType(type as any)}
+                onPress={() => setAvailabilityType(type as any)}
                 className={`p-4 border-2 rounded-lg cursor-pointer transition-all ${availabilityType === type ? 'border-[#FB5E7A] bg-[#FFD1DA]/20' : 'border-gray-200 dark:border-gray-700'}`}
               >
-                <h4 className="mb-1">{t[`${type}Only` as keyof typeof t] || t.both}</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <Text className="mb-1">{t[`${type}Only` as keyof typeof t] || t.both}</Text>
+                <Text className="text-sm text-gray-600 dark:text-gray-400">
                   {language === 'ar' ? 'سأكون متاحة للعمل حسب الاختيار' : 'I will be available based on this choice'}
-                </p>
-              </div>
+                </Text>
+              </View>
             ))}
-          </div>
+          </View>
         </Card>
 
         {/* Skills */}
         <Card className="p-6 mb-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3>{t.skills}</h3>
-            <Button variant="ghost" size="sm" onClick={() => setShowAddSkillDialog(true)} className="text-[#FB5E7A]">
+          <View className="flex items-center justify-between mb-4">
+            <Text>{t.skills}</Text>
+            <Button variant="ghost" size="sm" onPress={() => setShowAddSkillDialog(true)} className="text-[#FB5E7A]">
               <Plus className="w-4 h-4 mr-2" />
               {t.addSkill}
             </Button>
-          </div>
-          <div className="flex flex-wrap gap-2">
+          </View>
+          <View className="flex flex-wrap gap-2">
             {skills.map((skillItem) => (
               <Badge key={skillItem.id} className="bg-[#FFD1DA] text-[#FB5E7A] pr-1">
                 {skillItem.skill}
-                <button onClick={() => handleDeleteSkill(skillItem.id)} className="ml-2 hover:text-red-500">
+                <Pressable onPress={() => handleDeleteSkill(skillItem.id)} className="ml-2 hover:text-red-500">
                   <Trash2 className="w-3 h-3" />
-                </button>
+                </Pressable>
               </Badge>
             ))}
-          </div>
+          </View>
         </Card>
 
         {/* Languages */}
         <Card className="p-6 mb-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3>{t.languages}</h3>
-            <Button variant="ghost" size="sm" onClick={() => setShowAddLanguageDialog(true)} className="text-[#FB5E7A]">
+          <View className="flex items-center justify-between mb-4">
+            <Text>{t.languages}</Text>
+            <Button variant="ghost" size="sm" onPress={() => setShowAddLanguageDialog(true)} className="text-[#FB5E7A]">
               <Plus className="w-4 h-4 mr-2" />
               {t.addLanguage}
             </Button>
-          </div>
-          <div className="flex flex-wrap gap-2">
+          </View>
+          <View className="flex flex-wrap gap-2">
             {languagesList.map((langItem) => (
               <Badge key={langItem.id} className="bg-[#E5E7EB] text-gray-700 pr-1">
                 {langItem.language}
-                <button onClick={() => handleDeleteLanguage(langItem.id)} className="ml-2 hover:text-red-500">
+                <Pressable onPress={() => handleDeleteLanguage(langItem.id)} className="ml-2 hover:text-red-500">
                   <Trash2 className="w-3 h-3" />
-                </button>
+                </Pressable>
               </Badge>
             ))}
-          </div>
+          </View>
         </Card>
 
         {/* Settings & Logout */}
-        <div className="space-y-4">
-          <Button variant="outline" className="w-full h-12 flex justify-between px-6 border-[#FB5E7A] text-[#FB5E7A]" onClick={onLanguageChange}>
-            <div className="flex items-center gap-3">
+        <View className="space-y-4">
+          <Button variant="outline" className="w-full h-12 flex justify-between px-6 border-[#FB5E7A] text-[#FB5E7A]" onPress={onLanguageChange}>
+            <View className="flex items-center gap-3">
               <Languages className="w-5 h-5" />
-              <span>{t.language}</span>
-            </div>
-            <span>{language === 'ar' ? '🇬🇧 EN' : '🇪🇬 AR'}</span>
+              <Text>{t.language}</Text>
+            </View>
+            <Text>{language === 'ar' ? '🇬🇧 EN' : '🇪🇬 AR'}</Text>
           </Button>
 
-          <Button variant="outline" className="w-full h-12 flex justify-between px-6 border-[#FB5E7A] text-[#FB5E7A]" onClick={onThemeChange}>
-            <div className="flex items-center gap-3">
+          <Button variant="outline" className="w-full h-12 flex justify-between px-6 border-[#FB5E7A] text-[#FB5E7A]" onPress={onThemeChange}>
+            <View className="flex items-center gap-3">
               {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
-              <span>{t.theme}</span>
-            </div>
-            <span>{theme === 'light' ? t.darkMode : t.lightMode}</span>
+              <Text>{t.theme}</Text>
+            </View>
+            <Text>{theme === 'light' ? t.darkMode : t.lightMode}</Text>
           </Button>
 
-          <Button variant="outline" className="w-full h-12 border-red-500 text-red-500 hover:bg-red-50" onClick={onLogout}>
+          <Button variant="outline" className="w-full h-12 border-red-500 text-red-500 hover:bg-red-50" onPress={onLogout}>
             <LogOut className="w-5 h-5 mr-3" />
             {t.logout}
           </Button>
-        </div>
-      </div>
+        </View>
+      </View>
 
       {/* Add Skill Dialog */}
       <Dialog open={showAddSkillDialog} onOpenChange={setShowAddSkillDialog}>
         <DialogContent>
           <DialogHeader><DialogTitle>{t.addSkill}</DialogTitle></DialogHeader>
-          <div className="space-y-4 py-4">
+          <View className="space-y-4 py-4">
             <Input value={newSkill} onChange={(e) => setNewSkill(e.target.value)} placeholder={t.skillName} />
-            <Button onClick={handleAddSkill} className="w-full bg-[#FB5E7A]">{t.addSkill}</Button>
-          </div>
+            <Button onPress={handleAddSkill} className="w-full bg-[#FB5E7A]">{t.addSkill}</Button>
+          </View>
         </DialogContent>
       </Dialog>
 
@@ -668,12 +669,12 @@ export default function SitterProfile({ language, onLogout, onLanguageChange, th
       <Dialog open={showAddLanguageDialog} onOpenChange={setShowAddLanguageDialog}>
         <DialogContent>
           <DialogHeader><DialogTitle>{t.addLanguage}</DialogTitle></DialogHeader>
-          <div className="space-y-4 py-4">
+          <View className="space-y-4 py-4">
             <Input value={newLanguage} onChange={(e) => setNewLanguage(e.target.value)} placeholder={t.language} />
-            <Button onClick={handleAddLanguage} className="w-full bg-[#FB5E7A]">{t.addLanguage}</Button>
-          </div>
+            <Button onPress={handleAddLanguage} className="w-full bg-[#FB5E7A]">{t.addLanguage}</Button>
+          </View>
         </DialogContent>
       </Dialog>
-    </div>
+    </View>
   );
 }

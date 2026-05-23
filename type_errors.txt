@@ -1,0 +1,88 @@
+﻿src/components/client/PaymentPage.tsx(184,46): error TS2322: Type '{ value: string; id: string; }' is not assignable to type 'IntrinsicAttributes & RadioGroupItemProps'.
+  Property 'id' does not exist on type 'IntrinsicAttributes & RadioGroupItemProps'.
+src/components/client/PaymentPage.tsx(193,50): error TS2322: Type '{ value: string; id: string; }' is not assignable to type 'IntrinsicAttributes & RadioGroupItemProps'.
+  Property 'id' does not exist on type 'IntrinsicAttributes & RadioGroupItemProps'.
+src/components/client/PaymentPage.tsx(202,50): error TS2322: Type '{ value: string; id: string; }' is not assignable to type 'IntrinsicAttributes & RadioGroupItemProps'.
+  Property 'id' does not exist on type 'IntrinsicAttributes & RadioGroupItemProps'.
+src/components/client/PaymentPage.tsx(211,47): error TS2322: Type '{ value: string; id: string; }' is not assignable to type 'IntrinsicAttributes & RadioGroupItemProps'.
+  Property 'id' does not exist on type 'IntrinsicAttributes & RadioGroupItemProps'.
+src/components/client/SitterProfile.tsx(474,53): error TS2322: Type '(v: "home" | "outside") => void' is not assignable to type '(value: string) => void'.
+  Types of parameters 'v' and 'value' are incompatible.
+    Type 'string' is not assignable to type '"home" | "outside"'.
+src/components/client/SitterProfile.tsx(477,56): error TS2322: Type '{ value: string; id: string; }' is not assignable to type 'IntrinsicAttributes & RadioGroupItemProps'.
+  Property 'id' does not exist on type 'IntrinsicAttributes & RadioGroupItemProps'.
+src/components/client/SitterProfile.tsx(486,59): error TS2322: Type '{ value: string; id: string; }' is not assignable to type 'IntrinsicAttributes & RadioGroupItemProps'.
+  Property 'id' does not exist on type 'IntrinsicAttributes & RadioGroupItemProps'.
+src/components/ui/breadcrumb.tsx(77,75): error TS18046: 'children.props' is of type 'unknown'.
+src/components/ui/breadcrumb.tsx(78,22): error TS18046: 'children.props' is of type 'unknown'.
+src/components/ui/breadcrumb.tsx(79,27): error TS18046: 'children.props' is of type 'unknown'.
+src/components/ui/carousel.tsx(4,16): error TS6133: 'Pressable' is declared but its value is never read.
+src/components/ui/carousel.tsx(54,9): error TS6133: 'handleScroll' is declared but its value is never read.
+src/components/ui/carousel.tsx(146,7): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: ScrollViewProps): ScrollView', gave the following error.
+    Type '{ children: Element; ref: RefObject<ScrollView | null>; horizontal: boolean; pagingEnabled: true; showsHorizontalScrollIndicator: false; showsVerticalScrollIndicator: false; onLayout: (e: LayoutChangeEvent) => void; className: string; style: any; }' is not assignable to type 'IntrinsicAttributes & IntrinsicClassAttributes<ScrollView> & Readonly<ScrollViewProps>'.
+      Property 'className' does not exist on type 'IntrinsicAttributes & IntrinsicClassAttributes<ScrollView> & Readonly<ScrollViewProps>'.
+  Overload 2 of 2, '(props: ScrollViewProps, context: any): ScrollView', gave the following error.
+    Type '{ children: Element; ref: RefObject<ScrollView | null>; horizontal: boolean; pagingEnabled: true; showsHorizontalScrollIndicator: false; showsVerticalScrollIndicator: false; onLayout: (e: LayoutChangeEvent) => void; className: string; style: any; }' is not assignable to type 'IntrinsicAttributes & IntrinsicClassAttributes<ScrollView> & Readonly<ScrollViewProps>'.
+      Property 'className' does not exist on type 'IntrinsicAttributes & IntrinsicClassAttributes<ScrollView> & Readonly<ScrollViewProps>'.
+src/components/ui/collapsible.tsx(3,1): error TS6133: 'cn' is declared but its value is never read.
+src/components/ui/command.tsx(87,9): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: TextInputProps): TextInput', gave the following error.
+    Type '{ value: string; onChangeText: (search: string) => void; placeholder: string; placeholderTextColor: string; className: string; }' is not assignable to type 'IntrinsicAttributes & IntrinsicClassAttributes<TextInput> & Readonly<TextInputProps>'.
+      Property 'className' does not exist on type 'IntrinsicAttributes & IntrinsicClassAttributes<TextInput> & Readonly<TextInputProps>'.
+  Overload 2 of 2, '(props: TextInputProps, context: any): TextInput', gave the following error.
+    Type '{ value: string; onChangeText: (search: string) => void; placeholder: string; placeholderTextColor: string; className: string; }' is not assignable to type 'IntrinsicAttributes & IntrinsicClassAttributes<TextInput> & Readonly<TextInputProps>'.
+      Property 'className' does not exist on type 'IntrinsicAttributes & IntrinsicClassAttributes<TextInput> & Readonly<TextInputProps>'.
+src/components/ui/command.tsx(109,7): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: ScrollViewProps): ScrollView', gave the following error.
+    Type '{ children: ReactNode; className: string; style: any; keyboardShouldPersistTaps: "handled"; }' is not assignable to type 'IntrinsicAttributes & IntrinsicClassAttributes<ScrollView> & Readonly<ScrollViewProps>'.
+      Property 'className' does not exist on type 'IntrinsicAttributes & IntrinsicClassAttributes<ScrollView> & Readonly<ScrollViewProps>'.
+  Overload 2 of 2, '(props: ScrollViewProps, context: any): ScrollView', gave the following error.
+    Type '{ children: ReactNode; className: string; style: any; keyboardShouldPersistTaps: "handled"; }' is not assignable to type 'IntrinsicAttributes & IntrinsicClassAttributes<ScrollView> & Readonly<ScrollViewProps>'.
+      Property 'className' does not exist on type 'IntrinsicAttributes & IntrinsicClassAttributes<ScrollView> & Readonly<ScrollViewProps>'.
+src/components/ui/context-menu.tsx(16,6): error TS6133: 'props' is declared but its value is never read.
+src/components/ui/context-menu.tsx(49,13): error TS18046: 'children.props' is of type 'unknown'.
+src/components/ui/context-menu.tsx(49,41): error TS18046: 'children.props' is of type 'unknown'.
+src/components/ui/context-menu.tsx(67,6): error TS6133: 'props' is declared but its value is never read.
+src/components/ui/dropdown-menu.tsx(18,6): error TS6133: 'props' is declared but its value is never read.
+src/components/ui/dropdown-menu.tsx(68,13): error TS18046: 'children.props' is of type 'unknown'.
+src/components/ui/dropdown-menu.tsx(68,37): error TS18046: 'children.props' is of type 'unknown'.
+src/components/ui/dropdown-menu.tsx(85,6): error TS6133: 'props' is declared but its value is never read.
+src/components/ui/hover-card.tsx(3,10): error TS6133: 'View' is declared but its value is never read.
+src/components/ui/hover-card.tsx(62,13): error TS18046: 'children.props' is of type 'unknown'.
+src/components/ui/hover-card.tsx(62,37): error TS18046: 'children.props' is of type 'unknown'.
+src/components/ui/hover-card.tsx(81,6): error TS6133: 'props' is declared but its value is never read.
+src/components/ui/input-otp.tsx(31,6): error TS6133: 'props' is declared but its value is never read.
+src/components/ui/input-otp.tsx(56,11): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: TextInputProps): TextInput', gave the following error.
+    Type '{ ref: RefObject<TextInput | null>; value: string; onChangeText: ((val: string) => void) | undefined; maxLength: number; keyboardType: "number-pad"; textContentType: "oneTimeCode"; style: AbsoluteFillStyle; caretHidden: true; pointerEvents: "none"; opacity: number; }' is not assignable to type 'IntrinsicAttributes & IntrinsicClassAttributes<TextInput> & Readonly<TextInputProps>'.
+      Property 'opacity' does not exist on type 'IntrinsicAttributes & IntrinsicClassAttributes<TextInput> & Readonly<TextInputProps>'.
+  Overload 2 of 2, '(props: TextInputProps, context: any): TextInput', gave the following error.
+    Type '{ ref: RefObject<TextInput | null>; value: string; onChangeText: ((val: string) => void) | undefined; maxLength: number; keyboardType: "number-pad"; textContentType: "oneTimeCode"; style: AbsoluteFillStyle; caretHidden: true; pointerEvents: "none"; opacity: number; }' is not assignable to type 'IntrinsicAttributes & IntrinsicClassAttributes<TextInput> & Readonly<TextInputProps>'.
+      Property 'opacity' does not exist on type 'IntrinsicAttributes & IntrinsicClassAttributes<TextInput> & Readonly<TextInputProps>'.
+src/components/ui/menubar.tsx(51,6): error TS6133: 'props' is declared but its value is never read.
+src/components/ui/menubar.tsx(129,6): error TS6133: 'props' is declared but its value is never read.
+src/components/ui/popover.tsx(3,10): error TS6133: 'View' is declared but its value is never read.
+src/components/ui/popover.tsx(66,13): error TS18046: 'children.props' is of type 'unknown'.
+src/components/ui/popover.tsx(66,37): error TS18046: 'children.props' is of type 'unknown'.
+src/components/ui/popover.tsx(93,6): error TS6133: 'props' is declared but its value is never read.
+src/components/ui/progress.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/components/ui/resizable.tsx(3,1): error TS6133: 'React' is declared but its value is never read.
+src/components/ui/scroll-area.tsx(18,7): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: ScrollViewProps): ScrollView', gave the following error.
+    Type '{ children: Element; contentContainerStyle?: StyleProp<ViewStyle>; innerViewRef?: RefObject<View> | undefined; scrollViewRef?: RefObject<...> | undefined; ... 146 more ...; className: string; }' is not assignable to type 'IntrinsicAttributes & IntrinsicClassAttributes<ScrollView> & Readonly<ScrollViewProps>'.
+      Property 'className' does not exist on type 'IntrinsicAttributes & IntrinsicClassAttributes<ScrollView> & Readonly<ScrollViewProps>'.
+  Overload 2 of 2, '(props: ScrollViewProps, context: any): ScrollView', gave the following error.
+    Type '{ children: Element; contentContainerStyle?: StyleProp<ViewStyle>; innerViewRef?: RefObject<View> | undefined; scrollViewRef?: RefObject<...> | undefined; ... 146 more ...; className: string; }' is not assignable to type 'IntrinsicAttributes & IntrinsicClassAttributes<ScrollView> & Readonly<ScrollViewProps>'.
+      Property 'className' does not exist on type 'IntrinsicAttributes & IntrinsicClassAttributes<ScrollView> & Readonly<ScrollViewProps>'.
+src/components/ui/scroll-area.tsx(30,20): error TS6133: 'props' is declared but its value is never read.
+src/components/ui/select.tsx(9,3): error TS6133: 'ChevronUpIcon' is declared but its value is never read.
+src/components/ui/select.tsx(135,19): error TS2345: Argument of type '(prev: any) => any' is not assignable to parameter of type 'Record<string, string>'.
+  Index signature for type 'string' is missing in type '(prev: any) => any'.
+src/components/ui/separator.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/components/ui/slider.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/components/ui/table.tsx(3,1): error TS6133: 'React' is declared but its value is never read.
+src/components/ui/tooltip.tsx(3,10): error TS6133: 'View' is declared but its value is never read.
+src/components/ui/tooltip.tsx(66,13): error TS18046: 'children.props' is of type 'unknown'.
+src/components/ui/tooltip.tsx(66,37): error TS18046: 'children.props' is of type 'unknown'.
+src/components/ui/tooltip.tsx(84,6): error TS6133: 'props' is declared but its value is never read.

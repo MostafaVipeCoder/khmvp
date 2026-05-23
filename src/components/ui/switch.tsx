@@ -1,30 +1,64 @@
-"use client";
-
 import * as React from "react";
-import * as SwitchPrimitive from "@radix-ui/react-switch";
-
+import { Pressable, View } from "../../tw";
 import { cn } from "./utils";
+
+interface SwitchProps {
+  className?: string;
+  checked?: boolean;
+  defaultChecked?: boolean;
+  onCheckedChange?: (checked: boolean) => void;
+  disabled?: boolean;
+  style?: any;
+}
 
 function Switch({
   className,
+  checked,
+  defaultChecked = false,
+  onCheckedChange,
+  disabled,
+  style,
   ...props
-}: React.ComponentProps<typeof SwitchPrimitive.Root>) {
+}: SwitchProps) {
+  const [localChecked, setLocalChecked] = React.useState(defaultChecked || checked);
+
+  React.useEffect(() => {
+    if (checked !== undefined) {
+      setLocalChecked(checked);
+    }
+  }, [checked]);
+
+  const handlePress = () => {
+    if (disabled) return;
+    const nextChecked = !localChecked;
+    if (checked === undefined) {
+      setLocalChecked(nextChecked);
+    }
+    if (onCheckedChange) {
+      onCheckedChange(nextChecked);
+    }
+  };
+
   return (
-    <SwitchPrimitive.Root
-      data-slot="switch"
+    <Pressable
+      onPress={handlePress}
+      disabled={disabled}
       className={cn(
-        "peer data-[state=checked]:bg-primary data-[state=unchecked]:bg-switch-background focus-visible:border-ring focus-visible:ring-ring/50 dark:data-[state=unchecked]:bg-input/80 inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border border-transparent transition-all outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50",
+        "peer inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border-2 border-transparent transition-colors",
+        localChecked ? "bg-primary" : "bg-neutral-200 dark:bg-neutral-800",
+        disabled && "opacity-50",
         className,
       )}
+      style={style}
       {...props}
     >
-      <SwitchPrimitive.Thumb
-        data-slot="switch-thumb"
+      <View
         className={cn(
-          "bg-card dark:data-[state=unchecked]:bg-card-foreground dark:data-[state=checked]:bg-primary-foreground pointer-events-none block size-4 rounded-full ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-0",
+          "bg-white dark:bg-neutral-950 pointer-events-none block size-3.5 rounded-full ring-0 shadow-sm transition-transform",
+          localChecked ? "translate-x-[14px]" : "translate-x-0"
         )}
       />
-    </SwitchPrimitive.Root>
+    </Pressable>
   );
 }
 
