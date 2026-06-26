@@ -114,3 +114,55 @@ export interface Child {
     special_needs?: string;
     created_at: string;
 }
+
+export interface Payment {
+    id: string;
+    booking_id: string;
+    amount: number;
+    payment_method: 'card' | 'instapay' | 'vodafone' | 'fawry';
+    status: 'pending' | 'completed' | 'failed' | 'refunded';
+    transaction_id?: string;
+    gateway_response?: any;
+    created_at: string;
+    updated_at: string;
+}
+
+export interface Dispute {
+    id: string;
+    booking_id: string;
+    reported_by: 'client' | 'khala';
+    type: 'no_show' | 'late' | 'quality' | 'payment' | 'behavior' | 'other';
+    status: 'open' | 'in_review' | 'resolved' | 'closed';
+    title: string;
+    description: string;
+    evidence?: any[];
+    resolution?: string;
+    resolved_by?: string;
+    created_at: string;
+    updated_at: string;
+    closed_at?: string;
+}
+
+export interface SupportTicket {
+    id: string;
+    user_id: string;
+    user_type: 'client' | 'khala';
+    category: 'technical' | 'account' | 'payment' | 'booking' | 'other';
+    priority: 'low' | 'medium' | 'high';
+    status: 'open' | 'in_progress' | 'waiting_response' | 'resolved' | 'closed';
+    subject: string;
+    description: string;
+    attachments?: any[];
+    created_at: string;
+    updated_at: string;
+}
+
+export interface TicketMessage {
+    id: string;
+    ticket_id: string;
+    sender_id: string;
+    sender_type: 'user' | 'support';
+    message: string;
+    attachments?: any[];
+    created_at: string;
+}

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { User, Baby, MapPin, Phone, Mail, Edit, Plus, Trash2, LogOut, Languages, Moon, Sun, Shield, Check, ChevronRight, ChevronLeft, Headphones, Briefcase } from 'lucide-react';
+import { User, Baby, MapPin, Phone, Mail, Edit, Plus, Trash2, LogOut, Languages, Moon, Sun, Shield, Check, ChevronRight, ChevronLeft, Headphones, Briefcase, CreditCard } from 'lucide-react';
 import { Card } from '../ui/card';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
@@ -130,12 +130,16 @@ const translations = {
   }
 };
 
+import SupportTicketsPage from '../common/SupportTicketsPage';
+import PaymentHistory from '../common/PaymentHistory';
+
 export default function ClientProfile({ language, onLogout, onLanguageChange, theme, onThemeChange }: ClientProfileProps) {
   const { user } = useAuthStore();
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [showAddChildDialog, setShowAddChildDialog] = useState(false);
   const [showAddAddressDialog, setShowAddAddressDialog] = useState(false);
   const [showVerification, setShowVerification] = useState(false);
+  const [activeView, setActiveView] = useState<'profile' | 'support' | 'payments'>('profile');
 
   const [profile, setProfile] = useState({
     name: '',
@@ -346,6 +350,38 @@ export default function ClientProfile({ language, onLogout, onLanguageChange, th
         language={language}
         onBack={() => setShowVerification(false)}
       />
+    );
+  }
+
+  if (activeView === 'support') {
+    return (
+      <div className="max-w-4xl mx-auto px-4 pb-8">
+        <div className="sticky top-0 z-50 bg-white dark:bg-gray-950 pt-6 pb-4 -mx-4 px-4 mb-4 border-b border-gray-100 dark:border-gray-800">
+          <button
+            onClick={() => setActiveView('profile')}
+            className="text-[#FB5E7A] hover:underline flex items-center gap-1"
+          >
+            ← {language === 'ar' ? 'رجوع إلى الملف الشخصي' : 'Back to Profile'}
+          </button>
+        </div>
+        <SupportTicketsPage onBack={() => setActiveView('profile')} />
+      </div>
+    );
+  }
+
+  if (activeView === 'payments') {
+    return (
+      <div className="max-w-4xl mx-auto px-4 pb-8">
+        <div className="sticky top-0 z-50 bg-white dark:bg-gray-950 pt-6 pb-4 -mx-4 px-4 mb-4 border-b border-gray-100 dark:border-gray-800">
+          <button
+            onClick={() => setActiveView('profile')}
+            className="text-[#FB5E7A] hover:underline flex items-center gap-1"
+          >
+            ← {language === 'ar' ? 'رجوع إلى الملف الشخصي' : 'Back to Profile'}
+          </button>
+        </div>
+        <PaymentHistory onBack={() => setActiveView('profile')} />
+      </div>
     );
   }
 
@@ -699,15 +735,25 @@ export default function ClientProfile({ language, onLogout, onLanguageChange, th
         </div>
       </Card>
 
-      {/* Contact Support */}
-      <Button
-        variant="outline"
-        className="w-full mb-4 border-[#FB5E7A] text-[#FB5E7A] hover:bg-[#FB5E7A]/10"
-        onClick={() => alert(language === 'ar' ? 'سيتم فتح محادثة مع الدعم الفني' : 'Support chat will open')}
-      >
-        <Headphones className="w-4 h-4 mr-2" />
-        {t.contactSupport}
-      </Button>
+      {/* Support and Payments Buttons */}
+      <div className="space-y-3 mb-4">
+        <Button
+          variant="outline"
+          className="w-full border-[#FB5E7A] text-[#FB5E7A] hover:bg-[#FB5E7A]/10"
+          onClick={() => setActiveView('support')}
+        >
+          <Headphones className="w-4 h-4 mr-2" />
+          {language === 'ar' ? 'تذاكر الدعم الفني' : 'Support Tickets'}
+        </Button>
+        <Button
+          variant="outline"
+          className="w-full border-[#FB5E7A] text-[#FB5E7A] hover:bg-[#FB5E7A]/10"
+          onClick={() => setActiveView('payments')}
+        >
+          <CreditCard className="w-4 h-4 mr-2" />
+          {language === 'ar' ? 'سجل المدفوعات' : 'Payment History'}
+        </Button>
+      </div>
 
       {/* Logout Button */}
       <Button

@@ -1,4 +1,6 @@
-import { Star, Loader2, Moon, Sun, Languages, LogOut, Trash2, Plus, Edit, Shield, Check, Upload, ChevronLeft, ChevronRight, Eye } from 'lucide-react';
+import { Star, Loader2, Moon, Sun, Languages, LogOut, Trash2, Plus, Edit, Shield, Check, Upload, ChevronLeft, ChevronRight, Eye, Headphones, CreditCard } from 'lucide-react';
+import SupportTicketsPage from '../common/SupportTicketsPage';
+import PaymentHistory from '../common/PaymentHistory';
 import { useState, useEffect } from 'react';
 import { Card } from '../ui/card';
 import { Button } from '../ui/button';
@@ -167,6 +169,7 @@ export default function SitterProfile({ language, onLogout, onLanguageChange, th
   const [showAddSkillDialog, setShowAddSkillDialog] = useState(false);
   const [showAddLanguageDialog, setShowAddLanguageDialog] = useState(false);
   const [isUploadingAvatar, setIsUploadingAvatar] = useState(false);
+  const [activeView, setActiveView] = useState<'profile' | 'support' | 'payments'>('profile');
   const t = translations[language];
 
   const [profile, setProfile] = useState({
@@ -402,6 +405,46 @@ export default function SitterProfile({ language, onLogout, onLanguageChange, th
     );
   }
 
+  if (activeView === 'support') {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pb-20">
+        <div className="sticky top-0 z-50 bg-gray-50 dark:bg-gray-900 pt-6 pb-4 -mx-4 px-8 mb-4 border-b border-gray-100 dark:border-gray-800">
+          <div className="flex items-center gap-4">
+            <Button variant="ghost" size="icon" onClick={() => setActiveView('profile')} className="rounded-full">
+              {language === 'ar' ? <ChevronRight className="w-6 h-6" /> : <ChevronLeft className="w-6 h-6" />}
+            </Button>
+            <h1 className="text-[#FB5E7A] text-2xl font-bold">
+              {language === 'ar' ? 'تذاكر الدعم الفني' : 'Support Tickets'}
+            </h1>
+          </div>
+        </div>
+        <div className="max-w-4xl mx-auto px-4">
+          <SupportTicketsPage onBack={() => setActiveView('profile')} />
+        </div>
+      </div>
+    );
+  }
+
+  if (activeView === 'payments') {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pb-20">
+        <div className="sticky top-0 z-50 bg-gray-50 dark:bg-gray-900 pt-6 pb-4 -mx-4 px-8 mb-4 border-b border-gray-100 dark:border-gray-800">
+          <div className="flex items-center gap-4">
+            <Button variant="ghost" size="icon" onClick={() => setActiveView('profile')} className="rounded-full">
+              {language === 'ar' ? <ChevronRight className="w-6 h-6" /> : <ChevronLeft className="w-6 h-6" />}
+            </Button>
+            <h1 className="text-[#FB5E7A] text-2xl font-bold">
+              {language === 'ar' ? 'سجل المدفوعات' : 'Payment History'}
+            </h1>
+          </div>
+        </div>
+        <div className="max-w-4xl mx-auto px-4">
+          <PaymentHistory onBack={() => setActiveView('profile')} />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pb-20">
       {/* Sticky Header */}
@@ -628,8 +671,17 @@ export default function SitterProfile({ language, onLogout, onLanguageChange, th
           </div>
         </Card>
 
-        {/* Settings & Logout */}
-        <div className="space-y-4">
+        {/* Support, Payments, Settings & Logout */}
+        <div className="space-y-3">
+          <Button variant="outline" className="w-full border-[#FB5E7A] text-[#FB5E7A] hover:bg-[#FB5E7A]/10" onClick={() => setActiveView('support')}>
+            <Headphones className="w-5 h-5 mr-2" />
+            {language === 'ar' ? 'تذاكر الدعم الفني' : 'Support Tickets'}
+          </Button>
+          <Button variant="outline" className="w-full border-[#FB5E7A] text-[#FB5E7A] hover:bg-[#FB5E7A]/10" onClick={() => setActiveView('payments')}>
+            <CreditCard className="w-5 h-5 mr-2" />
+            {language === 'ar' ? 'سجل المدفوعات' : 'Payment History'}
+          </Button>
+
           <Button variant="outline" className="w-full h-12 flex justify-between px-6 border-[#FB5E7A] text-[#FB5E7A]" onClick={onLanguageChange}>
             <div className="flex items-center gap-3">
               <Languages className="w-5 h-5" />

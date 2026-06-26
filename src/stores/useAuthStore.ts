@@ -219,7 +219,10 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     },
 
     signUp: async (email, password, { full_name, phone, mother_job, father_job, default_address }) => {
-        const userType = get().userType;
+        let userType = get().userType;
+
+        // Map UI role to DB role for trigger
+        if (userType === 'sitter') userType = 'khala';
 
         // 1. Sign up auth user
         const { data: authData, error: authError } = await supabase.auth.signUp({
