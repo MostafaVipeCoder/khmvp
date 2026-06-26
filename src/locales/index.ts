@@ -20,7 +20,7 @@ export const translations = {
             email: 'البريد الإلكتروني',
             phone: 'رقم الهاتف',
             emailOrPhone: 'البريد الإلكتروني',
-            password: 'كلمة مور',
+            password: 'كلمة المرور',
             confirmPassword: 'تأكيد كلمة المرور',
             forgotPassword: 'نسيت كلمة المرور؟',
             loginButton: 'دخول',
