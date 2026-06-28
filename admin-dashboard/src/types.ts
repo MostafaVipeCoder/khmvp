@@ -37,13 +37,28 @@ export interface Booking {
 }
 
 export interface Payment {
-  id: string
-  booking_id: string
-  amount: number
-  payment_method: 'card' | 'instapay' | 'vodafone' | 'fawry'
-  status: 'pending' | 'completed' | 'failed' | 'refunded'
-  transaction_id: string | null
-  gateway_response: any | null
-  created_at: string
-  updated_at: string
+    id: string
+    booking_id: string
+    amount: number
+    payment_method: 'card' | 'instapay' | 'vodafone' | 'fawry'
+    status: 'pending' | 'completed' | 'failed' | 'refunded'
+    transaction_id: string | null
+    gateway_response: any | null
+    created_at: string
+    updated_at: string
+}
+
+export interface VerificationRequest {
+    id: string
+    user_id?: string
+    sitter_id?: string
+    document_type: string
+    document_url: string
+    status: 'pending' | 'approved' | 'rejected'
+    rejection_reason?: string
+    reviewed_by?: string
+    reviewed_at?: string
+    created_at: string
+    updated_at: string
+    user?: Profile
 }

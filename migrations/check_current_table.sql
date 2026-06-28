@@ -1,0 +1,9 @@
+-- Run this first to check your current table structure
+SELECT 
+  column_name, 
+  data_type, 
+  is_nullable, 
+  column_default
+FROM information_schema.columns
+WHERE table_name = 'verification_requests'
+ORDER BY ordinal_position;

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Users, Baby, Clock, DollarSign, TrendingUp, TrendingDown } from 'lucide-react'
+import { Users, Baby, Clock, TrendingUp, TrendingDown } from 'lucide-react'
 
 interface StatCardProps {
   title: string

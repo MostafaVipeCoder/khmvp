@@ -209,13 +209,22 @@ CREATE TABLE IF NOT EXISTS public.reviews (
 -- =============================================
 CREATE TABLE IF NOT EXISTS public.verification_requests (
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-    sitter_id UUID REFERENCES public.profiles(id) ON DELETE CASCADE NOT NULL,
+    user_id UUID REFERENCES public.profiles(id) ON DELETE CASCADE,
+    sitter_id UUID REFERENCES public.profiles(id) ON DELETE CASCADE,
     document_type TEXT NOT NULL,
     document_url TEXT NOT NULL,
     status TEXT DEFAULT 'pending' CHECK (status IN ('pending', 'approved', 'rejected')),
+    rejection_reason TEXT,
+    reviewed_by UUID REFERENCES public.profiles(id) ON DELETE SET NULL,
+    reviewed_at TIMESTAMPTZ,
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- Add check constraint to ensure either user_id or sitter_id is present
+ALTER TABLE public.verification_requests 
+ADD CONSTRAINT chk_user_or_sitter 
+CHECK (user_id IS NOT NULL OR sitter_id IS NOT NULL);
 
 -- =============================================
 -- Table: Transactions (Wallet)
@@ -597,13 +606,34 @@ CREATE POLICY "Users can create reviews for bookings they were part of."
 
 -- Verification Requests Policies
 DROP POLICY IF EXISTS "Sitters can view their own verification requests." ON public.verification_requests;
-CREATE POLICY "Sitters can view their own verification requests."
-  ON public.verification_requests FOR SELECT
-  USING (auth.uid() = sitter_id);
 DROP POLICY IF EXISTS "Sitters can create/update their own verification requests." ON public.verification_requests;
-CREATE POLICY "Sitters can create/update their own verification requests."
+DROP POLICY IF EXISTS "Users can view their own verification requests." ON public.verification_requests;
+DROP POLICY IF EXISTS "Users can create/update their own verification requests." ON public.verification_requests;
+DROP POLICY IF EXISTS "Admins can view and manage all verification requests." ON public.verification_requests;
+
+CREATE POLICY "Users can view their own verification requests."
+  ON public.verification_requests FOR SELECT
+  USING (auth.uid() = user_id OR auth.uid() = sitter_id);
+
+CREATE POLICY "Users can create/update their own verification requests."
   ON public.verification_requests FOR ALL
-  USING (auth.uid() = sitter_id);
+  USING (auth.uid() = user_id OR auth.uid() = sitter_id)
+  WITH CHECK (auth.uid() = user_id OR auth.uid() = sitter_id);
+
+CREATE POLICY "Admins can view and manage all verification requests."
+  ON public.verification_requests FOR ALL
+  USING (
+    EXISTS (
+      SELECT 1 FROM public.profiles
+      WHERE id = auth.uid() AND role = 'admin'
+    )
+  )
+  WITH CHECK (
+    EXISTS (
+      SELECT 1 FROM public.profiles
+      WHERE id = auth.uid() AND role = 'admin'
+    )
+  );
 
 -- Transactions Policies
 DROP POLICY IF EXISTS "Users can view their own transactions." ON public.transactions;

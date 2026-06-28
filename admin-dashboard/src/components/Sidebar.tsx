@@ -4,9 +4,10 @@ import { LayoutDashboard, Users, UserCheck, DollarSign, Settings, LogOut } from 
 interface SidebarProps {
   activeTab: string
   setActiveTab: (tab: string) => void
+  onLogout: () => void
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
+const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onLogout }) => {
   const menuItems = [
     { id: 'dashboard', icon: LayoutDashboard, label: 'الإحصائيات الرئيسية' },
     { id: 'sitters', icon: Users, label: 'إدارة الخالات' },
@@ -43,7 +44,10 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
       </nav>
 
       <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 dark:border-gray-700">
-        <button className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all">
+        <button 
+          onClick={onLogout}
+          className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all"
+        >
           <LogOut className="w-5 h-5" />
           <span>تسجيل خروج</span>
         </button>
