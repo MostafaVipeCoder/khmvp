@@ -39,6 +39,8 @@ const ClientVerification: React.FC<ClientVerificationProps> = ({ clients, verifi
     const userId = request.user_id || request.sitter_id || selectedClient.id
     setIsProcessing(true)
     try {
+      console.log(`[Approval] Starting approval process for request ${request.id} (user: ${userId})`)
+      
       // Update the verification request
       const { error: requestError } = await supabase
         .from('verification_requests')
@@ -49,28 +51,47 @@ const ClientVerification: React.FC<ClientVerificationProps> = ({ clients, verifi
         .eq('id', request.id)
 
       if (requestError) throw requestError
+      console.log(`[Approval] Successfully updated request ${request.id} to approved`)
 
-      // Check if all user's documents are approved
-      const userRequests = getClientRequests(userId)
-      if (userRequests.every(r => r.status === 'approved')) {
+      // Re-fetch ALL user's verification requests from the database to ensure we have fresh data
+      const { data: freshRequests, error: fetchError } = await supabase
+        .from('verification_requests')
+        .select('*')
+        .or(`user_id.eq.${userId},sitter_id.eq.${userId}`)
+      
+      if (fetchError) throw fetchError
+      
+      // Check if ALL user's documents are approved
+      const allApproved = freshRequests.length > 0 && freshRequests.every(r => r.status === 'approved')
+      console.log(`[Approval] User ${userId} has ${freshRequests.length} total requests, all approved: ${allApproved}`)
+      
+      if (allApproved) {
         // Update user's is_verified flag
-        await supabase
+        const { error: profileError } = await supabase
           .from('profiles')
           .update({ is_verified: true })
           .eq('id', userId)
+        
+        if (profileError) throw profileError
+        console.log(`[Approval] Successfully updated user ${userId} profile to is_verified = true`)
       }
 
       // Send notification to user
-      await supabase.from('notifications').insert({
+      const { error: notificationError } = await supabase.from('notifications').insert({
         user_id: userId,
         type: 'verification_approved',
         title: 'تمت الموافقة على طلبك',
         message: `تمت الموافقة على وثيقة ${getDocumentTypeName(request.document_type)}!`
       })
 
+      if (notificationError) {
+        console.warn('Notification failed to send, but approval was successful:', notificationError)
+      }
+
       onRefresh()
     } catch (error) {
-      console.error('Error approving request:', error)
+      console.error('[Approval] Error approving request:', error)
+      alert(`حدث خطأ أثناء الموافقة: ${error instanceof Error ? error.message : 'خطأ غير معروف'}`)
     } finally {
       setIsProcessing(false)
     }
@@ -83,6 +104,8 @@ const ClientVerification: React.FC<ClientVerificationProps> = ({ clients, verifi
     if (!reason) return
     setIsProcessing(true)
     try {
+      console.log(`[Rejection] Starting rejection process for request ${request.id} (user: ${userId})`)
+      
       // Update the verification request
       const { error: requestError } = await supabase
         .from('verification_requests')
@@ -94,14 +117,19 @@ const ClientVerification: React.FC<ClientVerificationProps> = ({ clients, verifi
         .eq('id', request.id)
 
       if (requestError) throw requestError
+      console.log(`[Rejection] Successfully updated request ${request.id} to rejected`)
 
       // Send notification to user
-      await supabase.from('notifications').insert({
+      const { error: notificationError } = await supabase.from('notifications').insert({
         user_id: userId,
         type: 'verification_rejected',
         title: 'تم رفض طلبك',
         message: `تم رفض وثيقة ${getDocumentTypeName(request.document_type)}. السبب: ${reason}`
       })
+
+      if (notificationError) {
+        console.warn('Notification failed to send, but rejection was successful:', notificationError)
+      }
 
       onRefresh()
       setRejectionReasons(prev => {
@@ -110,7 +138,8 @@ const ClientVerification: React.FC<ClientVerificationProps> = ({ clients, verifi
         return newReasons
       })
     } catch (error) {
-      console.error('Error rejecting request:', error)
+      console.error('[Rejection] Error rejecting request:', error)
+      alert(`حدث خطأ أثناء الرفض: ${error instanceof Error ? error.message : 'خطأ غير معروف'}`)
     } finally {
       setIsProcessing(false)
     }
