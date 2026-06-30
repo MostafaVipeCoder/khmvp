@@ -13,6 +13,7 @@ import { Html5QrcodeScanner } from 'html5-qrcode';
 import { useTranslation } from '@/hooks/useTranslation';
 import { notificationService } from '@/services/notification';
 import { supabase } from '@/lib/supabase';
+import { qrService } from '@/services/qr';
 
 
 interface FormattedBooking {
@@ -54,7 +55,7 @@ export default function ClientActiveBookings({ onNavigate }: ClientActiveBooking
   useEffect(() => {
     let scanner: Html5QrcodeScanner | null = null;
 
-    if (showScanner && scanningBooking) {
+    if (showScanner && scanningBooking && user) {
       const timer = setTimeout(() => {
         scanner = new Html5QrcodeScanner(
           "reader",
@@ -67,56 +68,34 @@ export default function ClientActiveBookings({ onNavigate }: ClientActiveBooking
         );
 
         scanner.render(async (decodedText: string) => {
-          // Format: KHMVP-VERIFY:booking_id:sitter_id:client_id
-          if (decodedText.startsWith('KHMVP-VERIFY:')) {
-            const parts = decodedText.split(':');
-            const [_, scannedBookingId, scannedSitterId, scannedClientId] = parts;
+          try {
+            // Verify the QR code
+            const verificationResult = await qrService.verifyQRData(
+              decodedText,
+              user.id,
+              'client'
+            );
 
-            // 1. Check if it's the right booking ID
-            if (scannedBookingId !== scanningBooking.id) {
-              toast.error(activeT.wrongSitter);
-              // Report to the scanned sitter that a wrong client tried to scan them
-              notificationService.createNotification({
-                user_id: scannedSitterId,
-                type: 'scan_mismatch',
-                title: language === 'ar' ? 'تنبيه أمان' : 'Security Alert',
-                message: language === 'ar' ? 'هذه ليست العميلة المطلوبة' : 'This is not the correct client',
-                data: { scanned_by: user?.id, expected_client: scannedClientId }
-              }).catch(e => console.error("Failed to report mismatch", e));
+            if (!verificationResult.success) {
+              toast.error(verificationResult.error || activeT.wrongSitter);
+              // Optional: Report mismatch to sitter if needed
               return;
             }
 
-            // 2. Check if it's the right sitter ID
-            if (scannedSitterId !== scanningBooking.sitter_id) {
+            const verifiedData = verificationResult.data!;
+            
+            // Check that this QR is for the correct booking
+            if (verifiedData.bookingId !== scanningBooking.id) {
               toast.error(activeT.wrongSitter);
               return;
             }
 
-            // 3. Check if it's the right client ID
-            if (scannedClientId !== user?.id) {
-              toast.error(activeT.wrongClient);
-              // Report to the sitter that a wrong client tried to scan them
-              notificationService.createNotification({
-                user_id: scanningBooking.sitter_id,
-                type: 'scan_mismatch',
-                title: language === 'ar' ? 'تنبيه أمان' : 'Security Alert',
-                message: language === 'ar' ? 'هذه ليست العميلة المطلوبة' : 'This is not the correct client',
-                data: { scanned_by: user?.id, booking_id: scanningBooking.id }
-              }).catch(e => console.error("Failed to report mismatch", e));
-              return;
-            }
-
-            // All good!
+            // All checks passed!
             if (scanner) scanner.clear();
             await handleScanSuccess();
-          } else {
-            // Support legacy format for transition if needed, otherwise show error
-            if (decodedText === `Booking-${scanningBooking.id}`) {
-              if (scanner) scanner.clear();
-              await handleScanSuccess();
-            } else {
-              toast.error(language === 'ar' ? 'كود خاطئ!' : 'Invalid code!');
-            }
+          } catch (error) {
+            console.error('QR verification failed:', error);
+            toast.error(language === 'ar' ? 'حدث خطأ أثناء المسح' : 'Error during scan');
           }
         }, () => { });
       }, 500);
@@ -128,7 +107,7 @@ export default function ClientActiveBookings({ onNavigate }: ClientActiveBooking
         }
       };
     }
-  }, [showScanner, scanningBooking]);
+  }, [showScanner, scanningBooking, user]);
 
   useEffect(() => {
     async function fetchActiveBookings() {
