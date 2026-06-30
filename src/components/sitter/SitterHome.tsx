@@ -220,8 +220,8 @@ export default function SitterHome({ language }: SitterHomeProps) {
     try {
       await bookingService.updateStatus(request.id, 'waiting_payment');
 
-      // Send notification to client
-      await notificationService.createNotification({
+      // Send notification to client (non-blocking)
+      notificationService.createNotification({
         user_id: request.client_id,
         type: 'booking_accepted',
         title: language === 'ar' ? 'تم قبول طلبك' : 'Booking Accepted',
@@ -229,7 +229,7 @@ export default function SitterHome({ language }: SitterHomeProps) {
           ? `تم قبول طلبك من أختك ${profile?.full_name || 'الخالة'}. يرجى إتمام عملية الدفع.`
           : `Your booking has been accepted by ${profile?.full_name || 'the sitter'}. Please complete the payment.`,
         data: { booking_id: request.id }
-      });
+      }).catch(err => console.error('Notification failed to send:', err));
 
       toast.success(language === 'ar' ? 'تم قبول الطلب وبانتظار الدفع' : 'Request accepted, waiting for payment');
       loadData();
@@ -243,8 +243,8 @@ export default function SitterHome({ language }: SitterHomeProps) {
     try {
       await bookingService.updateStatus(request.id, 'cancelled');
 
-      // Send notification to client
-      await notificationService.createNotification({
+      // Send notification to client (non-blocking)
+      notificationService.createNotification({
         user_id: request.client_id,
         type: 'booking_declined',
         title: language === 'ar' ? 'تم رفض الطلب' : 'Booking Declined',
@@ -252,7 +252,7 @@ export default function SitterHome({ language }: SitterHomeProps) {
           ? `نعتذر، تم اعتذار أختك ${profile?.full_name || 'الخالة'} عن قبول الطلب.`
           : `Sorry, ${profile?.full_name || 'the sitter'} has declined your booking request.`,
         data: { booking_id: request.id }
-      });
+      }).catch(err => console.error('Notification failed to send:', err));
 
       toast.success(language === 'ar' ? 'تم رفض الطلب' : 'Request declined');
       loadData();

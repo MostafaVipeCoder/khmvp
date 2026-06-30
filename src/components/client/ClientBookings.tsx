@@ -15,6 +15,8 @@ import ChatPage from './ChatPage';
 import { toast } from 'sonner';
 import { useTranslation } from '../../hooks/useTranslation';
 import { supabase } from '../../lib/supabase';
+import { Html5QrcodeScanner } from 'html5-qrcode';
+import { qrService } from '../../services/qr';
 
 interface ClientBookingsProps {
 }
@@ -51,6 +53,60 @@ export default function ClientBookings({ }: ClientBookingsProps) {
   const [showScanner, setShowScanner] = useState(false);
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState('');
+
+  // QR Scanner Effect
+  useEffect(() => {
+    let scanner: Html5QrcodeScanner | null = null;
+
+    if (showScanner && selectedBooking && user) {
+      const timer = setTimeout(() => {
+        scanner = new Html5QrcodeScanner(
+          "client-reader",
+          {
+            fps: 10,
+            qrbox: { width: 250, height: 250 },
+            aspectRatio: 1.0
+          },
+          false
+        );
+
+        scanner.render(async (decodedText: string) => {
+          try {
+            const verificationResult = await qrService.verifyQRData(
+              decodedText,
+              user.id,
+              'client'
+            );
+
+            if (!verificationResult.success) {
+              toast.error(verificationResult.error || 'فشل التحقق');
+              return;
+            }
+
+            const verifiedData = verificationResult.data!;
+            
+            if (verifiedData.bookingId !== selectedBooking.id) {
+              toast.error('هذا ليس الحجز الصحيح');
+              return;
+            }
+
+            if (scanner) scanner.clear();
+            await handleScanSuccess(verifiedData.sessionStartTime, verifiedData.sessionEndTime);
+          } catch (error) {
+            console.error('QR verification failed:', error);
+            toast.error('حدث خطأ أثناء المسح');
+          }
+        }, () => { });
+      }, 500);
+
+      return () => {
+        clearTimeout(timer);
+        if (scanner) {
+          scanner.clear().catch(err => console.error("Failed to clear scanner", err));
+        }
+      };
+    }
+  }, [showScanner, selectedBooking, user]);
 
   // Voice Recording State
   const [isRecording, setIsRecording] = useState(false);
@@ -222,10 +278,10 @@ export default function ClientBookings({ }: ClientBookingsProps) {
     }
   };
 
-  const handleScanSuccess = async () => {
+  const handleScanSuccess = async (sessionStartTime?: string, sessionEndTime?: string) => {
     if (selectedBooking) {
       try {
-        await bookingService.updateStatus(selectedBooking.id, 'ongoing');
+        await bookingService.updateStatus(selectedBooking.id, 'ongoing', sessionStartTime, sessionEndTime);
         toast.success(bookingsT.scanSuccess);
         setShowScanner(false);
         loadBookings();
@@ -554,17 +610,8 @@ export default function ClientBookings({ }: ClientBookingsProps) {
             <DialogTitle>{bookingsT.scanTitle}</DialogTitle>
           </DialogHeader>
           <div className="flex flex-col items-center gap-4 py-6">
-            <div className="w-64 h-64 bg-black rounded-lg flex items-center justify-center relative overflow-hidden">
-              <div className="absolute inset-0 border-2 border-[#FB5E7A] opacity-50 m-8"></div>
-              <p className="text-white text-sm text-center px-4">{bookingsT.scanDesc}</p>
-            </div>
-            <Button
-              className="w-full bg-[#FB5E7A] hover:bg-[#e5536e]"
-              onClick={handleScanSuccess}
-            >
-              <CheckCircle className="w-4 h-4 mr-2" />
-              {bookingsT.simulateScan}
-            </Button>
+            <div id="client-reader" className="w-full bg-black rounded-lg overflow-hidden min-h-[300px]"></div>
+            <p className="text-sm text-center text-gray-500 px-4">{bookingsT.scanDesc}</p>
           </div>
         </DialogContent>
       </Dialog>
