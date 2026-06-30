@@ -71,14 +71,25 @@ export const bookingService = {
     },
 
     /**
-     * Updates the status of a specific booking.
+     * Updates the status of a specific booking, optionally with session start/end times.
      * @param bookingId UUID of the booking
      * @param status New status to set
+     * @param sessionStartTime Optional ISO string for session start
+     * @param sessionEndTime Optional ISO string for session end
      */
-    async updateStatus(bookingId: string, status: Booking['status']) {
+    async updateStatus(
+        bookingId: string, 
+        status: Booking['status'],
+        sessionStartTime?: string,
+        sessionEndTime?: string
+    ) {
+        const updateData: any = { status };
+        if (sessionStartTime) updateData.session_start_time = sessionStartTime;
+        if (sessionEndTime) updateData.session_end_time = sessionEndTime;
+        
         const { error } = await supabase
             .from('bookings')
-            .update({ status })
+            .update(updateData)
             .eq('id', bookingId);
 
         if (error) throw error;

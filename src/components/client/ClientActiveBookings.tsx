@@ -92,7 +92,7 @@ export default function ClientActiveBookings({ onNavigate }: ClientActiveBooking
 
             // All checks passed!
             if (scanner) scanner.clear();
-            await handleScanSuccess();
+            await handleScanSuccess(verifiedData.sessionStartTime, verifiedData.sessionEndTime);
           } catch (error) {
             console.error('QR verification failed:', error);
             toast.error(language === 'ar' ? 'حدث خطأ أثناء المسح' : 'Error during scan');
@@ -181,7 +181,7 @@ export default function ClientActiveBookings({ onNavigate }: ClientActiveBooking
     );
   };
 
-  const handleScanSuccess = async () => {
+  const handleScanSuccess = async (sessionStartTime?: string, sessionEndTime?: string) => {
     if (scanningBooking) {
       try {
         const now = new Date();
@@ -203,7 +203,12 @@ export default function ClientActiveBookings({ onNavigate }: ClientActiveBooking
           return;
         }
 
-        await bookingService.updateStatus(scanningBooking.id, 'ongoing');
+        await bookingService.updateStatus(
+          scanningBooking.id, 
+          'ongoing', 
+          sessionStartTime, 
+          sessionEndTime
+        );
         setActiveBookings((prev: FormattedBooking[]) => prev.map((b: FormattedBooking) => b.id === scanningBooking.id ? { ...b, status: 'ongoing' } : b));
         toast.success(activeT.scanSuccess);
         setShowScanner(false);
@@ -376,15 +381,6 @@ export default function ClientActiveBookings({ onNavigate }: ClientActiveBooking
             <div id="reader" className="w-full bg-black rounded-lg overflow-hidden min-h-[300px]"></div>
 
             <p className="text-sm text-center text-gray-500 px-4">{activeT.scanDesc}</p>
-
-            <Button
-              variant="outline"
-              className="w-full border-dashed"
-              onClick={handleScanSuccess}
-            >
-              <CheckCircle className="w-4 h-4 mr-2" />
-              {activeT.simulateScan}
-            </Button>
           </div>
         </DialogContent>
       </Dialog>

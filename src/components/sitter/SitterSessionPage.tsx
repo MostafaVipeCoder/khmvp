@@ -9,7 +9,6 @@ import type { Language } from '../../App';
 import { locationService } from '../../services/location';
 import { qrService } from '../../services/qr';
 import { useAuthStore } from '../../stores/useAuthStore';
-import QRCodeScanner from '../QRCodeScanner';
 
 interface SitterSessionPageProps {
     language: Language;
@@ -78,36 +77,35 @@ export default function SitterSessionPage({ language, booking: initialBooking, o
     const [hasIncomingCheck, setHasIncomingCheck] = useState(false);
     const [qrDataUrl, setQrDataUrl] = useState<string>('');
     const [qrLoading, setQrLoading] = useState(true);
-    const [showScanner, setShowScanner] = useState(false);
 
     useEffect(() => {
-        const generateQR = async () => {
-            try {
-                setQrLoading(true);
-                const clientId = booking.client_id || (booking as any).clientId;
-                if (!user?.id || !clientId) return;
+    const generateQR = async () => {
+      try {
+        setQrLoading(true);
+        const clientId = booking.client_id || (booking as any).clientId;
+        if (!user?.id || !clientId) return;
 
-                const qrData = await qrService.generateQRData(booking.id, clientId, user.id);
-                const url = await QRCode.toDataURL(qrData, {
-                    width: 400,
-                    margin: 2,
-                    color: {
-                        dark: '#FB5E7A',
-                        light: '#FFFFFF'
-                    }
-                });
-                setQrDataUrl(url);
-            } catch (err) {
-                console.error('QR code generation failed:', err);
-            } finally {
-                setQrLoading(false);
-            }
-        };
+        const qrData = await qrService.generateQRData(booking.id, clientId, user.id, booking.duration);
+        const url = await QRCode.toDataURL(qrData, {
+          width: 400,
+          margin: 2,
+          color: {
+            dark: '#FB5E7A',
+            light: '#FFFFFF'
+          }
+        });
+        setQrDataUrl(url);
+      } catch (err) {
+        console.error('QR code generation failed:', err);
+      } finally {
+        setQrLoading(false);
+      }
+    };
 
-        if (booking.status === 'upcoming') {
-            generateQR();
-        }
-    }, [booking.id, booking.status, booking.client_id, user?.id]);
+    if (booking.status === 'upcoming') {
+      generateQR();
+    }
+  }, [booking.id, booking.status, booking.client_id, booking.duration, user?.id]);
 
     useEffect(() => {
         const channel = supabase
@@ -210,11 +208,6 @@ export default function SitterSessionPage({ language, booking: initialBooking, o
         setHasIncomingCheck(false);
     };
 
-    const handleVerificationSuccess = (data: any) => {
-        toast.success(language === 'ar' ? 'تم التحقق من العميل بنجاح!' : 'Client verified successfully!');
-        // You can update the booking status to 'ongoing' here if needed
-    };
-
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pb-20">
             {/* Header */}
@@ -270,15 +263,6 @@ export default function SitterSessionPage({ language, booking: initialBooking, o
                                 />
                             ) : null}
                         </div>
-                        
-                        {/* Button for sitter to scan client's QR as well */}
-                        <Button 
-                            onClick={() => setShowScanner(true)}
-                            variant="outline"
-                            className="w-full gap-2"
-                        >
-                            {language === 'ar' ? 'تأكيد هوية العميل (تجريبي)' : 'Verify Client Identity (Demo)'}
-                        </Button>
                     </Card>
                 ) : (
                     <div className="space-y-6">
@@ -353,18 +337,6 @@ export default function SitterSessionPage({ language, booking: initialBooking, o
                     </div>
                 )}
             </div>
-
-            {/* QR Scanner for sitter to verify client */}
-            {user && (
-                <QRCodeScanner
-                    isOpen={showScanner}
-                    onClose={() => setShowScanner(false)}
-                    currentUserId={user.id}
-                    userRole="sitter"
-                    language={language}
-                    onVerificationSuccess={handleVerificationSuccess}
-                />
-            )}
         </div>
     );
 }

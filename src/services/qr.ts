@@ -3,6 +3,8 @@ export interface QRVerificationData {
   bookingId: string;
   clientId: string;
   sitterId: string;
+  sessionStartTime: string;
+  sessionEndTime: string;
   expiresAt: string; // ISO string
   signature: string;
 }
@@ -57,21 +59,26 @@ const createHMACSignature = async (payload: string, secret: string): Promise<str
 
 export const qrService = {
   /**
-   * Generates secure QR data with HMAC signature and expiration
+   * Generates secure QR data with HMAC signature, session times, and expiration
    * @param bookingId The ID of the booking
    * @param clientId The ID of the client
    * @param sitterId The ID of the sitter
+   * @param durationHours Number of hours the session will last
    * @returns Encoded string to be used in QR code
    */
-  generateQRData: async (bookingId: string, clientId: string, sitterId: string): Promise<string> => {
+  generateQRData: async (bookingId: string, clientId: string, sitterId: string, durationHours: number): Promise<string> => {
     const now = new Date();
-    const expiresAt = new Date(now.getTime() + QR_EXPIRATION_MINUTES * 60000); // 60 minutes from now
+    const sessionStartTime = now.toISOString();
+    const sessionEndTime = new Date(now.getTime() + durationHours * 60 * 60 * 1000).toISOString();
+    const expiresAt = new Date(now.getTime() + QR_EXPIRATION_MINUTES * 60 * 1000); // 60 minutes from now
 
     // Create payload without signature first
     const payload: Omit<QRVerificationData, 'signature'> = {
       bookingId,
       clientId,
       sitterId,
+      sessionStartTime,
+      sessionEndTime,
       expiresAt: expiresAt.toISOString(),
     };
 
@@ -125,6 +132,8 @@ export const qrService = {
         bookingId: qrData.bookingId,
         clientId: qrData.clientId,
         sitterId: qrData.sitterId,
+        sessionStartTime: qrData.sessionStartTime,
+        sessionEndTime: qrData.sessionEndTime,
         expiresAt: qrData.expiresAt,
       };
       const payloadString = JSON.stringify(payload);
