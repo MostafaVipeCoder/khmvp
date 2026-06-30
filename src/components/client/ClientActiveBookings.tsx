@@ -3,7 +3,7 @@ import { Calendar, Clock, MapPin, MessageCircle, QrCode, CheckCircle, Loader2 } 
 import { Card } from '../ui/card';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '../ui/dialog';
 import ChatPage from './ChatPage';
 import TrackingPage from './TrackingPage';
 import { bookingService } from '@/services/booking';
@@ -51,54 +51,67 @@ export default function ClientActiveBookings({ onNavigate }: ClientActiveBooking
 
   const [showScanner, setShowScanner] = useState(false);
   const [scanningBooking, setScanningBooking] = useState<FormattedBooking | null>(null);
+  const [isScannerReady, setIsScannerReady] = useState(false);
 
   useEffect(() => {
     let scanner: Html5QrcodeScanner | null = null;
 
-    if (showScanner && scanningBooking && user) {
+    if (showScanner && isScannerReady && scanningBooking && user) {
+      console.log('Initializing QR scanner (Active Bookings)...');
       const timer = setTimeout(() => {
-        scanner = new Html5QrcodeScanner(
-          "reader",
-          {
-            fps: 10,
-            qrbox: { width: 250, height: 250 },
-            aspectRatio: 1.0
-          },
-          false
-        );
-
-        scanner.render(async (decodedText: string) => {
-          try {
-            // Verify the QR code
-            const verificationResult = await qrService.verifyQRData(
-              decodedText,
-              user.id,
-              'client'
-            );
-
-            if (!verificationResult.success) {
-              toast.error(verificationResult.error || activeT.wrongSitter);
-              // Optional: Report mismatch to sitter if needed
-              return;
-            }
-
-            const verifiedData = verificationResult.data!;
-            
-            // Check that this QR is for the correct booking
-            if (verifiedData.bookingId !== scanningBooking.id) {
-              toast.error(activeT.wrongSitter);
-              return;
-            }
-
-            // All checks passed!
-            if (scanner) scanner.clear();
-            await handleScanSuccess(verifiedData.sessionStartTime, verifiedData.sessionEndTime);
-          } catch (error) {
-            console.error('QR verification failed:', error);
-            toast.error(language === 'ar' ? 'حدث خطأ أثناء المسح' : 'Error during scan');
+        try {
+          const readerElement = document.getElementById("reader");
+          if (!readerElement) {
+            console.error('Reader element not found!');
+            toast.error('عذراً، فشل تحميل الكاميرا');
+            return;
           }
-        }, () => { });
-      }, 500);
+
+          scanner = new Html5QrcodeScanner(
+            "reader",
+            {
+              fps: 10,
+              qrbox: { width: 250, height: 250 },
+              aspectRatio: 1.0
+            },
+            false
+          );
+
+          scanner.render(async (decodedText: string) => {
+            console.log('Scanned (Active Bookings):', decodedText);
+            try {
+              const verificationResult = await qrService.verifyQRData(
+                decodedText,
+                user.id,
+                'client'
+              );
+
+              if (!verificationResult.success) {
+                toast.error(verificationResult.error || activeT.wrongSitter);
+                return;
+              }
+
+              const verifiedData = verificationResult.data!;
+              
+              if (verifiedData.bookingId !== scanningBooking.id) {
+                toast.error(activeT.wrongSitter);
+                return;
+              }
+
+              if (scanner) scanner.clear();
+              await handleScanSuccess(verifiedData.sessionStartTime, verifiedData.sessionEndTime);
+            } catch (error) {
+              console.error('QR verification failed:', error);
+              toast.error(language === 'ar' ? 'حدث خطأ أثناء المسح' : 'Error during scan');
+            }
+          }, (errorMessage) => {
+            console.debug('QR scan error (Active Bookings):', errorMessage);
+          });
+        } catch (err) {
+          console.error('Failed to initialize scanner (Active Bookings):', err);
+          toast.error('فشل تشغيل الكاميرا، يرجى التأكد من الإذن');
+        }
+      }, 300);
 
       return () => {
         clearTimeout(timer);
@@ -107,7 +120,16 @@ export default function ClientActiveBookings({ onNavigate }: ClientActiveBooking
         }
       };
     }
-  }, [showScanner, scanningBooking, user]);
+  }, [showScanner, isScannerReady, scanningBooking, user]);
+
+  // Set scanner ready after dialog opens
+  useEffect(() => {
+    if (showScanner) {
+      setIsScannerReady(true);
+    } else {
+      setIsScannerReady(false);
+    }
+  }, [showScanner]);
 
   useEffect(() => {
     async function fetchActiveBookings() {
@@ -376,11 +398,10 @@ export default function ClientActiveBookings({ onNavigate }: ClientActiveBooking
         <DialogContent className="max-w-md w-[90vw]">
           <DialogHeader>
             <DialogTitle>{activeT.scanTitle}</DialogTitle>
+            <DialogDescription>{activeT.scanDesc}</DialogDescription>
           </DialogHeader>
           <div className="flex flex-col items-center gap-4 py-6">
             <div id="reader" className="w-full bg-black rounded-lg overflow-hidden min-h-[300px]"></div>
-
-            <p className="text-sm text-center text-gray-500 px-4">{activeT.scanDesc}</p>
           </div>
         </DialogContent>
       </Dialog>

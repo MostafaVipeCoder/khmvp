@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Card } from '../ui/card';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '../ui/dialog';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
@@ -478,6 +478,9 @@ export default function SitterHome({ language }: SitterHomeProps) {
               <DialogContent>
                 <DialogHeader>
                   <DialogTitle>{language === 'ar' ? 'طلب سحب رصيد' : 'Withdrawal Request'}</DialogTitle>
+                  <DialogDescription>
+                    {language === 'ar' ? 'أدخل المبلغ الذي ترغب في سحبه ورقمك القومي للتأكيد.' : 'Enter the amount you want to withdraw and your national ID for confirmation.'}
+                  </DialogDescription>
                 </DialogHeader>
                 <div className="space-y-4 py-4">
                   <div className="space-y-2">

@@ -4,7 +4,7 @@ import { Card } from '../ui/card';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '../ui/dialog';
 import { Label } from '../ui/label';
 import { Textarea } from '../ui/textarea';
 import { bookingService } from '../../services/booking';
@@ -51,6 +51,7 @@ export default function ClientBookings({ }: ClientBookingsProps) {
   const [showChat, setShowChat] = useState(false);
   const [chatBooking, setChatBooking] = useState<Booking | null>(null);
   const [showScanner, setShowScanner] = useState(false);
+  const [isScannerReady, setIsScannerReady] = useState(false);
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState('');
 
@@ -58,46 +59,63 @@ export default function ClientBookings({ }: ClientBookingsProps) {
   useEffect(() => {
     let scanner: Html5QrcodeScanner | null = null;
 
-    if (showScanner && selectedBooking && user) {
+    if (showScanner && isScannerReady && selectedBooking && user) {
+      console.log('Initializing QR scanner...');
       const timer = setTimeout(() => {
-        scanner = new Html5QrcodeScanner(
-          "client-reader",
-          {
-            fps: 10,
-            qrbox: { width: 250, height: 250 },
-            aspectRatio: 1.0
-          },
-          false
-        );
-
-        scanner.render(async (decodedText: string) => {
-          try {
-            const verificationResult = await qrService.verifyQRData(
-              decodedText,
-              user.id,
-              'client'
-            );
-
-            if (!verificationResult.success) {
-              toast.error(verificationResult.error || 'فشل التحقق');
-              return;
-            }
-
-            const verifiedData = verificationResult.data!;
-            
-            if (verifiedData.bookingId !== selectedBooking.id) {
-              toast.error('هذا ليس الحجز الصحيح');
-              return;
-            }
-
-            if (scanner) scanner.clear();
-            await handleScanSuccess(verifiedData.sessionStartTime, verifiedData.sessionEndTime);
-          } catch (error) {
-            console.error('QR verification failed:', error);
-            toast.error('حدث خطأ أثناء المسح');
+        try {
+          const readerElement = document.getElementById("client-reader");
+          if (!readerElement) {
+            console.error('Reader element not found!');
+            toast.error('عذراً، فشل تحميل الكاميرا');
+            return;
           }
-        }, () => { });
-      }, 500);
+
+          scanner = new Html5QrcodeScanner(
+            "client-reader",
+            {
+              fps: 10,
+              qrbox: { width: 250, height: 250 },
+              aspectRatio: 1.0
+            },
+            false
+          );
+
+          scanner.render(async (decodedText: string) => {
+            console.log('Scanned:', decodedText);
+            try {
+              const verificationResult = await qrService.verifyQRData(
+                decodedText,
+                user.id,
+                'client'
+              );
+
+              if (!verificationResult.success) {
+                toast.error(verificationResult.error || 'فشل التحقق');
+                return;
+              }
+
+              const verifiedData = verificationResult.data!;
+              
+              if (verifiedData.bookingId !== selectedBooking.id) {
+                toast.error('هذا ليس الحجز الصحيح');
+                return;
+              }
+
+              if (scanner) scanner.clear();
+              await handleScanSuccess(verifiedData.sessionStartTime, verifiedData.sessionEndTime);
+            } catch (error) {
+              console.error('QR verification failed:', error);
+              toast.error('حدث خطأ أثناء المسح');
+            }
+          }, (errorMessage) => {
+            // Ignore non-critical errors like "no QR found"
+            console.debug('QR scan error:', errorMessage);
+          });
+        } catch (err) {
+          console.error('Failed to initialize scanner:', err);
+          toast.error('فشل تشغيل الكاميرا، يرجى التأكد من الإذن');
+        }
+      }, 300);
 
       return () => {
         clearTimeout(timer);
@@ -106,7 +124,16 @@ export default function ClientBookings({ }: ClientBookingsProps) {
         }
       };
     }
-  }, [showScanner, selectedBooking, user]);
+  }, [showScanner, isScannerReady, selectedBooking, user]);
+
+  // Set scanner ready after dialog opens
+  useEffect(() => {
+    if (showScanner) {
+      setIsScannerReady(true);
+    } else {
+      setIsScannerReady(false);
+    }
+  }, [showScanner]);
 
   // Voice Recording State
   const [isRecording, setIsRecording] = useState(false);
@@ -608,10 +635,10 @@ export default function ClientBookings({ }: ClientBookingsProps) {
         <DialogContent>
           <DialogHeader>
             <DialogTitle>{bookingsT.scanTitle}</DialogTitle>
+            <DialogDescription>{bookingsT.scanDesc}</DialogDescription>
           </DialogHeader>
           <div className="flex flex-col items-center gap-4 py-6">
             <div id="client-reader" className="w-full bg-black rounded-lg overflow-hidden min-h-[300px]"></div>
-            <p className="text-sm text-center text-gray-500 px-4">{bookingsT.scanDesc}</p>
           </div>
         </DialogContent>
       </Dialog>
