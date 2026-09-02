@@ -241,7 +241,7 @@ export const sitterService = {
                 sitter_skills (*),
                 sitter_languages (*)
             `)
-            .eq('role', 'khala')
+            .in('role', ['khala', 'sitter'])
             .eq('is_verified', true)
             .eq('is_active', true); // Only show active sitters
 

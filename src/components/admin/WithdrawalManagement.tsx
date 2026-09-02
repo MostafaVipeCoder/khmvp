@@ -1,172 +1,142 @@
-import { useState, useEffect } from 'react';
-import { walletService } from '@/services/wallet';
-import { Card } from '../ui/card';
-import { Button } from '../ui/button';
-// import { Badge } from '../ui/badge';
-import { Loader2, Check, X, User, Phone, DollarSign, Calendar } from 'lucide-react';
-import { toast } from 'sonner';
-import type { Language } from '../../stores/useAuthStore';
+import React, { useState, useEffect } from 'react'
+import { DollarSign, User, CheckCircle, XCircle, Calendar, MoreVertical } from 'lucide-react'
+import { supabase } from '../../../lib/supabase'
 
-interface WithdrawalManagementProps {
-    language: Language;
+interface Withdrawal {
+  id: string
+  sitterName: string
+  amount: number
+  date: string
+  status: 'pending' | 'approved' | 'rejected'
+  notes: string
 }
 
-const translations = {
-    ar: {
-        title: 'إدارة طلبات السحب',
-        noRequests: 'لا توجد طلبات سحب معلقة',
-        sitter: 'الخالة',
-        amount: 'المبلغ',
-        date: 'التاريخ',
-        actions: 'الإجراءات',
-        approve: 'قبول',
-        reject: 'رفض',
-        confirmApprove: 'هل أنت متأكد من قبول عملية السحب؟',
-        confirmReject: 'هل أنت متأكد من رفض عملية السحب؟',
-        successApprove: 'تم قبول السحب بنجاح',
-        successReject: 'تم رفض السحب',
-        egp: 'جنيه',
-        pending: 'معلق'
-    },
-    en: {
-        title: 'Withdrawal Management',
-        noRequests: 'No pending withdrawal requests',
-        sitter: 'Sitter',
-        amount: 'Amount',
-        date: 'Date',
-        actions: 'Actions',
-        approve: 'Approve',
-        reject: 'Reject',
-        confirmApprove: 'Are you sure you want to approve this withdrawal?',
-        confirmReject: 'Are you sure you want to reject this withdrawal?',
-        successApprove: 'Withdrawal approved successfully',
-        successReject: 'Withdrawal rejected',
-        egp: 'EGP',
-        pending: 'Pending'
-    }
-};
+const WithdrawalManagement: React.FC = () => {
+  const [withdrawals, setWithdrawals] = useState<Withdrawal[]>([])
+  const [loading, setLoading] = useState(true)
 
-export default function WithdrawalManagement({ language }: WithdrawalManagementProps) {
-    const t = translations[language];
-    const [requests, setRequests] = useState<any[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [processingId, setProcessingId] = useState<string | null>(null);
-
-    useEffect(() => {
-        loadRequests();
-    }, []);
-
-    const loadRequests = async () => {
-        try {
-            setLoading(true);
-            const data = await walletService.getAllPendingWithdrawals();
-            setRequests(data);
-        } catch (error) {
-            console.error('Error loading withdrawals:', error);
-            toast.error('Failed to load withdrawal requests');
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const handleAction = async (id: string, status: 'completed' | 'failed') => {
-        const confirmMsg = status === 'completed' ? t.confirmApprove : t.confirmReject;
-        if (!confirm(confirmMsg)) return;
-
-        try {
-            setProcessingId(id);
-            await walletService.updateTransactionStatus(id, status);
-            toast.success(status === 'completed' ? t.successApprove : t.successReject);
-            loadRequests();
-        } catch (error) {
-            console.error('Error processing withdrawal:', error);
-            toast.error('Failed to process withdrawal');
-        } finally {
-            setProcessingId(null);
-        }
-    };
-
-    if (loading) {
-        return (
-            <div className="flex items-center justify-center p-12">
-                <Loader2 className="w-8 h-8 animate-spin text-[#FB5E7A]" />
-            </div>
-        );
+  useEffect(() => {
+    const fetchWithdrawals = async () => {
+      try {
+        // We'll implement real data fetching later
+        setWithdrawals([])
+      } catch (error) {
+        console.error('Error fetching withdrawals:', error)
+      } finally {
+        setLoading(false)
+      }
     }
 
-    return (
-        <div className="max-w-6xl mx-auto p-4">
-            {/* Sticky Header */}
-            <div className="sticky top-0 z-50 bg-gray-50 dark:bg-gray-900 pt-6 pb-4 -mx-4 px-4 mb-4 border-b border-gray-100 dark:border-gray-800">
-                <h1 className="text-[#FB5E7A] text-2xl font-bold">{t.title}</h1>
-            </div>
+    fetchWithdrawals()
+  }, [])
 
-            {requests.length === 0 ? (
-                <Card className="p-12 text-center text-gray-500">
-                    <DollarSign className="w-12 h-12 mx-auto mb-4 opacity-20" />
-                    <p>{t.noRequests}</p>
-                </Card>
-            ) : (
-                <div className="grid gap-4">
-                    {requests.map((request) => (
-                        <Card key={request.id} className="p-6">
-                            <div className="flex flex-wrap items-center justify-between gap-4">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-full bg-[#FB5E7A]/10 flex items-center justify-center">
-                                        <User className="w-6 h-6 text-[#FB5E7A]" />
-                                    </div>
-                                    <div>
-                                        <h3 className="font-bold">{request.profiles?.full_name || 'Unknown Sitter'}</h3>
-                                        <div className="flex items-center gap-4 text-sm text-gray-500 mt-1">
-                                            <span className="flex items-center gap-1">
-                                                <Phone className="w-3 h-3" />
-                                                {request.profiles?.phone || 'N/A'}
-                                            </span>
-                                            <span className="flex items-center gap-1">
-                                                <Calendar className="w-3 h-3" />
-                                                {new Date(request.created_at).toLocaleDateString()}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
+  const getStatusStyle = (status: string) => {
+    switch (status) {
+      case 'pending': return 'text-yellow-600 bg-yellow-100'
+      case 'approved': return 'text-green-600 bg-green-100'
+      case 'rejected': return 'text-red-600 bg-red-100'
+      default: return 'text-gray-600 bg-gray-100'
+    }
+  }
 
-                                <div className="flex items-center gap-8">
-                                    <div className="text-right">
-                                        <p className="text-sm text-gray-500">{t.amount}</p>
-                                        <p className="text-xl font-bold text-[#FB5E7A]">{request.amount} {t.egp}</p>
-                                    </div>
+  const getStatusText = (status: string) => {
+    switch (status) {
+      case 'pending': return 'قيد المراجعة'
+      case 'approved': return 'تم الموافقة'
+      case 'rejected': return 'مرفوض'
+      default: return 'غير معروف'
+    }
+  }
 
-                                    <div className="flex gap-2">
-                                        <Button
-                                            size="sm"
-                                            className="bg-green-600 hover:bg-green-700"
-                                            onClick={() => handleAction(request.id, 'completed')}
-                                            disabled={!!processingId}
-                                        >
-                                            {processingId === request.id ? (
-                                                <Loader2 className="w-4 h-4 animate-spin" />
-                                            ) : (
-                                                <Check className="w-4 h-4 mr-1" />
-                                            )}
-                                            {t.approve}
-                                        </Button>
-                                        <Button
-                                            size="sm"
-                                            variant="outline"
-                                            className="text-red-600 border-red-200 hover:bg-red-50"
-                                            onClick={() => handleAction(request.id, 'failed')}
-                                            disabled={!!processingId}
-                                        >
-                                            <X className="w-4 h-4 mr-1" />
-                                            {t.reject}
-                                        </Button>
-                                    </div>
-                                </div>
-                            </div>
-                        </Card>
-                    ))}
-                </div>
-            )}
+  return (
+    <div className="space-y-8">
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">إدارة السحوبات</h2>
+        <div className="text-sm text-gray-500 dark:text-gray-400">
+          {withdrawals.length} طلب سحب
         </div>
-    );
+      </div>
+
+      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
+        {loading ? (
+          <div className="p-12 flex items-center justify-center">
+            <p className="text-gray-500 dark:text-gray-400 text-lg">جاري تحميل البيانات...</p>
+          </div>
+        ) : withdrawals.length === 0 ? (
+          <div className="p-12 flex flex-col items-center justify-center text-center">
+            <DollarSign className="w-16 h-16 text-gray-300 dark:text-gray-600 mb-4" />
+            <p className="text-gray-500 dark:text-gray-400 text-lg mb-2">لا توجد طلبات سحب حتى الآن</p>
+          </div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-gray-50 dark:bg-gray-700">
+                <tr>
+                  <th className="px-8 py-5 text-right text-xs font-bold text-gray-500 dark:text-gray-300 uppercase">الكود</th>
+                  <th className="px-8 py-5 text-right text-xs font-bold text-gray-500 dark:text-gray-300 uppercase">الخالة</th>
+                  <th className="px-8 py-5 text-right text-xs font-bold text-gray-500 dark:text-gray-300 uppercase">المبلغ</th>
+                  <th className="px-8 py-5 text-right text-xs font-bold text-gray-500 dark:text-gray-300 uppercase">التاريخ</th>
+                  <th className="px-8 py-5 text-right text-xs font-bold text-gray-500 dark:text-gray-300 uppercase">الحالة</th>
+                  <th className="px-8 py-5 text-right text-xs font-bold text-gray-500 dark:text-gray-300 uppercase">ملاحظات</th>
+                  <th className="px-8 py-5 text-right text-xs font-bold text-gray-500 dark:text-gray-300 uppercase">إجراءات</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                {withdrawals.map((withdrawal) => (
+                  <tr key={withdrawal.id} className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                    <td className="px-8 py-5 whitespace-nowrap text-sm font-semibold text-gray-900 dark:text-white">#{withdrawal.id.slice(0, 8)}</td>
+                    <td className="px-8 py-5 whitespace-nowrap">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-[#FB5E7A]/10 rounded-full flex items-center justify-center">
+                          <User className="w-5 h-5 text-[#FB5E7A]" />
+                        </div>
+                        <span className="text-sm text-gray-900 dark:text-white">{withdrawal.sitterName}</span>
+                      </div>
+                    </td>
+                    <td className="px-8 py-5 whitespace-nowrap">
+                      <div className="flex items-center gap-2 text-sm font-bold text-gray-900 dark:text-white">
+                        <DollarSign className="w-4 h-4" />
+                        {withdrawal.amount} جنيه
+                      </div>
+                    </td>
+                    <td className="px-8 py-5 whitespace-nowrap">
+                      <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                        <Calendar className="w-4 h-4" />
+                        {withdrawal.date}
+                      </div>
+                    </td>
+                    <td className="px-8 py-5 whitespace-nowrap">
+                      <span className={`inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold ${getStatusStyle(withdrawal.status)}`}>
+                        {getStatusText(withdrawal.status)}
+                      </span>
+                    </td>
+                    <td className="px-8 py-5 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">{withdrawal.notes}</td>
+                    <td className="px-8 py-5 whitespace-nowrap">
+                      {withdrawal.status === 'pending' && (
+                        <div className="flex gap-2">
+                          <button className="p-2 text-green-600 hover:bg-green-100 rounded-lg transition-all">
+                            <CheckCircle className="w-5 h-5" />
+                          </button>
+                          <button className="p-2 text-red-600 hover:bg-red-100 rounded-lg transition-all">
+                            <XCircle className="w-5 h-5" />
+                          </button>
+                        </div>
+                      )}
+                      {withdrawal.status !== 'pending' && (
+                        <button className="p-2 text-gray-400 hover:bg-gray-100 rounded-lg transition-all">
+                          <MoreVertical className="w-5 h-5" />
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+    </div>
+  )
 }
+
+export default WithdrawalManagement

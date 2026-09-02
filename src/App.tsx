@@ -6,19 +6,15 @@ import { useAuthStore } from './stores/useAuthStore';
 import type { ClientAppProps } from './components/ClientApp';
 import type { SitterAppProps } from './components/SitterApp';
 import SplashScreen from './components/SplashScreen';
+import AdminApp from './components/admin/AdminApp';
+import { supabase } from './lib/supabase';
 
 export type { Language, UserType } from './stores/useAuthStore';
 
-// Lazy load main components for better performance
 const AuthPage = lazy(() => import('./components/AuthPage'));
 const ClientApp = lazy<React.ComponentType<ClientAppProps>>(() => import('./components/ClientApp'));
 const SitterApp = lazy<React.ComponentType<SitterAppProps>>(() => import('./components/SitterApp'));
 
-// Loading fallback component
-/**
- * Global Loading Spinner Component
- * Displayed during lazy loading of routes or initial app initialization.
- */
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
     <div className="text-center space-y-4">
@@ -32,13 +28,7 @@ const PageLoader = () => (
   </div>
 );
 
-/**
- * Root Application Component
- * Handles global state initialization (auth, theme, language).
- * Manages splash screen display and top-level routing based on user authentication and role.
- */
 function App() {
-  // Use Zustand store instead of local state
   const {
     userType,
     isAuthenticated,
@@ -49,15 +39,16 @@ function App() {
     toggleTheme,
     logout,
     initialize,
+    user,
   } = useAuthStore();
 
   const [splashMinTimeElapsed, setSplashMinTimeElapsed] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [checkingAdmin, setCheckingAdmin] = useState(true);
 
-  // Initialize store from storage on mount
   useEffect(() => {
     initialize();
 
-    // Splash screen minimum timer (3 seconds)
     const timer = setTimeout(() => {
       setSplashMinTimeElapsed(true);
     }, 3000);
@@ -65,14 +56,55 @@ function App() {
     return () => clearTimeout(timer);
   }, [initialize]);
 
-  if (isLoading || !splashMinTimeElapsed) {
+  useEffect(() => {
+    const checkUserRole = async () => {
+      if (!user) {
+        setIsAdmin(false);
+        setCheckingAdmin(false);
+        return;
+      }
+
+      try {
+        const { data: profile, error } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', user.id)
+          .single();
+
+        if (!error && profile?.role === 'admin') {
+          setIsAdmin(true);
+        } else {
+          setIsAdmin(false);
+        }
+      } catch (error) {
+        setIsAdmin(false);
+      } finally {
+        setCheckingAdmin(false);
+      }
+    };
+
+    checkUserRole();
+  }, [user]);
+
+  if (isLoading || !splashMinTimeElapsed || checkingAdmin) {
     return <SplashScreen />;
+  }
+
+  // Show Admin App only if user is admin
+  if (isAdmin) {
+    return (
+      <ErrorBoundary>
+        <div className="rtl">
+          <Toaster position="top-left" dir="rtl" richColors closeButton />
+          <AdminApp />
+        </div>
+      </ErrorBoundary>
+    );
   }
 
   return (
     <ErrorBoundary>
       <div className={`min-h-screen ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
-        {/* Toast Notifications */}
         <Toaster
           position={language === 'ar' ? 'top-left' : 'top-right'}
           dir={language === 'ar' ? 'rtl' : 'ltr'}
@@ -80,7 +112,6 @@ function App() {
           closeButton
         />
 
-        {/* Main Content */}
         <Suspense fallback={<PageLoader />}>
           {!isAuthenticated ? (
             <AuthPage />
